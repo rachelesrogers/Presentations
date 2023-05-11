@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Demonstrative Evidence and the Use of Algorithms in Jury Trials</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Rachel Rogers" />
+    <meta name="date" content="2023-05-25" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+    <link rel="stylesheet" href="css/csafe.css" type="text/css" />
+    <link rel="stylesheet" href="css/csafe-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="css/this-presentation.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Demonstrative Evidence and the Use of Algorithms in Jury Trials
+]
+.author[
+### Rachel Rogers
+]
+.date[
+### 2023-05-25
+]
+
+---
+
+
+
+
+class: primary-blue
+## Research Questions
+
+- How are potential jurors' perceptions of evidence affected by the use of algorithms and images?
+
+    - How can we tell which portions of the testimony participants focus on?
+    
+    - What can we do when Likert response scales suffer from scale compression?
+    
+    - How can we create a more engaging testimony format that clarifies the actors?
+    
+---
+
+class: center, middle, inverse-blue
+
+# Background
+
+---
+
+class: primary-blue, split-three
+
+.pull-left[
+&lt;figure&gt;
+&lt;img src="images/rifling.jpg" width="65%" /&gt;
+&lt;figcaption&gt;baku13, 2005&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="images/fired_bullet.jpg" width="65%" /&gt;
+&lt;figcaption&gt;Gremi-ch, 2009&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+&lt;img src="images/bulletdiagram.jpg" width="65%" /&gt;
+&lt;figcaption&gt;Hare et al.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+]
+
+.pull-right[
+
+&lt;figure&gt;
+&lt;img src="images/bulletland.jpg" width="70%" /&gt;
+&lt;figcaption&gt;Hare et al.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;img src="images/microscope.jpg" width="70%" /&gt;
+]
+
+
+
+ 
+---
+
+class: primary-blue
+### Why Algorithms in Forensic Science?
+
+- President’s Council of Advisors on Science and Technology (PCAST) Report (2016)
+  - Current methods of pattern analysis (such as bullet matching) are subjective 
+     - based on the training and experience of forensic examiners
+     - No national standard (Baldwin, 2014)
+     
+  - Issues in Scientific Validity
+     - error rate studies
+         - How to report inconclusives (Hofmann et al., 2021)
+         - Open set vs. closed set
+        
+  - Scale of Conclusions
+     - What match language is appropriate?
+     
+ 
+---
+
+class: primary-blue
+### Why Algorithms in Forensic Science?
+
+- Foundational Validity (PCAST definition)
+
+  - Reproducible and consistent procedure for identifying and comparing features to determine identification between two samples
+  
+  - empirical measurements from multiple independent studies of false positive rate and sensitivity
+ 
+---
+
+class: primary-blue
+### Why Algorithms in the Courtroom?
+#### Concern about Interpretability
+- FRStat testimony using probabilistic language:
+  - "The probability of observing this amount of correspondence is approximately [XXX] times greater when the impressions are made by the same source rather than by different sources" (Defense Forensic Science Center)
+  - Jurors struggle with distinguishing between a wide range of values (between 10 and 100,000)
+    when estimating the likelihood that the defendant was involved in the crime (Garrett et. al. 2018) 
+- A study in DNA (Koehler)
+  - More likely to believe subject was the source of the DNA when presented with a probability rather than a frequency
+  - Asked participants how many individuals would match DNA for a given match proportion in a population of 500,000. Correct answers:
+     - 60.7% for frequency
+     - 42.1% for probability
+- Examiners may be easier to understand (Swofford &amp; Champod 2022)
+  - Supplement examiner testimony with a statistical comparison
+
+---
+class: center, middle, inverse-blue
+
+# How are potential jurors' perceptions of evidence affected by the use of algorithms and images?
+
+---
+
+class: secondary-blue
+## The Structure
+
+- Based on Garrett et. al.'s "Mock jurors' evaluation of firearm examiner testimony" (2020)
+    - Richard Cole is on trial for attempted robbery of a convenience store
+    - Gun found in Cole's car is tested against bullet recovered from crime scene
+    
+- Three Variables: 
+    - Demonstrative Evidence 
+    - Algorithm 
+        - Algorithm testimony includes both a Firearm Examiner and an Algorithm Expert
+    - Conclusion
+
+- Gathering Data
+    - 569 participants from Prolific (using representative sample feature)
+    
+- Questions on the reliability/credibility of the evidence or the expert
+
+---
+
+class: center, secondary-blue
+## The Demonstrative Evidence
+
+&lt;figure&gt;
+&lt;img src="images/fired_bullet.jpg" width="35%" /&gt;
+&lt;figcaption&gt;Gremi-ch, 2009&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+.pull-left[
+&lt;figure&gt;
+&lt;img src="images/rifling.jpg" width="65%" /&gt;
+&lt;figcaption&gt;baku13, 2005&lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+.pull-right[
+&lt;img src="images/microscope.jpg" width="65%" /&gt;
+]
+
+---
+
+class: secondary-blue
+## The Algorithm
+
+.pull-left[
+- Described in Hare et. al.
+- A 3D scan is taken of each bullet land, a stable cross section is extracted, and shoulders are removed
+- A smoothing function is applied twice in order to extract the signature, which can be compared to land signatures from other bullets
+- Traits (cross correlation, matching extrema, number of nonmatches, etc.) are used in a random forest to produce a match score for lands. Lands are aligned across bullets in order to compute an overall match score for the bullets
+]
+
+.pull-right[
+&lt;figure&gt;
+&lt;img src="images/shoulder.jpg" width="75%" /&gt;
+&lt;figcaption&gt;&lt;font size="1"&gt;  Hare et al.&lt;/font&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+&lt;img src="images/Match_Signatures.jpg" width="75%" /&gt;
+&lt;figcaption&gt;&lt;font size="1"&gt;Hare et al.&lt;/font&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;img src="images/Test_Fire_F526.jpeg" width="75%" /&gt;
+]
+
+---
+
+class: secondary-blue
+## The Results
+
+- Conviction choice
+  - 10/196 (5%) for Non-match
+  - 13/191 (7%) for Inconclusive
+  - 112/182 (62%) for Match
+
+&lt;img src="images/probbox.jpg" width="90%" /&gt;
+
+---
+
+class: secondary-blue
+## The Results
+
+.img[![](images/reliable.jpg)]
+
+---
+
+class: secondary-blue
+
+## Moving Forward
+
+- Scale Compression
+  - Ceiling effect: examiners are overall seen as reliable
+  - Individuals may already believe that firearms evidence is reliable (Garrett &amp; Mitchell, 2013)
+  - Proposed Solution: Investigate other response methods
+  
+- Written Testimony
+  - Not representative of a courtroom setting
+  - Can be confusing
+  - Proposed Partial Solution: Include characters to clarify actors
+  
+- Notepad analysis
+
+---
+
+class: center, middle, inverse-blue
+
+# How can we tell which portions of the testimony participants focus on?
+
+---
+
+class: primary-blue
+### Digital Notepad
+
+.img[![](images/notepad.jpg)]
+
+- Participants are provided with a digital notepad, and input is saved for each page of testimony
+  - Data cleaning: removing the previous page's notes before analysis
+  
+  .img[![](images/pagecleaning_plain.jpg)]
+
+---
+
+class: primary-blue
+### First n Characters
+
+- Test edit distance on first n characters to previous notes
+   - Edit distance: Number of changes necessary to go from one string to the other string
+   - Hat -&gt; Hot requires 1 substitution (edit distance of 1)
+   - Over there -&gt; there requires 5 deletions (edit distance of 5)
+
+.img[![](images/pagecleaning.jpg)]
+
+- What if:
+   - Participants delete portions of their previous notes?
+   - Participants add new notes in the middle of/before their old notes?
+   - Participants duplicate their old notes?
+---
+
+class: primary-blue
+### Longest Common Substring (LCS)
+
+- Search for the longest common substring between the current set of notes and the previous set of notes
+   - If the string is long enough, remove from current page of notes
+   - Repeat
+
+<div id="htmlwidget-0dc3cc36a9f353adf870" style="width:800px;height:500px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-0dc3cc36a9f353adf870">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: primary-blue
+### Longest Common Substring (LCS)
+
+What if...
+- Participants delete portions of their previous notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | The cat ran | The cat ran | 12
+
+- Participants add new notes in the middle of old notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11
+
+- Participants duplicate their old notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree | (The cat ran up the tree)(The cat ran up the tree) | 0
+
+---
+
+class: primary-blue
+### Hybrid Method
+
+- LCS Drawbacks
+   - What if testimony itself is repeated?
+   - Time intensive
+- Use the first n character method for easy cases, then clean up difficult cases with LCS (Tested on subset of 35 participants' notes)
+
+&lt;img src="images/cleaningerror.jpg" width="75%" /&gt;
+
+---
+
+class: primary-blue
+### Hybrid Method
+
+- Difficult Cases
+   - Edit distance larger than the initial cutoff value
+   - Note length more than 4 standard deviations above the mean length for that page
+
+.img[![](images/cleaningtable.jpg)]
+
+---
+
+class: primary-blue
+
+<div id="htmlwidget-99dc0fb3f77eea1e6260" style="width:800px;height:600px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-99dc0fb3f77eea1e6260">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+
+
+class: primary-blue
+
+&lt;img src="images/pagecleaning.jpg" width="65%" /&gt;
+
+<div id="htmlwidget-ce3a7c185ff3a883d350" style="width:600px;height:400px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-ce3a7c185ff3a883d350">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+
+class: primary-blue
+
+Page 1 | Page 2 | LCS | Edit Distance | Result 
+--------|---------|---------|---------
+The cat ran up the tree | The cat ran | The cat ran | 12 |  
+
+<div id="htmlwidget-2213f1b32c6726a860ce" style="width:600px;height:500px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-2213f1b32c6726a860ce">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: primary-blue
+
+Page 1 | Page 2 | LCS | Edit Distance | Result
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11 | ,chased by a dog,
+
+<div id="htmlwidget-ab3e343bcfef55f7e13a" style="width:600px;height:500px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-ab3e343bcfef55f7e13a">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+
+class: primary-blue
+
+Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree chased by a dog | (The cat ran up the tree) | 0 | 10 | 5 | chased by a dog
+
+<div id="htmlwidget-bbcdc872fdd9d4ace28c" style="width:600px;height:500px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-bbcdc872fdd9d4ace28c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: primary-blue
+### How can we tell which portions of the testimony participants focus on?
+
+- Highlight testimony based on frequency of occurrence in participants' notes
+  - Collocations of length 5
+     - Willfully: average frequency of 91.2
+- Next step: fuzzy matches
+  
+  
+.pull-left[.img[![](images/collocationcount.jpg)]]
+.pull-right[.img[![](images/collocationanalysis.jpg)]]
+
+---
+
+class: primary-blue
+### What can we do when Likert response scales have scale compression?
+
+- Micro-study comparing response formats
+  - Strength of evidence (Likert - 9 point)
+  - Guilt (Yes/No)
+  - Convict (Yes/No)
+  - Probability of guilt (Numeric)
+  - What are the chances that defendant committed the crime? (Numeric or multiple choice)
+  - How much would you be willing to bet that the defendant committed the crime? (Numeric)
+  
+- Inclusion of jury instructions and more cross examination on subjectivity
+
+---
+
+class: primary-blue
+### How can we create a more engaging testimony format that clarifies the actors?
+
+- Development of figures (by Richy Meleus) with text bubbles, and colors indicating which side they are testifying for
+
+.pull-left[
+.pull-left[&lt;img src="images/Judge.jpg" width="75%" /&gt;
+&lt;img src="images/Lawyer.jpg" width="75%" /&gt;]
+.pull-right[&lt;img src="images/Forensic Scientist.jpg" width="75%" /&gt;
+&lt;img src="images/Analyst.jpg" width="75%" /&gt;]
+]
+.pull-right[
+.pull-left[&lt;img src="images/Defendant.jpg" width="75%" /&gt;
+&lt;img src="images/Hazmat Worker.jpg" width="75%" /&gt;]
+.pull-right[&lt;img src="images/Inmate.jpg" width="75%" /&gt;
+&lt;img src="images/Police Officer.jpg" width="75%" /&gt;]
+]
+
+---
+
+class: primary-blue
+### How can we create a more engaging testimony format that clarifies the actors?
+
+&lt;img src="images/Lawyer.jpg" width="15%" /&gt; <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+&lt;img src="images/Forensic Scientist.jpg" width="15%" /&gt; <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M48 128c-17.7 0-32 14.3-32 32s14.3 32 32 32H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H48zm0 192c-17.7 0-32 14.3-32 32s14.3 32 32 32H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H48z"/></svg>
+&lt;img src="images/Prosecutor.png" width="15%" /&gt;
+
+---
+
+class: primary-blue
+
+.img[![](images/Study2_Screenshot.jpg)]
+&lt;center&gt;&lt;img src="images/Study2_Screenshot2.jpg" width="65%" /&gt;&lt;/center&gt;
+
+---
+
+class: primary-blue
+## Research Questions
+
+- How are potential jurors' perceptions of evidence affected by the use of algorithms and images?
+    - &lt;img src="images/highlight.jpg" width="85%" /&gt;
+    - What can we do when Likert response scales suffer from scale compression?
+       - <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M416 176c0 97.2-93.1 176-208 176c-38.2 0-73.9-8.7-104.7-23.9c-7.5 4-16 7.9-25.2 11.4C59.8 346.4 37.8 352 16 352c-6.9 0-13.1-4.5-15.2-11.1s.2-13.8 5.8-17.9l0 0 0 0 .2-.2c.2-.2 .6-.4 1.1-.8c1-.8 2.5-2 4.3-3.7c3.6-3.3 8.5-8.1 13.3-14.3c5.5-7 10.7-15.4 14.2-24.7C14.7 250.3 0 214.6 0 176C0 78.8 93.1 0 208 0S416 78.8 416 176zM231.5 383C348.9 372.9 448 288.3 448 176c0-5.2-.2-10.4-.6-15.5C555.1 167.1 640 243.2 640 336c0 38.6-14.7 74.3-39.6 103.4c3.5 9.4 8.7 17.7 14.2 24.7c4.8 6.2 9.7 11 13.3 14.3c1.8 1.6 3.3 2.9 4.3 3.7c.5 .4 .9 .7 1.1 .8l.2 .2 0 0 0 0c5.6 4.1 7.9 11.3 5.8 17.9c-2.1 6.6-8.3 11.1-15.2 11.1c-21.8 0-43.8-5.6-62.1-12.5c-9.2-3.5-17.8-7.4-25.2-11.4C505.9 503.3 470.2 512 432 512c-95.6 0-176.2-54.6-200.5-129zM228 72c0-11-9-20-20-20s-20 9-20 20V86c-7.6 1.7-15.2 4.4-22.2 8.5c-13.9 8.3-25.9 22.8-25.8 43.9c.1 20.3 12 33.1 24.7 40.7c11 6.6 24.7 10.8 35.6 14l1.7 .5c12.6 3.8 21.8 6.8 28 10.7c5.1 3.2 5.8 5.4 5.9 8.2c.1 5-1.8 8-5.9 10.5c-5 3.1-12.9 5-21.4 4.7c-11.1-.4-21.5-3.9-35.1-8.5c-2.3-.8-4.7-1.6-7.2-2.4c-10.5-3.5-21.8 2.2-25.3 12.6s2.2 21.8 12.6 25.3c1.9 .6 4 1.3 6.1 2.1l0 0 0 0c8.3 2.9 17.9 6.2 28.2 8.4V280c0 11 9 20 20 20s20-9 20-20V266.2c8-1.7 16-4.5 23.2-9c14.3-8.9 25.1-24.1 24.8-45c-.3-20.3-11.7-33.4-24.6-41.6c-11.5-7.2-25.9-11.6-37.1-15l-.7-.2c-12.8-3.9-21.9-6.7-28.3-10.5c-5.2-3.1-5.3-4.9-5.3-6.7c0-3.7 1.4-6.5 6.2-9.3c5.4-3.2 13.6-5.1 21.5-5c9.6 .1 20.2 2.2 31.2 5.2c10.7 2.8 21.6-3.5 24.5-14.2s-3.5-21.6-14.2-24.5c-6.5-1.7-13.7-3.4-21.1-4.7V72z"/></svg>
+    - &lt;img src="images/courtquestion.jpg" width="85%" /&gt;
+
+---
+
+class: primary-blue,citation-slide
+# Citations
+- baku13. (2005, August). L7 105mm tank gun Cut model. Retrieved from https://commons.wikimedia.org/wiki/File:105mm_tank_gun_Rifling.jpg
+- Baldwin, D. P., Bajic, S. J., Morris, M., &amp; Zamzow, D. (2014). A Study of False-Positive and False-Negative Error Rates in Cartridge Case Comparisons: Fort Belvoir, VA: Defense Technical Information Center. Retrieved from http://www.dtic.mil/docs/citations/ADA611807
+- Defense Forensic Science Center (DFSC). Information paper: modification of latent print technical reports to include statistical calculations, 2017; https://osf.io/pmkwf/
+- Garrett, Brandon, Gregory Mitchell, and Nicholas Scurich. “Comparing Categorical and Probabilistic Fingerprint Evidence.” Journal of Forensic Sciences 63, no. 6 (November 2018): 1712–17. https://doi.org/10.1111/1556-4029.13797.
+- Garrett, B., &amp; Mitchell, G. and. (2013). How Jurors Evaluate Fingerprint
+Evidence: The Relative Importance of Match Language, Method Information, and Error Acknowledgment: How Jurors Evaluate Fingerprint Evidence. Journal of Empirical Legal Studies, 10(3), 484–511. http://doi.org/10.1111/jels.12017 
+- Garrett, B. L., Scurich, N., &amp; Crozier, W. E. "Mock jurors’ evaluation of firearm examiner testimony." (2020). Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
+- Gremi-ch. (2009). English: A 5.66x45mm (.223 rem.) Boat tailed FMJ spitzer bullet laying on a ruler with a scale in centimeter. Retrieved from https://commons.wikimedia.org/wiki/File:GP90-bullet.JPG?uselang=fr
+- Hare, Eric, et al. “Automatic Matching of Bullet Land Impressions.” The Annals of Applied Statistics, vol. 11, no. 4, Dec. 2017, pp. 2332–56. Project Euclid, https://doi.org/10.1214/17-AOAS1080  
+- Hofmann, H., Vanderplas, S., &amp; Carriquiry, A. (2021). Treatment of Inconclusives in the AFTE Range of Conclusions. Law, Probability &amp; Risk, 19(3-4). http://doi.org/https://doi.org/10.1093/lpr/mgab002
+- Koehler, J. J. (2001). "When are people persuaded by DNA match statistics?" Law and Human Behavior, 25(5), 493–513. http://doi.org/d82kvn
+- PCAST. (2016). Forensic Science in Criminal Courts: Ensuring Scientific Validity of Feature Comparison Methods. President’s Council of Advisors on Science and Technology. Retrieved from https://obamawhitehouse.archives.gov/sites/default/files/microsites/ostp/PCAST/pcast_forensic_science_report_final.pdf
+- Swofford, H., &amp; Champod, C. (2022). Probabilistic reporting and algorithms in forensic science: Stakeholder perspectives within the American criminal justice system. Forensic Science International: Synergy, 4, 100220. http://doi.org/gphvxj
+
+
+This work was funded (or partially funded) by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreements 70NANB15H176 and 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
+
+---
+
+
+class: center, middle, inverse-blue
+
+# Study 1 Images
+
+---
+
+class: secondary-blue
+## The Results
+
+.img[![](images/strengthprob.jpg)]
+
+---
+
+class: secondary-blue
+## The Results
+
+.img[![](images/mistakes.jpg)]
+
+---
+
+class: secondary-blue
+## The Results - Algorithm Only
+
+.img[![](images/understanding.jpg)]
+
+---
+
+class: secondary-blue
+## The Results - Algorithm Only
+
+.img[![](images/scientificity.jpg)]
+
+---
+
+class: secondary-blue
+## The Results
+
+.img[![](images/examinerscience.jpg)]
+
+---
+
+class: secondary-blue
+## The Participants
+
+- 569 participants used in data analysis
+  - Valid Prolific ID's 
+  - Had not progressed significantly in study previously
+  - Passed attention checks
+- Average completion time of approximately 18 minutes
+  
+&lt;center&gt;&lt;img src="images/completiontime.jpg" width="50%" /&gt;&lt;/center&gt;
+
+---
+
+class: secondary-blue
+## The Participants
+
+&lt;center&gt;.img[![](images/attentiontable.jpg)]&lt;/center&gt;
+.img[![](images/genderage.jpg)]
+
+---
+
+class: secondary-blue
+## The Results
+
+.img[![](images/credible.jpg)]
+
+---
+
+class: secondary-blue
+## The Results
+
+.img[![](images/probhist.png)]
+
+---
+
+
+class: secondary-blue
+## The Conclusions
+
+- Scale Compression
+   - Individuals may already believe that firearms evidence is reliable and scientific (Garrett &amp; Mitchell, 2013)
+- Lower reliability scores for inconclusive decisions
+
+---
+
+
+class: secondary-blue
+## New Question Formats
+
+&lt;img src="images/Study2_response.jpg" width="90%" /&gt;
+
+---
+
+class: secondary-blue
+
+## Limitations
+
+- Scale Compression
+  - Ceiling effect: examiners are overall seen as reliable
+  - Individuals may already believe that firearms evidence is reliable (Garrett &amp; Mitchell, 2013)
+- Written Testimony
+  - Not representative of a courtroom setting
+  - No deliberation
+- Prolific Participants
+  - We sampled online survey takers (may not be representative)
+- Typos
+  - Found throughout the testimony for the first half of survey takers
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
