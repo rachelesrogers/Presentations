@@ -143,6 +143,13 @@ class: secondary-blue
 class: secondary-blue
 ## The Results
 
+<center><img src="images/probhist.png" /></center>
+
+---
+
+class: secondary-blue
+## The Results
+
 - Conviction choice
   - 10/196 (5%) for Non-match
   - 13/191 (7%) for Inconclusive
