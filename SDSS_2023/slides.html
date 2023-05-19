@@ -232,6 +232,7 @@ class: primary-blue
 - Difficult Cases
    - Edit distance larger than the initial cutoff value
    - Note length more than 4 standard deviations above the mean length for that page
+- Based on validation from 35 participants' notes (cleaned by hand)
 
 .img[![](images/cleaningtable.jpg)]
 
@@ -341,6 +342,38 @@ Evidence: The Relative Importance of Match Language, Method Information, and Err
 
 
 This work was funded (or partially funded) by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreements 70NANB15H176 and 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
+
+---
+
+class: primary-blue
+### Weights
+
+- Fuzzy Matching
+  - `\(x_i\)` is the frequency for a fuzzy collocation `\(i\)`
+  - `\(d_i\)` is the fuzzy match distance
+  - `\(c_i\)` is the number of closest matches for the fuzzy collocation
+     - ex. "Jur"
+- Non-Fuzzy Matching ( `\(z\)` )
+- What if the testimony contains the same collocation multiple times? ( `\(k\)` )
+  - ex. "the bullet matching algorithm is"
+- What if the testimony occurs in multiple scenarios? ( `\(s\)` )
+  
+$$
+(z+\sum_{i=1}^n\frac{x_i}{(d_i+0.25)c_i})\frac{1}{ks}
+$$
+
+.pull-left[.img[![](images/collocationanalysis.jpg)]]
+.pull-right[.img[![](images/weightedcollocation.jpg)]]
+
+---
+
+class: primary-blue
+### Hybrid Method
+
+- Use the first n character method for easy cases, then clean up difficult cases with LCS (Tested on subset of 35 participants' notes)
+
+&lt;img src="images/cleaningerror.jpg" width="75%" /&gt;
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
