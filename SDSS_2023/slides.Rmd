@@ -211,13 +211,6 @@ class: primary-blue
 class: primary-blue
 ### Hybrid Method
 
-<img src="images/cleaningerror.jpg" width="75%" />
-
----
-
-class: primary-blue
-### Hybrid Method
-
 - Difficult Cases
    - Edit distance larger than the initial cutoff value
    - Note length more than 4 standard deviations above the mean length for that page
@@ -232,6 +225,8 @@ class: primary-blue
 - Highlight testimony based on frequency of occurrence in participants' notes
   - Collocations of length 5
      - Willfully: average frequency of 91.2
+  - Frequency of Individual words
+  - Divide by number of occurrences in the testimony
 - Weighted Fuzzy Matches
   
   
