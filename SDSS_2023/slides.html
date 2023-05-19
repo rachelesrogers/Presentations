@@ -3,14 +3,10 @@
   <head>
     <title>Demonstrative Evidence and the Use of Algorithms in Jury Trials</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Rachel Rogers" />
+    <meta name="author" content="Rachel Rogers and Susan Vanderplas" />
     <meta name="date" content="2023-05-25" />
     <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
-    <script src="libs/viz-1.8.2/viz.js"></script>
-    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-    <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
     <link rel="stylesheet" href="css/csafe.css" type="text/css" />
     <link rel="stylesheet" href="css/csafe-fonts.css" type="text/css" />
     <link rel="stylesheet" href="css/this-presentation.css" type="text/css" />
@@ -23,7 +19,7 @@ class: center, middle, inverse, title-slide
 # Demonstrative Evidence and the Use of Algorithms in Jury Trials
 ]
 .author[
-### Rachel Rogers
+### Rachel Rogers and Susan Vanderplas
 ]
 .date[
 ### 2023-05-25
@@ -51,57 +47,6 @@ class: center, middle, inverse-blue
 
 # Background
 
----
-
-class: primary-blue, split-three
-
-.pull-left[
-&lt;figure&gt;
-&lt;img src="images/rifling.jpg" width="65%" /&gt;
-&lt;figcaption&gt;baku13, 2005&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;figure&gt;
-&lt;img src="images/fired_bullet.jpg" width="65%" /&gt;
-&lt;figcaption&gt;Gremi-ch, 2009&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;figure&gt;
-&lt;img src="images/bulletdiagram.jpg" width="65%" /&gt;
-&lt;figcaption&gt;Hare et al.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-]
-
-.pull-right[
-
-&lt;figure&gt;
-&lt;img src="images/bulletland.jpg" width="70%" /&gt;
-&lt;figcaption&gt;Hare et al.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;img src="images/microscope.jpg" width="70%" /&gt;
-]
-
-
-
- 
----
-
-class: primary-blue
-### Why Algorithms in Forensic Science?
-
-- President’s Council of Advisors on Science and Technology (PCAST) Report (2016)
-  - Current methods of pattern analysis (such as bullet matching) are subjective 
-     - based on the training and experience of forensic examiners
-     - No national standard (Baldwin, 2014)
-     
-  - Issues in Scientific Validity
-     - error rate studies
-         - How to report inconclusives (Hofmann et al., 2021)
-         - Open set vs. closed set
-        
-  - Scale of Conclusions
-     - What match language is appropriate?
-     
- 
 ---
 
 class: primary-blue
@@ -260,64 +205,20 @@ class: primary-blue
 ---
 
 class: primary-blue
-### First n Characters
+### Hybrid Note Cleaning
 
-- Test edit distance on first n characters to previous notes
-   - Edit distance: Number of changes necessary to go from one string to the other string
-   - Hat -&gt; Hot requires 1 substitution (edit distance of 1)
-   - Over there -&gt; there requires 5 deletions (edit distance of 5)
+- Easy Cases of Sequential Notes
+   - First N Character Method
 
 .img[![](images/pagecleaning.jpg)]
 
-- What if:
-   - Participants delete portions of their previous notes?
-   - Participants add new notes in the middle of/before their old notes?
-   - Participants duplicate their old notes?
----
-
-class: primary-blue
-### Longest Common Substring (LCS)
-
-- Search for the longest common substring between the current set of notes and the previous set of notes
-   - If the string is long enough, remove from current page of notes
-   - Repeat
-
-<div id="htmlwidget-0dc3cc36a9f353adf870" style="width:800px;height:500px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-0dc3cc36a9f353adf870">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
----
-
-class: primary-blue
-### Longest Common Substring (LCS)
-
-What if...
-- Participants delete portions of their previous notes?
-   
-Page 1 | Page 2 | LCS | Edit Distance
---------|---------|---------|---------
-The cat ran up the tree | The cat ran | The cat ran | 12
-
-- Participants add new notes in the middle of old notes?
-   
-Page 1 | Page 2 | LCS | Edit Distance
---------|---------|---------|---------
-The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11
-
-- Participants duplicate their old notes?
-   
-Page 1 | Page 2 | LCS | Edit Distance
---------|---------|---------|---------
-The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree | (The cat ran up the tree)(The cat ran up the tree) | 0
+- Difficult Notes (deletion, insertion, and duplication)
+   - Longest Common Substring 
 
 ---
 
 class: primary-blue
 ### Hybrid Method
-
-- LCS Drawbacks
-   - What if testimony itself is repeated?
-   - Time intensive
-- Use the first n character method for easy cases, then clean up difficult cases with LCS (Tested on subset of 35 participants' notes)
 
 &lt;img src="images/cleaningerror.jpg" width="75%" /&gt;
 
@@ -335,69 +236,24 @@ class: primary-blue
 ---
 
 class: primary-blue
-
-<div id="htmlwidget-99dc0fb3f77eea1e6260" style="width:800px;height:600px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-99dc0fb3f77eea1e6260">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
-
----
-
-
-class: primary-blue
-
-&lt;img src="images/pagecleaning.jpg" width="65%" /&gt;
-
-<div id="htmlwidget-ce3a7c185ff3a883d350" style="width:600px;height:400px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-ce3a7c185ff3a883d350">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
-
----
-
-class: primary-blue
-
-Page 1 | Page 2 | LCS | Edit Distance | Result 
---------|---------|---------|---------
-The cat ran up the tree | The cat ran | The cat ran | 12 |  
-
-<div id="htmlwidget-2213f1b32c6726a860ce" style="width:600px;height:500px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-2213f1b32c6726a860ce">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
----
-
-class: primary-blue
-
-Page 1 | Page 2 | LCS | Edit Distance | Result
---------|---------|---------|---------
-The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11 | ,chased by a dog,
-
-<div id="htmlwidget-ab3e343bcfef55f7e13a" style="width:600px;height:500px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-ab3e343bcfef55f7e13a">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
----
-
-
-class: primary-blue
-
-Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
---------|---------|---------|---------
-The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree chased by a dog | (The cat ran up the tree) | 0 | 10 | 5 | chased by a dog
-
-<div id="htmlwidget-bbcdc872fdd9d4ace28c" style="width:600px;height:500px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-bbcdc872fdd9d4ace28c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
----
-
-class: primary-blue
 ### How can we tell which portions of the testimony participants focus on?
 
 - Highlight testimony based on frequency of occurrence in participants' notes
   - Collocations of length 5
      - Willfully: average frequency of 91.2
-- Next step: fuzzy matches
+- Weighted Fuzzy Matches
   
   
 .pull-left[.img[![](images/collocationcount.jpg)]]
-.pull-right[.img[![](images/collocationanalysis.jpg)]]
+.pull-right[.img[![](images/collocationanalysis.jpg)]
+            ![](images/wordanalysis.jpg)]
+
+---
+
+class: primary-blue
+### Collocation Analysis
+
+&lt;img src="images/collocationlong.jpg" width="70%" /&gt;
 
 ---
 
@@ -429,7 +285,7 @@ class: primary-blue
 ]
 .pull-right[
 .pull-left[&lt;img src="images/Defendant.jpg" width="75%" /&gt;
-&lt;img src="images/Hazmat Worker.jpg" width="75%" /&gt;]
+&lt;img src="images/Hazmat worker.jpg" width="75%" /&gt;]
 .pull-right[&lt;img src="images/Inmate.jpg" width="75%" /&gt;
 &lt;img src="images/Police Officer.jpg" width="75%" /&gt;]
 ]
@@ -481,120 +337,6 @@ Evidence: The Relative Importance of Match Language, Method Information, and Err
 
 
 This work was funded (or partially funded) by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreements 70NANB15H176 and 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
-
----
-
-
-class: center, middle, inverse-blue
-
-# Study 1 Images
-
----
-
-class: secondary-blue
-## The Results
-
-.img[![](images/strengthprob.jpg)]
-
----
-
-class: secondary-blue
-## The Results
-
-.img[![](images/mistakes.jpg)]
-
----
-
-class: secondary-blue
-## The Results - Algorithm Only
-
-.img[![](images/understanding.jpg)]
-
----
-
-class: secondary-blue
-## The Results - Algorithm Only
-
-.img[![](images/scientificity.jpg)]
-
----
-
-class: secondary-blue
-## The Results
-
-.img[![](images/examinerscience.jpg)]
-
----
-
-class: secondary-blue
-## The Participants
-
-- 569 participants used in data analysis
-  - Valid Prolific ID's 
-  - Had not progressed significantly in study previously
-  - Passed attention checks
-- Average completion time of approximately 18 minutes
-  
-&lt;center&gt;&lt;img src="images/completiontime.jpg" width="50%" /&gt;&lt;/center&gt;
-
----
-
-class: secondary-blue
-## The Participants
-
-&lt;center&gt;.img[![](images/attentiontable.jpg)]&lt;/center&gt;
-.img[![](images/genderage.jpg)]
-
----
-
-class: secondary-blue
-## The Results
-
-.img[![](images/credible.jpg)]
-
----
-
-class: secondary-blue
-## The Results
-
-.img[![](images/probhist.png)]
-
----
-
-
-class: secondary-blue
-## The Conclusions
-
-- Scale Compression
-   - Individuals may already believe that firearms evidence is reliable and scientific (Garrett &amp; Mitchell, 2013)
-- Lower reliability scores for inconclusive decisions
-
----
-
-
-class: secondary-blue
-## New Question Formats
-
-&lt;img src="images/Study2_response.jpg" width="90%" /&gt;
-
----
-
-class: secondary-blue
-
-## Limitations
-
-- Scale Compression
-  - Ceiling effect: examiners are overall seen as reliable
-  - Individuals may already believe that firearms evidence is reliable (Garrett &amp; Mitchell, 2013)
-- Written Testimony
-  - Not representative of a courtroom setting
-  - No deliberation
-- Prolific Participants
-  - We sampled online survey takers (may not be representative)
-- Typos
-  - Found throughout the testimony for the first half of survey takers
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
