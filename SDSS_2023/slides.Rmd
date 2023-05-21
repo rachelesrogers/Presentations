@@ -51,8 +51,6 @@ class: primary-blue
   - Asked participants how many individuals would match DNA for a given match proportion in a population of 500,000. Correct answers:
      - 60.7% for frequency
      - 42.1% for probability
-- Examiners may be easier to understand (Swofford & Champod 2022)
-  - Supplement examiner testimony with a statistical comparison
 
 ---
 
