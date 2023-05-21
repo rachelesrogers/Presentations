@@ -200,33 +200,7 @@ class: primary-blue
 - Participants are provided with a digital notepad, and input is saved for each page of testimony
   - Data cleaning: removing the previous page's notes before analysis
   
-  .img[![](images/pagecleaning_plain.jpg)]
-
----
-
-class: primary-blue
-### Hybrid Note Cleaning
-
-- Easy Cases of Sequential Notes
-   - First N Character Method
-     - Compare the beginning of the current notes with the entirety of the previous notes
-
-.img[![](images/pagecleaning.jpg)]
-
-- Difficult Notes (deletion, insertion, and duplication)
-   - Longest Common Substring 
-
----
-
-class: primary-blue
-### Hybrid Method
-
-- Difficult Cases
-   - Edit distance larger than the initial cutoff value
-   - Note length more than 4 standard deviations above the mean length for that page
-- Based on validation from 35 participants' notes (cleaned by hand)
-
-.img[![](images/cleaningtable.jpg)]
+  .img[![](images/pagecleaning.jpg)]
 
 ---
 
@@ -366,3 +340,28 @@ class: primary-blue
 
 <img src="images/cleaningerror.jpg" width="75%" />
 
+---
+
+class: primary-blue
+### Hybrid Note Cleaning
+
+- Easy Cases of Sequential Notes
+   - First N Character Method
+     - Compare the beginning of the current notes with the entirety of the previous notes
+
+.img[![](images/pagecleaning.jpg)]
+
+- Difficult Notes (deletion, insertion, and duplication)
+   - Longest Common Substring 
+
+---
+
+class: primary-blue
+### Hybrid Method
+
+- Difficult Cases
+   - Edit distance larger than the initial cutoff value
+   - Note length more than 4 standard deviations above the mean length for that page
+- Based on validation from 35 participants' notes (cleaned by hand)
+
+.img[![](images/cleaningtable.jpg)]
