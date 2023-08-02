@@ -1,7 +1,7 @@
 ---
 title: "Computers meet CSI: Using graphs, pictures, and algorithms in forensic science testimony"
 author: "Rachel Rogers and Susan Vanderplas"
-date: "2023-08-02"
+date: "2023-08-08"
 output:
   xaringan::moon_reader:
     mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
@@ -297,6 +297,8 @@ ggplot(survey2_clean, aes(x = conclusion.x, y = prob_hide, fill = guilty)) +
                outlier.shape = NA) +
   ggtitle("Probability Cole Commited the Crime") +
   scale_fill_manual(values = c("grey20", "plum1"), name="Convict?")+
+  ylab("Probability")+
+  xlab("Conclusion")+
   theme_bw()
 
 ```
@@ -358,7 +360,7 @@ clean_results_merged$fixed_like = factor(
 )
 ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
   geom_point(aes(y=value),color="red",size=5,alpha=0.5)+
-  ggtitle("Likelihood for those who thought cole was innocent") +
+  ggtitle("Likelihood for those who thought Cole was innocent") +
   geom_jitter(aes(y=(guilt_free_num/guilt_free_denom)),
     # position = position_jitterdodge(
     #   jitter.width = 0.2,
@@ -371,6 +373,8 @@ ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
                position = position_dodge(1),
                alpha = 0.5,
                outlier.shape = NA)+ 
+  ylab("Open Response Likelihood")+
+  xlab("Closed Response Likelihood")+
   scale_x_discrete(labels = wrap_format(10))
 
 ```
@@ -383,7 +387,7 @@ class: primary-blue
 
 ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
   geom_point(aes(y=value),color="red",size=5,alpha=0.5)+
-  ggtitle("Likelihood for those who thought cole was guilty") +
+  ggtitle("Likelihood for those who thought Cole was guilty") +
   geom_jitter(aes(y=(1-innocent_free_num/innocent_free_denom)),
              # position = position_jitterdodge(
              #   jitter.width = 0.2,
@@ -396,6 +400,8 @@ ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
                position = position_dodge(1),
                alpha = 0.5,
                outlier.shape = NA)+ 
+  ylab("Open Response Likelihood")+
+  xlab("Closed Response Likelihood")+
   scale_x_discrete(labels = wrap_format(10))
 
 ```
@@ -404,7 +410,7 @@ ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
 
 class: primary-blue
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
 
 library(patchwork)
 guilt<-ggplot(clean_results_merged, aes(x = conclusion.x, y = guilt_bet, fill = guilty)) +
@@ -443,6 +449,36 @@ guilt + innocent
 
 ```
 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+clean_results_merged$bet<- NA
+
+clean_results_merged[!is.na(clean_results_merged$guilt_bet),]$bet<- clean_results_merged[!is.na(clean_results_merged$guilt_bet),]$guilt_bet
+
+clean_results_merged[!is.na(clean_results_merged$innocent_bet),]$bet<- clean_results_merged[!is.na(clean_results_merged$innocent_bet),]$innocent_bet
+
+
+ggplot(clean_results_merged, aes(x = conclusion.x, y = bet, fill = opinion_guilt)) +
+  geom_point(
+    position = position_jitterdodge(
+      jitter.width = 0.2,
+      jitter.height = 0.4,
+      dodge.width = 1
+    ),
+    size = 0.5
+  ) +
+  geom_boxplot(position = position_dodge(1),
+               alpha = 0.5,
+               outlier.shape = NA) +
+  ggtitle("If Researchers Provided You with $50, How Much Would you Bet..") +
+  scale_fill_manual(values = c("grey20", "plum1"), name="How much would\nyou bet that Cole is...",
+                    labels=c("Innocent", "Guilty"))+
+  ylab("Amount (Dollars)")+
+  xlab("Conclusion")+
+  theme_bw()
+
+
+```
 
 ---
 
@@ -590,4 +626,3 @@ class: primary-blue
 
 - Schweitzer et al. found no effect of the inclusion of neuroimages on participant decisions with respect to the defendant's mental state.
 
----
