@@ -277,11 +277,34 @@ class: primary-blue
 ---
 
 class: primary-blue
-## Results
+## Scale Compression
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 library(ggplot2)
+
+colors <-  c("Hidden"="red", "Visible"="grey")
+
+ggplot(survey2_clean) +
+  geom_density(alpha=0.75, aes(x=prob_hide, fill="Hidden")) +
+  geom_density(alpha=0.75, aes(x=prob_vis, fill="Visible")) +
+  ggtitle("Probability Cole Commited the Crime") +
+  scale_fill_manual(values = colors, name="Probability")+
+  ylab("Density")+
+  xlab("Probability")+
+  facet_grid(.~conclusion.x)+
+  theme_bw()
+
+
+```
+
+
+---
+
+class: primary-blue
+## Results
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 ggplot(survey2_clean, aes(x = conclusion.x, y = prob_hide, fill = guilty)) +
   geom_point(
