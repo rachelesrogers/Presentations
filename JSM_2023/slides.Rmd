@@ -279,7 +279,7 @@ class: primary-blue
 class: primary-blue
 ## Scale Compression
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
 
 library(ggplot2)
 
@@ -298,6 +298,32 @@ ggplot(survey2_clean) +
 
 ```
 
+---
+
+class: primary-blue
+## Scale Compression
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+
+survey2_clean$bet<- NA
+
+survey2_clean[!is.na(survey2_clean$guilt_bet),]$bet<- 
+  survey2_clean[!is.na(survey2_clean$guilt_bet),]$guilt_bet
+
+survey2_clean[!is.na(survey2_clean$innocent_bet),]$bet<- survey2_clean[!is.na(survey2_clean$innocent_bet),]$innocent_bet
+
+ggplot(survey2_clean) +
+  geom_histogram(alpha=0.75, aes(x=bet, fill=opinion_guilt), position="dodge") +
+  ggtitle("How much would you bet that the Defendant is...") +
+  scale_fill_manual(values = c("black","orange"), name="", labels=c("Innocent","Guilty"))+
+  ylab("Count")+
+  xlab("Bet Amount")+
+  xlim(c(0,50))+
+  facet_grid(.~conclusion.x)+
+  theme_bw()
+
+
+```
 
 ---
 
@@ -473,13 +499,6 @@ guilt + innocent
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
-
-clean_results_merged$bet<- NA
-
-clean_results_merged[!is.na(clean_results_merged$guilt_bet),]$bet<- clean_results_merged[!is.na(clean_results_merged$guilt_bet),]$guilt_bet
-
-clean_results_merged[!is.na(clean_results_merged$innocent_bet),]$bet<- clean_results_merged[!is.na(clean_results_merged$innocent_bet),]$innocent_bet
-
 
 ggplot(clean_results_merged, aes(x = conclusion.x, y = bet, fill = opinion_guilt)) +
   geom_point(
