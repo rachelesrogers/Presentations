@@ -279,9 +279,9 @@ class: primary-blue
 class: primary-blue
 ## Scale Compression
 
-Test
+Test 2
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 library(ggplot2)
 
