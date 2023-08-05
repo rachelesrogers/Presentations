@@ -328,6 +328,62 @@ ggplot(survey2_clean) +
 ---
 
 class: primary-blue
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+
+
+ggplot(survey2_clean) +
+  geom_bar(aes(x=guilty, fill=opinion_guilt), position="dodge") +
+  ggtitle("How much would you bet that the Defendant is...") +
+  scale_fill_manual(values = c("black","orange"), name="Opinion", labels=c("Innocent","Guilty"))+
+  ylab("Count")+
+  xlab("Convict?")+
+  facet_grid(.~conclusion.x)+
+  theme_bw()
+
+
+```
+
+---
+
+class: primary-blue
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+
+library(scales)
+
+survey2_clean$fixed_like = factor(
+  survey2_clean$fixed_like,
+  levels = c(
+    "Impossible that he is guilty",
+    "About 1 chance in 10,000",
+    "About 1 chance in 1,000",
+    "About 1 chance in 100",
+    "About 1 chance in 10",
+    "1 chance in 2 (fifty-fifty chance)",
+    "About 9 chances in 10",
+    "About 99 chances in 100",
+    "About 999 chances in 1,000",
+    "About 9,999 chances in 10,000",
+    "Certain to be guilty"
+  )
+)
+
+ggplot(survey2_clean) +
+  geom_bar(aes(x=fixed_like, fill=conclusion.x), position="dodge") +
+  ggtitle("What is the Likelihood that the Defendant is Guilty?") +
+  scale_fill_manual(values = c("grey80","seagreen"), name="Condition")+
+  ylab("Count")+
+  xlab("Likelihood")+
+  theme_bw()+
+  scale_x_discrete(labels = wrap_format(10))
+
+
+```
+
+---
+
+class: primary-blue
 ## Results
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -359,24 +415,6 @@ class: primary-blue, center, middle
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
 
-library(scales)
-
-survey2_clean$fixed_like = factor(
-  survey2_clean$fixed_like,
-  levels = c(
-    "Impossible that he is guilty",
-    "About 1 chance in 10,000",
-    "About 1 chance in 1,000",
-    "About 1 chance in 100",
-    "About 1 chance in 10",
-    "1 chance in 2 (fifty-fifty chance)",
-    "About 9 chances in 10",
-    "About 99 chances in 100",
-    "About 999 chances in 1,000",
-    "About 9,999 chances in 10,000",
-    "Certain to be guilty"
-  )
-)
 
 set_values <- data.frame(fixed_like=c(    "Impossible that he is guilty",
                                           "About 1 chance in 10,000",
