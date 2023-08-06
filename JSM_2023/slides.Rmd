@@ -283,6 +283,42 @@ class: primary-blue
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
 
 library(ggplot2)
+library(scales)
+
+survey2_clean$strength = factor(
+  survey2_clean$strength,
+  levels = c(
+    "1 <br/> Not at all strong",
+    "2",
+    "3",
+    "4",
+    "5 <br/> Moderately strong",
+    "6",
+    "7",
+    "8",
+    "9 <br/> Extremely strong"
+  )
+)
+
+ggplot(survey2_clean) +
+  geom_bar(aes(x=strength, fill=conclusion.x), position="dodge") +
+  ggtitle("What is the Strength of Evidence against the Defendant?") +
+  scale_fill_manual(values = c("grey80","seagreen"), name="Condition")+
+  ylab("Count")+
+  xlab("Strength")+
+  theme_bw()+
+  scale_x_discrete(labels = wrap_format(10))
+
+
+```
+
+---
+
+class: primary-blue
+
+## Scale Compression
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
 
 colors <-  c("Hidden"="red", "Visible"="grey")
 
@@ -333,8 +369,6 @@ class: primary-blue
 # Scale Compression
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
-
-library(scales)
 
 survey2_clean$fixed_like = factor(
   survey2_clean$fixed_like,
