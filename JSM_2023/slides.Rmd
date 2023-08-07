@@ -106,24 +106,6 @@ class: secondary-blue
 <img src="images/Test_Fire_F526.jpeg" width="75%" />
 ]
 
----
-
-class: secondary-blue
-## The Results
-
-<center><img src="images/probhist.png" /></center>
-
----
-
-class: secondary-blue
-## The Results
-
-- Conviction choice
-  - 10/196 (5%) for Non-match
-  - 13/191 (7%) for Inconclusive
-  - 112/182 (62%) for Match
-
-<img src="images/probbox.jpg" width="90%" />
 
 ---
 
@@ -433,6 +415,7 @@ ggplot(survey2_clean) +
  # ylab("Count")+
   xlab("Likelihood")+
   facet_grid(.~conclusion.x)+
+  #scale_x_continuous(trans='log10')+
   theme_bw()
 
 
@@ -823,3 +806,23 @@ ggplot(clean_results_merged, aes(x=fixed_like, fill=opinion_guilt))+ #,fill=conc
   scale_x_discrete(labels = wrap_format(10))
 
 ```
+
+---
+
+class: secondary-blue
+## The Results
+
+<center><img src="images/probhist.png" /></center>
+
+---
+
+class: secondary-blue
+## The Results
+
+- Conviction choice
+  - 10/196 (5%) for Non-match
+  - 13/191 (7%) for Inconclusive
+  - 112/182 (62%) for Match
+
+<img src="images/probbox.jpg" width="90%" />
+
