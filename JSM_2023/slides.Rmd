@@ -179,6 +179,12 @@ class: primary-blue
 
 ---
 
+class: center, middle, inverse-blue
+
+# Microstudy
+
+---
+
 class: primary-blue
 ### What can we do when Likert response scales have scale compression?
 
@@ -255,6 +261,8 @@ class: primary-blue
     - Less cases for the Match condition compared to the NonMatch condition
     
 - 272 participants completed the survey and passed the attention check
+  - 115 participants with the Match condition
+  - 157 participants with the NonMatch condition
 
 ---
 
@@ -438,7 +446,6 @@ ggplot(survey2_clean) +
   xlab("Convict?")+
   facet_grid(.~conclusion.x)+
   theme_bw()
-
 
 ```
 
