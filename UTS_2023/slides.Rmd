@@ -363,7 +363,7 @@ grViz("digraph {
 
 class: primary-blue
 
-<img src="images/pagecleaning.jpg" width="65%" />
+<img src="images/pagecleaning.jpg" width="60%" />
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
 #attr(adist("The cat ran up the tree.", "After the dog barked, Th", counts=TRUE,),"trafos")
@@ -404,14 +404,14 @@ grViz("digraph {
   rec12 -> rec9
   rec7 -> rec9
   }",
-  height = 400, width=600)
+  height = 450, width=800)
 
 ```
 
 
 ---
 
-class: primary-blue
+class: primary-blue, small-med-font
 
 Page 1 | Page 2 | LCS | Edit Distance | Result 
 --------|---------|---------|---------
@@ -456,13 +456,13 @@ grViz("digraph {
   rec12 -> rec9
   rec7 -> rec9
   }",
-  height = 500, width=600)
+  height = 545, width=800)
 
 ```
 
 ---
 
-class: primary-blue
+class: primary-blue, small
 
 Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
@@ -507,14 +507,14 @@ grViz("digraph {
   rec12 -> rec9
   rec7 -> rec9
   }",
-  height = 500, width=600)
+  height = 545, width=800)
 
 ```
 
 ---
 
 
-class: primary-blue
+class: primary-blue, small
 
 Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
 --------|---------|---------|---------
@@ -559,7 +559,7 @@ grViz("digraph {
   rec12 -> rec9
   rec7 -> rec9
   }",
-  height = 500, width=600)
+  height = 500, width=800)
 
 ```
 
