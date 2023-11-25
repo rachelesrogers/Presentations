@@ -818,7 +818,7 @@ class: primary-blue
 
 # Scale Compression
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=11, fig.height=6}
 
 survey2_clean$fixed_like = factor(
   survey2_clean$fixed_like,
@@ -839,10 +839,10 @@ survey2_clean$fixed_like = factor(
 
 ggplot(survey2_clean) +
   geom_bar(aes(x=fixed_like, fill=conclusion.x), position="dodge") +
-  ggtitle("What is the Likelihood that the Defendant is Guilty?") +
+  ggtitle("What are the Chances that the Defendant is Guilty?") +
   scale_fill_manual(values = c("grey80","seagreen"), name="Condition")+
   ylab("Count")+
-  xlab("Likelihood")+
+  xlab("Chance")+
   theme_bw()+
   scale_x_discrete(labels = wrap_format(10))
 
@@ -858,7 +858,7 @@ class: primary-blue
 
 If individuals thought the defendant was innocent, they were asked for the chance they thought the defendant was guilty, and vice versa.
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=7}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=11, fig.height=6}
 
 survey2_clean$likelihood<- NA
 
@@ -878,10 +878,10 @@ survey2_clean[!is.na(survey2_clean$guilt_free_num) &
 
 ggplot(survey2_clean) +
   geom_density(alpha=0.75, aes(x=likelihood, fill=opinion_guilt), position="dodge") +
-  ggtitle("What is the likelihood that the defendant is...") +
+  ggtitle("What is the chance that the defendant is...") +
   scale_fill_manual(values = c("orange","black"), name="", labels=c("Guilty","Innocent"))+
  # ylab("Count")+
-  xlab("Likelihood")+
+  xlab("Chance")+
   facet_grid(.~conclusion.x)+
   #scale_x_continuous(trans='log10')+
   theme_bw()
@@ -895,7 +895,7 @@ class: primary-blue
 
 # Opinion of Guilt vs Conviction
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=11, fig.height=6}
 
 
 ggplot(survey2_clean) +
@@ -915,7 +915,7 @@ class: primary-blue
 
 # Conviction Vs. Chance
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=11, fig.height=6}
 
 ggplot(survey2_clean) +
   geom_bar(aes(x=fixed_like, fill=guilty), position=position_dodge(preserve = "single")) +
@@ -940,28 +940,6 @@ class: primary-blue
     - What can we do when Likert response scales suffer from scale compression?
        - `r fa("comments-dollar")`
     - <img src="images/courtquestion.jpg" width="85%" />
-
----
-
-class: primary-blue
-### Weights
-
-- Fuzzy Matching
-  - $x_i$ is the frequency for a fuzzy collocation $i$
-  - $d_i$ is the fuzzy match distance
-  - $c_i$ is the number of closest matches for the fuzzy collocation
-     - ex. "Jur"
-- Non-Fuzzy Matching ( $z$ )
-- What if the testimony contains the same collocation multiple times? ( $k$ )
-  - ex. "the bullet matching algorithm is"
-- What if the testimony occurs in multiple scenarios? ( $s$ )
-  
-$$
-(z+\sum_{i=1}^n\frac{x_i}{(d_i+0.25)c_i})\frac{1}{ks}
-$$
-
-.pull-left[.img[![](images/collocationanalysis.jpg)]]
-.pull-right[.img[![](images/weightedcollocation.jpg)]]
 
 ---
 
@@ -1032,7 +1010,7 @@ clean_results_merged$fixed_like = factor(
 )
 ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
   geom_point(aes(y=value),color="red",size=5,alpha=0.5)+
-  ggtitle("Likelihood for those who thought Cole was innocent") +
+  ggtitle("Chances for those who thought Cole was innocent") +
   geom_jitter(aes(y=(guilt_free_num/guilt_free_denom)),
     # position = position_jitterdodge(
     #   jitter.width = 0.2,
@@ -1045,8 +1023,8 @@ ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
                position = position_dodge(1),
                alpha = 0.5,
                outlier.shape = NA)+ 
-  ylab("Open Response Likelihood")+
-  xlab("Closed Response Likelihood")+
+  ylab("Open Response Chance")+
+  xlab("Closed Response Chance")+
   scale_x_discrete(labels = wrap_format(10))
 
 ```
@@ -1127,11 +1105,11 @@ class: primary-blue, center, middle
 
 # Scale Comparison
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=11, fig.height=6}
 
 
 ggplot(clean_results_merged, aes(x=fixed_like, fill=opinion_guilt))+ #,fill=conclusion
-  ggtitle("Likelihood for those who thought Cole was innocent") +
+  ggtitle("Chances for those who thought Cole was innocent") +
   geom_jitter(aes(y=bet),
     # position = position_jitterdodge(
     #   jitter.width = 0.2,
@@ -1144,8 +1122,8 @@ ggplot(clean_results_merged, aes(x=fixed_like, fill=opinion_guilt))+ #,fill=conc
                position = position_dodge(1),
                alpha = 0.5,
                outlier.shape = NA)+ 
-  ylab("Open Response Likelihood")+
-  xlab("Closed Response Likelihood")+
+  ylab("Open Response Chance")+
+  xlab("Closed Response Chance")+
   scale_x_discrete(labels = wrap_format(10))
 
 ```
@@ -1202,7 +1180,7 @@ class: primary-blue, center, middle
 
 ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
   geom_point(aes(y=value),color="red",size=5,alpha=0.5)+
-  ggtitle("Likelihood for those who thought Cole was guilty") +
+  ggtitle("Chance for those who thought Cole was guilty") +
   geom_jitter(aes(y=(1-innocent_free_num/innocent_free_denom)),
              # position = position_jitterdodge(
              #   jitter.width = 0.2,
@@ -1215,8 +1193,8 @@ ggplot(clean_results_merged, aes(x=fixed_like))+ #,fill=conclusion
                position = position_dodge(1),
                alpha = 0.5,
                outlier.shape = NA)+ 
-  ylab("Open Response Likelihood")+
-  xlab("Closed Response Likelihood")+
+  ylab("Open Response Chance")+
+  xlab("Closed Response Chance")+
   scale_x_discrete(labels = wrap_format(10))
 
 ```
