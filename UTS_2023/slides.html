@@ -43,7 +43,9 @@ class: primary-blue
 - Master of Science degree in Statistics from the University of Nebraska-Lincoln
 
 - Currently a PhD candidate at the University of Nebraska-Lincoln
-  - Research Assistant for the Center of Statistics and Applications in Forensic Evidence
+  - Research Assistant for the Center of Statistics and Applications in Forensic Evidence (January 2023)
+  - 1.5 years as statistical consultant
+  - 2 years as introductory statistics course instructor
 
 - Research Areas: Statistical Communication and Visualization
 
@@ -80,7 +82,7 @@ class: center, middle, inverse-blue
 class: primary-blue
 ### Algorithms in Forensic Science
 
-- Foundational Validity (PCAST definition)
+- Foundational Validity (2016 President’s Council of Advisors on Science and Technology definition)
 
   - Reproducible and consistent procedure for identifying and comparing features to determine identification between two samples
   
@@ -258,8 +260,8 @@ class: primary-blue
    - If the string is "long enough", remove from current page of notes
    - Repeat
 
-<div id="htmlwidget-b7ac76a72bf8e1047657" style="width:800px;height:500px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-b7ac76a72bf8e1047657">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-92e16b4ca40e305ad9cc" style="width:800px;height:500px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-92e16b4ca40e305ad9cc">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -308,6 +310,7 @@ class: primary-blue
    - Edit distance larger than the initial cutoff value
    - Note length more than 4 standard deviations above the mean length for that page
 - Based on validation from 35 participants' notes (cleaned by hand)
+   - 561 pages of notes
 
 .img[![](images/cleaningtable.jpg)]
 
@@ -316,8 +319,8 @@ class: primary-blue
 
 class: primary-blue
 
-<div id="htmlwidget-318bd2be8371ee773df8" style="width:800px;height:600px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-318bd2be8371ee773df8">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9be7241b556da801a73d" style="width:800px;height:600px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-9be7241b556da801a73d">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -327,8 +330,8 @@ class: primary-blue
 
 &lt;img src="images/pagecleaning.jpg" width="60%" /&gt;
 
-<div id="htmlwidget-25120e145b1a79f6fdce" style="width:800px;height:450px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-25120e145b1a79f6fdce">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ebe70f46f2bf98e0d0cd" style="width:800px;height:450px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-ebe70f46f2bf98e0d0cd">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -339,8 +342,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
 The cat ran up the tree | The cat ran | The cat ran | 12 |  
 
-<div id="htmlwidget-71a2f26a668d330df423" style="width:800px;height:545px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-71a2f26a668d330df423">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a4631bf338e1fc0e03c0" style="width:800px;height:545px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-a4631bf338e1fc0e03c0">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -350,8 +353,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
 The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11 | ,chased by a dog,
 
-<div id="htmlwidget-1a8a0362776da92a48e0" style="width:800px;height:545px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-1a8a0362776da92a48e0">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2a4fa66e65ab352c69aa" style="width:800px;height:545px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-2a4fa66e65ab352c69aa">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -362,8 +365,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
 --------|---------|---------|---------
 The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree chased by a dog | (The cat ran up the tree) | 0 | 10 | 5 | chased by a dog
 
-<div id="htmlwidget-40329a1f565d041505c0" style="width:800px;height:500px;" class="grViz html-widget "></div>
-<script type="application/json" data-for="htmlwidget-40329a1f565d041505c0">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-36128f61be4f546d7de5" style="width:800px;height:500px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-36128f61be4f546d7de5">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 

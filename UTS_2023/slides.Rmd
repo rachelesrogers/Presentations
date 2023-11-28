@@ -30,7 +30,9 @@ class: primary-blue
 - Master of Science degree in Statistics from the University of Nebraska-Lincoln
 
 - Currently a PhD candidate at the University of Nebraska-Lincoln
-  - Research Assistant for the Center of Statistics and Applications in Forensic Evidence
+  - Research Assistant for the Center of Statistics and Applications in Forensic Evidence (January 2023)
+  - 1.5 years as statistical consultant
+  - 2 years as introductory statistics course instructor
 
 - Research Areas: Statistical Communication and Visualization
 
@@ -67,7 +69,7 @@ class: center, middle, inverse-blue
 class: primary-blue
 ### Algorithms in Forensic Science
 
-- Foundational Validity (PCAST definition)
+- Foundational Validity (2016 President’s Council of Advisors on Science and Technology definition)
 
   - Reproducible and consistent procedure for identifying and comparing features to determine identification between two samples
   
@@ -311,6 +313,7 @@ class: primary-blue
    - Edit distance larger than the initial cutoff value
    - Note length more than 4 standard deviations above the mean length for that page
 - Based on validation from 35 participants' notes (cleaned by hand)
+   - 561 pages of notes
 
 .img[![](images/cleaningtable.jpg)]
 
