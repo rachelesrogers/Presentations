@@ -176,7 +176,8 @@ class: secondary-blue
 ## The Results
 
 
-<center><img src="images/reliable.jpg" width="70%" />
+<center>
+<!-- <img src="images/reliable.jpg" width="70%" /> -->
 <img src="images/credible.jpg" width="70%" /></center>
 
 ---
@@ -587,28 +588,6 @@ class: primary-blue
 ### Collocation Analysis
 
 <img src="images/collocationlong.jpg" width="70%" />
-
----
-
-class: primary-blue
-### Weights
-
-- Fuzzy Matching
-  - $x_i$ is the frequency for a fuzzy collocation $i$
-  - $d_i$ is the fuzzy match distance
-  - $c_i$ is the number of closest matches for the fuzzy collocation
-     - ex. "Jur"
-- Non-Fuzzy Matching ( $z$ )
-- What if the testimony contains the same collocation multiple times? ( $k$ )
-  - ex. "the bullet matching algorithm is"
-- What if the testimony occurs in multiple scenarios? ( $s$ )
-  
-$$
-(z+\sum_{i=1}^n\frac{x_i}{(d_i+0.25)c_i})\frac{1}{ks}
-$$
-
-.pull-left[.img[![](images/collocationanalysis.jpg)]]
-.pull-right[.img[![](images/weightedcollocation.jpg)]]
 
 ---
 
@@ -1228,6 +1207,28 @@ class: primary-blue, split-three
 </figure>
 <img src="images/microscope.jpg" width="70%" />
 ]
+
+---
+
+class: primary-blue
+### Weights
+
+- Fuzzy Matching
+  - $x_i$ is the frequency for a fuzzy collocation $i$
+  - $d_i$ is the fuzzy match distance
+  - $c_i$ is the number of closest matches for the fuzzy collocation
+     - ex. "Jur"
+- Non-Fuzzy Matching ( $z$ )
+- What if the testimony contains the same collocation multiple times? ( $k$ )
+  - ex. "the bullet matching algorithm is"
+- What if the testimony occurs in multiple scenarios? ( $s$ )
+  
+$$
+(z+\sum_{i=1}^n\frac{x_i}{(d_i+0.25)c_i})\frac{1}{ks}
+$$
+
+.pull-left[.img[![](images/collocationanalysis.jpg)]]
+.pull-right[.img[![](images/weightedcollocation.jpg)]]
 
 
 
