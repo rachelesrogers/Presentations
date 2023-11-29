@@ -73,7 +73,7 @@ class: primary-blue
 
   - Reproducible and consistent procedure for identifying and comparing features to determine identification between two samples
   
-  - empirical measurements from multiple independent studies of false positive rate and sensitivity
+  - Empirical measurements from multiple independent studies of false positive rate and sensitivity
  
 ---
 
