@@ -666,7 +666,7 @@ class: primary-blue
 - Future Papers
   - Journal of Computational and Graphical Statistics
       - Notepad highlighting method and applications
-  - Law of Probability and Risk
+  - Law, Probability and Risk
       - Study results and follow-up
 
 ---
