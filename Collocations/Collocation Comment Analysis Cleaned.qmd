@@ -1,0 +1,1320 @@
+---
+title: "Collocation Comment Analysis"
+output:
+  html_document:
+    self_contained: yes
+    mode: selfcontained
+editor: source
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(stringdist)
+library(dplyr)
+library(readtext)
+require(quanteda)
+require(quanteda.textstats)
+require(quanteda.corpora)
+
+#Reading in Functions
+source("Comment_Functions_Cleaned.R")
+
+```
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+# Reading in clean notes
+nonempty_reduced_comments <- read_csv("~/PhD Research/Firearm Demonstrative Evidence/Comment Analysis/hybrid_dataset.csv")
+
+# Removing empty notes
+nonempty_reduced_comments <- subset(nonempty_reduced_comments, page_notes != "")
+merged_comments <- nonempty_reduced_comments
+comments <- merged_comments
+
+# Filtering by algorithm condition
+alg_comments <- merged_comments %>% filter(algorithm == "Yes")
+noalg_comments <- merged_comments %>% filter(algorithm == "No")
+
+# Filtering by algorithm and picture condition
+alg_yp_comments <- merged_comments %>% filter(algorithm == "Yes" & picture == "Yes")
+alg_np_comments <- merged_comments %>% filter(algorithm == "Yes" & picture == "No")
+
+noalg_yp_comments <- merged_comments %>% filter(algorithm == "No" & picture == "Yes")
+noalg_np_comments <- merged_comments %>% filter(algorithm == "No" & picture == "No")
+
+# Filtering by algorithm, picture, and match condition
+alg_npm_comments <- alg_np_comments %>% filter(conclusion == "Match")
+alg_npi_comments <- alg_np_comments %>% filter(conclusion == "Inconclusive")
+alg_npe_comments <- alg_np_comments %>% filter(conclusion == "NoMatch")
+
+alg_ypm_comments <- alg_yp_comments %>% filter(conclusion == "Match")
+alg_ypi_comments <- alg_yp_comments %>% filter(conclusion == "Inconclusive")
+alg_ype_comments <- alg_yp_comments %>% filter(conclusion == "NoMatch")
+
+
+noalg_npm_comments <- noalg_np_comments %>% filter(conclusion == "Match")
+noalg_npi_comments <- noalg_np_comments %>% filter(conclusion == "Inconclusive")
+noalg_npe_comments <- noalg_np_comments %>% filter(conclusion == "NoMatch")
+
+noalg_ypm_comments <- noalg_yp_comments %>% filter(conclusion == "Match")
+noalg_ypi_comments <- noalg_yp_comments %>% filter(conclusion == "Inconclusive")
+noalg_ype_comments <- noalg_yp_comments %>% filter(conclusion == "NoMatch")
+
+toks_des<-token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Description.txt")
+
+```
+
+# Comment Analysis
+
+## Combined Description
+
+### Page 1 - Not Present
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+
+
+page1_comments <-comments %>%subset(page_count==1 & notes != "")
+page1_comments$notes[2]
+
+
+page1_comments$clean_prints[2]
+
+nonempty_reduced_comments %>% subset(clean_prints == "217")
+nonempty_reduced_comments$clean_prints
+
+```
+
+
+### Page 2
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+toks_pg2 <- token_comments(nonempty_reduced_comments, 2)
+
+# col_descript_tomerge <-collocate_comments(toks_des, 2, toks_pg2)
+
+col_descript_tomerge <- collocate_comments_fuzzy(toks_des, 2, toks_pg2)
+
+merged_descript<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Description.txt",2, col_descript_tomerge)
+
+# descript_plot <-collocate_plot(merged_descript,1)
+
+descript_plot <-collocate_plot(merged_descript,12)
+
+page2_text <- highlighted_text(descript_plot,merged_descript)
+
+```
+
+`r page2_text`
+
+### Page 3
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+toks_pg3 <- token_comments(nonempty_reduced_comments, 3)
+
+descript_3 <-collocate_comments_fuzzy(toks_des, 3, toks_pg3)
+
+merged_descript_3<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Description.txt",3, descript_3)
+
+descript_3_plot <-collocate_plot(merged_descript_3, 12)
+
+page3_text <- highlighted_text(descript_3_plot,merged_descript_3)
+
+```
+
+`r page3_text`
+
+## Combined Testimony
+
+### Page 4
+
+```{r}
+#| echo: false
+#| warning: false
+
+# No Images
+toks_des<-token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Description.txt")
+
+alg_npm <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt")
+
+alg_npi <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_i.txt")
+
+alg_npe <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_e.txt")
+
+noalg_npm <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_m.txt")
+
+noalg_npi <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_i.txt")
+
+noalg_npe <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_e.txt")
+
+# Images
+alg_ypm <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_m.txt")
+
+alg_ypi <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_i.txt")
+
+alg_ype <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_e.txt")
+
+noalg_ypm <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_m.txt")
+
+noalg_ypi <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_i.txt")
+
+noalg_ype <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_e.txt")
+
+
+toks_pg4 <- token_comments(merged_comments, 4)
+
+descript_4 <-collocate_comments_fuzzy(alg_npm, 1, toks_pg4)
+
+merged_descript_4<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",1, descript_4)
+
+descript_4_plot <-collocate_plot(merged_descript_4, 12)
+
+page4_text <- highlighted_text(descript_4_plot,merged_descript_4)
+
+```
+
+`r page4_text`
+
+### Page 5
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg5 <- token_comments(merged_comments, 5)
+
+descript_5 <-collocate_comments_fuzzy(alg_npm, 2, toks_pg5)
+
+merged_descript_5<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",2, descript_5)
+
+descript_5_plot <-collocate_plot(merged_descript_5, 12)
+
+page5_text <- highlighted_text(descript_5_plot,merged_descript_5)
+
+```
+
+`r page5_text`
+
+
+::: {.panel-tabset}
+## Algorithm Testimony
+
+### Page 6
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg6 <- token_comments(alg_comments, 6)
+
+descript_6 <-collocate_comments_fuzzy(alg_npm, 3, toks_pg6)
+
+merged_descript_6<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",3, descript_6)
+
+descript_6_plot <-collocate_plot(merged_descript_6, 6)
+
+page6alg_text <- highlighted_text(descript_6_plot,merged_descript_6)
+
+```
+
+`r page6alg_text`
+
+### Page 7
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg7 <- token_comments(alg_comments, 7)
+
+descript_7 <-collocate_comments_fuzzy(alg_npm, 4, toks_pg7)
+
+merged_descript_7<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",4, descript_7)
+
+descript_7_plot <-collocate_plot(merged_descript_7, 6)
+
+page7alg_text <- highlighted_text(descript_7_plot,merged_descript_7)
+
+```
+
+`r page7alg_text`
+
+### Page 8
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg8 <- token_comments(alg_comments, 8)
+
+descript_8 <-collocate_comments_fuzzy(alg_npm, 5, toks_pg8)
+
+merged_descript_8<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",5, descript_8)
+
+descript_8_plot <-collocate_plot(merged_descript_8, 6)
+
+page8alg_text <- highlighted_text(descript_8_plot,merged_descript_8)
+
+```
+
+`r page8alg_text`
+
+
+::: {.panel-tabset}
+### Non-Image Testimony
+
+::: {.panel-tabset}
+#### Match
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_anpm <- token_comments(alg_npm_comments, 9)
+
+descript_9_anpm <-collocate_comments_fuzzy(alg_npm, 6, toks_pg9_anpm)
+
+merged_descript_9_anpm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",6, descript_9_anpm)
+
+descript_9_anpm_plot <-collocate_plot(merged_descript_9_anpm, 1)
+
+page9alg_npm_text <- highlighted_text(descript_9_anpm_plot,merged_descript_9_anpm)
+
+```
+
+`r page9alg_npm_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_anpm <- token_comments(alg_npm_comments, 10)
+
+descript_10_anpm <-collocate_comments_fuzzy(alg_npm, 7, toks_pg10_anpm)
+
+merged_descript_10_anpm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",7, descript_10_anpm)
+
+descript_10_anpm_plot <-collocate_plot(merged_descript_10_anpm, 1)
+
+page10alg_npm_text <- highlighted_text(descript_10_anpm_plot,merged_descript_10_anpm)
+
+```
+
+`r page10alg_npm_text`
+
+#### Inconclusive
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_anpi <- token_comments(alg_npi_comments, 9)
+
+descript_9_anpi <-collocate_comments_fuzzy(alg_npi, 6, toks_pg9_anpi)
+
+merged_descript_9_anpi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_i.txt",6, descript_9_anpi)
+
+descript_9_anpi_plot <-collocate_plot(merged_descript_9_anpi, 1)
+
+page9alg_npi_text <- highlighted_text(descript_9_anpi_plot,merged_descript_9_anpi)
+
+```
+
+`r page9alg_npi_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+toks_pg10_anpi <- token_comments(alg_npi_comments, 10)
+
+descript_10_anpi <-collocate_comments_fuzzy(alg_npi, 7, toks_pg10_anpi)
+
+merged_descript_10_anpi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_i.txt",7, descript_10_anpi)
+
+descript_10_anpi_plot <-collocate_plot(merged_descript_10_anpi, 1)
+
+page10alg_npi_text <- highlighted_text(descript_10_anpi_plot,merged_descript_10_anpi)
+
+```
+
+`r page10alg_npi_text`
+
+#### Exclusion
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_anpe <- token_comments(alg_npe_comments, 9)
+
+descript_9_anpe <-collocate_comments_fuzzy(alg_npe, 6, toks_pg9_anpe)
+
+merged_descript_9_anpe<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_e.txt",6, descript_9_anpe)
+
+descript_9_anpe_plot <-collocate_plot(merged_descript_9_anpe, 1)
+
+page9alg_npe_text <- highlighted_text(descript_9_anpe_plot,merged_descript_9_anpe)
+
+```
+
+`r page9alg_npe_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_anpe <- token_comments(alg_npe_comments, 10)
+
+descript_10_anpe <-collocate_comments_fuzzy(alg_npe, 7, toks_pg10_anpe)
+
+merged_descript_10_anpe<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_e.txt",7, descript_10_anpe)
+
+descript_10_anpe_plot <-collocate_plot(merged_descript_10_anpe, 1)
+
+page10alg_npe_text <- highlighted_text(descript_10_anpe_plot,merged_descript_10_anpe)
+
+```
+
+`r page10alg_npe_text`
+
+:::
+
+##### Page 11
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg11_anp <- token_comments(alg_np_comments, 11)
+
+descript_11_anp <-collocate_comments_fuzzy(alg_npm, 8, toks_pg11_anp)
+
+merged_descript_11_anp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",8, descript_11_anp)
+
+descript_11_anp_plot <-collocate_plot(merged_descript_11_anp, 3)
+
+page11alg_np_text <- highlighted_text(descript_11_anp_plot,merged_descript_11_anp)
+
+```
+
+`r page11alg_np_text`
+
+::: {.panel-tabset}
+#### Match
+
+##### Page 12
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg12_anpm <- token_comments(alg_npm_comments, 12)
+
+descript_12_anpm <-collocate_comments_fuzzy(alg_npm, 9, toks_pg12_anpm)
+
+merged_descript_12_anpm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",9, descript_12_anpm)
+
+descript_12_anpm_plot <-collocate_plot(merged_descript_12_anpm, 1)
+
+page12alg_npm_text <- highlighted_text(descript_12_anpm_plot,merged_descript_12_anpm)
+
+```
+
+`r page12alg_npm_text`
+
+##### Page 13
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg13_anpm <- token_comments(alg_npm_comments, 13)
+
+descript_13_anpm <-collocate_comments_fuzzy(alg_npm, 10, toks_pg13_anpm)
+
+merged_descript_13_anpm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_m.txt",10, descript_13_anpm)
+
+descript_13_anpm_plot <-collocate_plot(merged_descript_13_anpm, 1)
+
+page13alg_npm_text <- highlighted_text(descript_13_anpm_plot,merged_descript_13_anpm)
+
+```
+
+`r page13alg_npm_text`
+
+#### Inconclusive
+
+##### Page 12
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg12_anpi <- token_comments(alg_npi_comments, 12)
+
+descript_12_anpi <-collocate_comments_fuzzy(alg_npi, 9, toks_pg12_anpi)
+
+merged_descript_12_anpi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_i.txt",9, descript_12_anpi)
+
+descript_12_anpi_plot <-collocate_plot(merged_descript_12_anpi, 1)
+
+page12alg_npi_text <- highlighted_text(descript_12_anpi_plot,merged_descript_12_anpi)
+
+```
+
+`r page12alg_npi_text`
+
+##### Page 13
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg13_anpi <- token_comments(alg_npi_comments, 13)
+
+descript_13_anpi <-collocate_comments_fuzzy(alg_npi, 10, toks_pg13_anpi)
+
+merged_descript_13_anpi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_i.txt",10, descript_13_anpi)
+
+descript_13_anpi_plot <-collocate_plot(merged_descript_13_anpi, 1)
+
+page13alg_npi_text <- highlighted_text(descript_13_anpi_plot,merged_descript_13_anpi)
+
+```
+
+`r page13alg_npi_text`
+
+#### Exclusion
+
+##### Page 12
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg12_anpe <- token_comments(alg_npe_comments, 12)
+
+descript_12_anpe <-collocate_comments_fuzzy(alg_npe, 9, toks_pg12_anpe)
+
+merged_descript_12_anpe<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_e.txt",9, descript_12_anpe)
+
+descript_12_anpe_plot <-collocate_plot(merged_descript_12_anpe, 1)
+
+page12alg_npe_text <- highlighted_text(descript_12_anpe_plot,merged_descript_12_anpe)
+
+```
+
+`r page12alg_npe_text`
+
+##### Page 13
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg13_anpe <- token_comments(alg_npe_comments, 13)
+
+descript_13_anpe <-collocate_comments_fuzzy(alg_npe, 10, toks_pg13_anpe)
+
+merged_descript_13_anpe<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_ya_e.txt",10, descript_13_anpe)
+
+descript_13_anpe_plot <-collocate_plot(merged_descript_13_anpe, 1)
+
+page13alg_npe_text <- highlighted_text(descript_13_anpe_plot,merged_descript_13_anpe)
+
+```
+
+`r page13alg_npe_text`
+
+:::
+
+### Image Testimony
+
+::: {.panel-tabset}
+
+#### Match
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_aypm <- token_comments(alg_ypm_comments, 9)
+
+descript_9_aypm <-collocate_comments_fuzzy(alg_ypm, 6, toks_pg9_aypm)
+
+merged_descript_9_aypm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_m.txt",6, descript_9_aypm)
+
+descript_9_aypm_plot <-collocate_plot(merged_descript_9_aypm, 1)
+
+page9alg_ypm_text <- highlighted_text(descript_9_aypm_plot,merged_descript_9_aypm)
+
+```
+
+`r page9alg_ypm_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_aypm <- token_comments(alg_ypm_comments, 10)
+
+descript_10_aypm <-collocate_comments_fuzzy(alg_ypm, 7, toks_pg10_aypm)
+
+merged_descript_10_aypm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_m.txt",7, descript_10_aypm)
+
+descript_10_aypm_plot <-collocate_plot(merged_descript_10_aypm, 1)
+
+page10alg_ypm_text <- highlighted_text(descript_10_aypm_plot,merged_descript_10_aypm)
+
+```
+
+`r page10alg_ypm_text`
+
+#### Inconclusive
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_aypi <- token_comments(alg_ypi_comments, 9)
+
+descript_9_aypi <-collocate_comments_fuzzy(alg_ypi, 6, toks_pg9_aypi)
+
+merged_descript_9_aypi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_i.txt",6, descript_9_aypi)
+
+descript_9_aypi_plot <-collocate_plot(merged_descript_9_aypi, 1)
+
+page9alg_ypi_text <- highlighted_text(descript_9_aypi_plot,merged_descript_9_aypi)
+```
+
+`r page9alg_ypi_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_aypi <- token_comments(alg_ypi_comments, 10)
+
+descript_10_aypi <-collocate_comments_fuzzy(alg_ypi, 7, toks_pg10_aypi)
+
+merged_descript_10_aypi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_i.txt",7, descript_10_aypi)
+
+descript_10_aypi_plot <-collocate_plot(merged_descript_10_aypi, 1)
+
+page10alg_ypi_text <- highlighted_text(descript_10_aypi_plot,merged_descript_10_aypi)
+```
+
+`r page10alg_ypi_text`
+
+#### Exclusion
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_aype <- token_comments(alg_ype_comments, 9)
+
+descript_9_aype <-collocate_comments_fuzzy(alg_ype, 6, toks_pg9_aype)
+
+merged_descript_9_aype<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_e.txt",6, descript_9_aype)
+
+descript_9_aype_plot <-collocate_plot(merged_descript_9_aype, 1)
+
+page9alg_ype_text <- highlighted_text(descript_9_aype_plot,merged_descript_9_aype)
+```
+
+`r page9alg_ype_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_aype <- token_comments(alg_ype_comments, 10)
+
+descript_10_aype <-collocate_comments_fuzzy(alg_ype, 7, toks_pg10_aype)
+
+merged_descript_10_aype<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_e.txt",7, descript_10_aype)
+
+descript_10_aype_plot <-collocate_plot(merged_descript_10_aype, 1)
+
+page10alg_ype_text <- highlighted_text(descript_10_aype_plot,merged_descript_10_aype)
+
+```
+
+`r page10alg_ype_text`
+
+:::
+
+##### Page 11
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg11_ayp <- token_comments(alg_yp_comments, 11)
+
+descript_11_ayp <-collocate_comments_fuzzy(alg_ypm, 8, toks_pg11_ayp)
+
+merged_descript_11_ayp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_m.txt",8, descript_11_ayp)
+
+descript_11_ayp_plot <-collocate_plot(merged_descript_11_ayp, 3)
+
+page11alg_yp_text <- highlighted_text(descript_11_ayp_plot,merged_descript_11_ayp)
+
+```
+
+`r page11alg_yp_text`
+
+::: {.panel-tabset}
+
+#### Match
+
+##### Page 12
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg12_aypm <- token_comments(alg_ypm_comments, 12)
+
+descript_12_aypm <-collocate_comments_fuzzy(alg_ypm, 9, toks_pg12_aypm)
+
+merged_descript_12_aypm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_m.txt",9, descript_12_aypm)
+
+descript_12_aypm_plot <-collocate_plot(merged_descript_12_aypm, 1)
+
+page12alg_ypm_text <- highlighted_text(descript_12_aypm_plot,merged_descript_12_aypm)
+```
+
+`r page12alg_ypm_text`
+
+##### Page 13
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg13_aypm <- token_comments(alg_ypm_comments, 13)
+
+descript_13_aypm <-collocate_comments_fuzzy(alg_ypm, 10, toks_pg13_aypm)
+
+merged_descript_13_aypm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_m.txt",10, descript_13_aypm)
+
+descript_13_aypm_plot <-collocate_plot(merged_descript_13_aypm, 1)
+
+page13alg_ypm_text <- highlighted_text(descript_13_aypm_plot,merged_descript_13_aypm)
+
+```
+
+`r page13alg_ypm_text`
+
+#### Inconclusive
+
+##### Page 12
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg12_aypi <- token_comments(alg_ypi_comments, 12)
+
+descript_12_aypi <-collocate_comments_fuzzy(alg_ypi, 9, toks_pg12_aypi)
+
+merged_descript_12_aypi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_i.txt",9, descript_12_aypi)
+
+descript_12_aypi_plot <-collocate_plot(merged_descript_12_aypi, 1)
+
+page12alg_ypi_text <- highlighted_text(descript_12_aypi_plot,merged_descript_12_aypi)
+
+```
+
+`r page12alg_ypi_text`
+
+##### Page 13
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg13_aypi <- token_comments(alg_ypi_comments, 13)
+
+descript_13_aypi <-collocate_comments_fuzzy(alg_ypi, 10, toks_pg13_aypi)
+
+merged_descript_13_aypi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_i.txt",10, descript_13_aypi)
+
+descript_13_aypi_plot <-collocate_plot(merged_descript_13_aypi, 1)
+
+page13alg_ypi_text <- highlighted_text(descript_13_aypi_plot,merged_descript_13_aypi)
+
+```
+
+`r page13alg_ypi_text`
+
+#### Exclusion
+
+##### Page 12
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg12_aype <- token_comments(alg_ype_comments, 12)
+
+descript_12_aype <-collocate_comments_fuzzy(alg_ype, 9, toks_pg12_aype)
+
+merged_descript_12_aype<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_e.txt",9, descript_12_aype)
+
+descript_12_aype_plot <-collocate_plot(merged_descript_12_aype, 1)
+
+page12alg_ype_text <- highlighted_text(descript_12_aype_plot,merged_descript_12_aype)
+
+```
+
+`r page12alg_ype_text`
+
+##### Page 13
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg13_aype <- token_comments(alg_ype_comments, 13)
+
+descript_13_aype <-collocate_comments_fuzzy(alg_ype, 10, toks_pg13_aype)
+
+merged_descript_13_aype<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_ya_e.txt",10, descript_13_aype)
+
+descript_13_aype_plot <-collocate_plot(merged_descript_13_aype, 1)
+
+page13alg_ype_text <- highlighted_text(descript_13_aype_plot,merged_descript_13_aype)
+
+```
+
+`r page13alg_ype_text`
+
+:::
+
+:::
+
+## Non - Algorithm Testimony
+
+### Page 6
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg6_na <- token_comments(noalg_comments, 6)
+
+descript_6_na <-collocate_comments_fuzzy(noalg_npm, 3, toks_pg6_na)
+
+merged_descript_6_na<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_m.txt",3, descript_6_na)
+
+descript_6_na_plot <-collocate_plot(merged_descript_6_na, 6)
+
+page6noalg_text <- highlighted_text(descript_6_na_plot,merged_descript_6_na)
+
+```
+
+`r page6noalg_text`
+
+### Page 7
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg7_na <- token_comments(noalg_comments, 7)
+
+descript_7_na <-collocate_comments_fuzzy(noalg_npm, 4, toks_pg7_na)
+
+merged_descript_7_na<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_m.txt",4, descript_7_na)
+
+descript_7_na_plot <-collocate_plot(merged_descript_7_na, 6)
+
+page7noalg_text <- highlighted_text(descript_7_na_plot,merged_descript_7_na)
+
+```
+
+`r page7noalg_text`
+
+::: {.panel-tabset}
+
+### Non-Image Testimony
+
+::: {.panel-tabset}
+
+#### Match
+
+##### Page 8
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg8_nanpm <- token_comments(noalg_npm_comments, 8)
+
+descript_8_nanpm <-collocate_comments_fuzzy(noalg_npm, 5, toks_pg8_nanpm)
+
+merged_descript_8_nanpm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_m.txt",5, descript_8_nanpm)
+
+descript_8_plot_nanpm <-collocate_plot(merged_descript_8_nanpm, 1)
+
+page8noalgnpm_text <- highlighted_text(descript_8_plot_nanpm,merged_descript_8_nanpm)
+
+```
+
+`r page8noalgnpm_text`
+
+#### Inconclusive
+
+##### Page 8
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg8_nanpi <- token_comments(noalg_npi_comments, 8)
+
+descript_8_nanpi <-collocate_comments_fuzzy(noalg_npi, 5, toks_pg8_nanpi)
+
+merged_descript_8_nanpi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_i.txt",5, descript_8_nanpi)
+
+descript_8_plot_nanpi <-collocate_plot(merged_descript_8_nanpi, 1)
+
+page8noalgnpi_text <- highlighted_text(descript_8_plot_nanpi,merged_descript_8_nanpi)
+
+```
+
+`r page8noalgnpi_text`
+
+#### Exclusion
+
+##### Page 8
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg8_nanpe <- token_comments(noalg_npe_comments, 8)
+
+descript_8_nanpe <-collocate_comments_fuzzy(noalg_npe, 5, toks_pg8_nanpe)
+
+merged_descript_8_nanpe<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_e.txt",5, descript_8_nanpe)
+
+descript_8_plot_nanpe <-collocate_plot(merged_descript_8_nanpe, 1)
+
+page8noalgnpe_text <- highlighted_text(descript_8_plot_nanpe,merged_descript_8_nanpe)
+
+```
+
+`r page8noalgnpe_text`
+
+:::
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_nanp <- token_comments(noalg_np_comments, 9)
+
+descript_9_nanp <-collocate_comments_fuzzy(noalg_npm, 6, toks_pg9_nanp)
+
+merged_descript_9_nanp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_m.txt",6, descript_9_nanp)
+
+descript_9_plot_nanp <-collocate_plot(merged_descript_9_nanp, 3)
+
+page9noalgnp_text <- highlighted_text(descript_9_plot_nanp,merged_descript_9_nanp)
+
+```
+
+`r page9noalgnp_text`
+
+::: {.panel-tabset}
+
+#### Match
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_nanpm <- token_comments(noalg_npm_comments, 10)
+
+descript_10_nanpm <-collocate_comments_fuzzy(noalg_npm, 7, toks_pg10_nanpm)
+
+merged_descript_10_nanpm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_m.txt",7, descript_10_nanpm)
+
+descript_10_plot_nanpm <-collocate_plot(merged_descript_10_nanpm, 1)
+
+page10noalgnpm_text <- highlighted_text(descript_10_plot_nanpm,merged_descript_10_nanpm)
+
+```
+
+`r page10noalgnpm_text`
+
+#### Inconclusive
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_nanpi <- token_comments(noalg_npi_comments, 10)
+
+descript_10_nanpi <-collocate_comments_fuzzy(noalg_npi, 7, toks_pg10_nanpi)
+
+merged_descript_10_nanpi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_i.txt",7, descript_10_nanpi)
+
+descript_10_plot_nanpi <-collocate_plot(merged_descript_10_nanpi, 1)
+
+page10noalgnpi_text <- highlighted_text(descript_10_plot_nanpi,merged_descript_10_nanpi)
+
+```
+
+`r page10noalgnpi_text`
+
+#### Exclusion
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_nanpe <- token_comments(noalg_npe_comments, 10)
+
+descript_10_nanpe <-collocate_comments_fuzzy(noalg_npe, 7, toks_pg10_nanpe)
+
+merged_descript_10_nanpe<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_np_na_e.txt",7, descript_10_nanpe)
+
+descript_10_plot_nanpe <-collocate_plot(merged_descript_10_nanpe, 1)
+
+page10noalgnpe_text <- highlighted_text(descript_10_plot_nanpe,merged_descript_10_nanpe)
+
+```
+
+`r page10noalgnpe_text`
+
+:::
+
+### Image Testimony
+
+::: {.panel-tabset}
+
+#### Match
+
+##### Page 8
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg8_naypm <- token_comments(noalg_ypm_comments, 8)
+
+descript_8_naypm <-collocate_comments_fuzzy(noalg_ypm, 5, toks_pg8_naypm)
+
+merged_descript_8_naypm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_m.txt",5, descript_8_naypm)
+
+descript_8_plot_naypm <-collocate_plot(merged_descript_8_naypm, 1)
+
+page8noalgypm_text <- highlighted_text(descript_8_plot_naypm,merged_descript_8_naypm)
+
+```
+
+`r page8noalgypm_text`
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_naypm <- token_comments(noalg_ypm_comments, 9)
+
+descript_9_naypm <-collocate_comments_fuzzy(noalg_ypm, 6, toks_pg9_naypm)
+
+merged_descript_9_naypm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_m.txt",6, descript_9_naypm)
+
+descript_9_plot_naypm <-collocate_plot(merged_descript_9_naypm, 1)
+
+page9noalgypm_text <- highlighted_text(descript_9_plot_naypm,merged_descript_9_naypm)
+
+```
+
+`r page9noalgypm_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_naypm <- token_comments(noalg_ypm_comments, 10)
+
+descript_10_naypm <-collocate_comments_fuzzy(noalg_ypm, 7, toks_pg10_naypm)
+
+merged_descript_10_naypm<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_m.txt",7, descript_10_naypm)
+
+descript_10_plot_naypm <-collocate_plot(merged_descript_10_naypm, 1)
+
+page10noalgypm_text <- highlighted_text(descript_10_plot_naypm,merged_descript_10_naypm)
+
+```
+
+`r page10noalgypm_text`
+
+#### Inconclusive
+
+##### Page 8
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg8_naypi <- token_comments(noalg_ypi_comments, 8)
+
+descript_8_naypi <-collocate_comments_fuzzy(noalg_ypi, 5, toks_pg8_naypi)
+
+merged_descript_8_naypi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_i.txt",5, descript_8_naypi)
+
+descript_8_plot_naypi <-collocate_plot(merged_descript_8_naypi, 1)
+
+page8noalgypi_text <- highlighted_text(descript_8_plot_naypi,merged_descript_8_naypi)
+
+```
+
+`r page8noalgypi_text`
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_naypi <- token_comments(noalg_ypi_comments, 9)
+
+descript_9_naypi <-collocate_comments_fuzzy(noalg_ypi, 6, toks_pg9_naypi)
+
+merged_descript_9_naypi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_i.txt",6, descript_9_naypi)
+
+descript_9_plot_naypi <-collocate_plot(merged_descript_9_naypi, 1)
+
+page9noalgypi_text <- highlighted_text(descript_9_plot_naypi,merged_descript_9_naypi)
+
+```
+
+`r page9noalgypi_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_naypi <- token_comments(noalg_ypi_comments, 10)
+
+descript_10_naypi <-collocate_comments_fuzzy(noalg_ypi, 7, toks_pg10_naypi)
+
+merged_descript_10_naypi<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_i.txt",7, descript_10_naypi)
+
+descript_10_plot_naypi <-collocate_plot(merged_descript_10_naypi, 1)
+
+page10noalgypi_text <- highlighted_text(descript_10_plot_naypi,merged_descript_10_naypi)
+
+```
+
+`r page10noalgypi_text`
+
+#### Exclusion
+
+##### Page 8
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg8_naype <- token_comments(noalg_ype_comments, 8)
+
+descript_8_naype <-collocate_comments_fuzzy(noalg_ype, 5, toks_pg8_naype)
+
+merged_descript_8_naype<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_e.txt",5, descript_8_naype)
+
+descript_8_plot_naype <-collocate_plot(merged_descript_8_naype, 1)
+
+page8noalgype_text <- highlighted_text(descript_8_plot_naype,merged_descript_8_naype)
+
+```
+
+`r page8noalgype_text`
+
+##### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9_naype <- token_comments(noalg_ype_comments, 9)
+
+descript_9_naype <-collocate_comments_fuzzy(noalg_ype, 6, toks_pg9_naype)
+
+merged_descript_9_naype<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_e.txt",6, descript_9_naype)
+
+descript_9_plot_naype <-collocate_plot(merged_descript_9_naype, 1)
+
+page9noalgype_text <- highlighted_text(descript_9_plot_naype,merged_descript_9_naype)
+
+```
+
+`r page9noalgype_text`
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10_naype <- token_comments(noalg_ype_comments, 10)
+
+descript_10_naype <-collocate_comments_fuzzy(noalg_ype, 7, toks_pg10_naype)
+
+merged_descript_10_naype<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_e.txt",7, descript_10_naype)
+
+descript_10_plot_naype <-collocate_plot(merged_descript_10_naype, 1)
+
+page10noalgype_text <- highlighted_text(descript_10_plot_naype,merged_descript_10_naype)
+
+```
+
+`r page10noalgype_text`
+
+:::
+
+:::
+
+:::
