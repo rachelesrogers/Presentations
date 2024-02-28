@@ -1,0 +1,487 @@
+---
+title: "Collocation Comment Analysis"
+output:
+  html_document:
+    self_contained: yes
+    mode: selfcontained
+editor: source
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(stringdist)
+library(dplyr)
+library(readtext)
+require(quanteda)
+require(quanteda.textstats)
+require(quanteda.corpora)
+
+#Reading in Functions
+source("Response_Survey_Comment_Functions.R")
+
+```
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+nonempty_reduced_comments <- read_csv("~/PhD Research/UNL_Thesis/data/microstudy_hybrid_notepad.csv")
+
+# Removing empty notes
+nonempty_reduced_comments <- subset(nonempty_reduced_comments, page_notes != "")
+merged_comments <- nonempty_reduced_comments
+merged_comments$page_count <- merged_comments$page - 3
+
+# Filtering by algorithm condition
+match_comments <- merged_comments %>% filter(conclusion == "Match")
+nomatch_comments <- merged_comments %>% filter(conclusion == "NoMatch")
+
+transcript <- read.csv("~/PhD Research/ResponseType_Survey_Redo/Combined_Testimony_Formatted.csv")
+
+match_transcript <- transcript %>%
+  filter((Conclusion %in% c("All", "Match")) &
+           (Algorithm %in% c("All","No")) & (Picture %in% c("All", "No")))
+
+nomatch_transcript <- transcript %>%
+  filter((Conclusion %in% c("All", "NoMatch")) &
+           (Algorithm %in% c("All","No")) & (Picture %in% c("All", "No")))
+
+match_transcript$word_prompts <- paste0(match_transcript$Speaker, ": ",
+                                        match_transcript$Text)
+
+noprompts_match <- aggregate(match_transcript$Text, 
+                             list(match_transcript$Page),
+                             paste, collapse=" ")
+
+noprompts_match <- as.data.frame(noprompts_match)
+
+prompts_match <- aggregate(match_transcript$word_prompts, 
+                             list(match_transcript$Page),
+                             paste, collapse=" ")
+
+prompts_match <- as.data.frame(prompts_match)
+
+match <- left_join(noprompts_match, prompts_match, by="Group.1")
+match <- rename(match, c("Page_Raw"="Group.1", "Transcript"="x.x", "Transcript_prompts"="x.y"))
+
+match <- match %>% mutate(Page = 1:n())
+
+nomatch_transcript$word_prompts <- paste0(nomatch_transcript$Speaker, ": ",
+                                        nomatch_transcript$Text)
+
+noprompts_nomatch <- aggregate(nomatch_transcript$Text, 
+                             list(nomatch_transcript$Page),
+                             paste, collapse = " ")
+noprompts_nomatch <- as.data.frame(noprompts_nomatch)
+
+prompts_nomatch <- aggregate(nomatch_transcript$word_prompts, 
+                             list(nomatch_transcript$Page),
+                             paste, collapse=" ")
+
+prompts_nomatch <- as.data.frame(prompts_nomatch)
+
+nomatch <- left_join(noprompts_nomatch, prompts_nomatch, by="Group.1")
+nomatch <- rename(nomatch, c("Page_Raw"="Group.1", "Transcript"="x.x", "Transcript_prompts"="x.y"))
+
+nomatch <- nomatch %>% mutate( Page = 1:n())
+
+# hist(merged_comments$page_count)
+
+merged_comments_testimony <- merged_comments %>% filter(page_count < 14)
+
+toks_nomatch<-nomatch %>% token_transcript()
+toks_match <- match %>% token_transcript()
+
+```
+
+# Comment Analysis
+
+## Combined Testimony
+
+### Page 1 - Not Present
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+
+
+toks_pg1 <- merged_comments_testimony %>% filter(page_count == 1) %>%
+  token_comments()
+
+col_descript_tomerge <-collocate_comments_fuzzy(toks_nomatch[1], toks_pg1)
+
+merged_descript1<- nomatch %>% filter(Page == 1) %>% transcript_frequency(collocate_object = col_descript_tomerge)
+
+descript_plot1 <-collocate_plot(merged_descript1,1)
+
+page1_text <- highlighted_text(descript_plot1,merged_descript1)
+
+```
+
+
+### Page 2
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+
+toks_pg2 <- merged_comments_testimony %>% filter(page_count == 2) %>%
+  token_comments()
+
+col_descript_tomerge <-collocate_comments_fuzzy(toks_nomatch[2], toks_pg2)
+
+merged_descript<- nomatch %>% filter(Page == 2) %>% transcript_frequency(collocate_object = col_descript_tomerge)
+
+descript_plot <-collocate_plot(merged_descript,2)
+
+page2_text <- highlighted_text(descript_plot,merged_descript)
+
+```
+
+`r page2_text`
+
+### Page 3
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+
+toks_pg3 <- merged_comments_testimony %>% filter(page_count == 3) %>%
+  token_comments()
+
+col_descript_tomerge3 <-collocate_comments_fuzzy(toks_nomatch[3], toks_pg3)
+
+merged_descript3<- nomatch %>% filter(Page == 3) %>% transcript_frequency(collocate_object = col_descript_tomerge3)
+
+descript_plot3 <-collocate_plot(merged_descript3,2)
+
+page3_text <- highlighted_text(descript_plot3,merged_descript3)
+
+```
+
+`r page3_text`
+
+### Page 4
+
+```{r}
+#| echo: false
+#| warning: false
+#| eval: true
+
+toks_pg4 <- merged_comments_testimony %>% filter(page_count == 4) %>%
+  token_comments()
+
+col_descript_tomerge4 <-collocate_comments_fuzzy(toks_nomatch[4], toks_pg4)
+
+merged_descript4<- nomatch %>% filter(Page == 4) %>% transcript_frequency(collocate_object = col_descript_tomerge4)
+
+descript_plot4 <-collocate_plot(merged_descript4,2)
+
+page4_text <- highlighted_text(descript_plot4,merged_descript4)
+
+```
+
+`r page4_text`
+
+### Page 5
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg5 <- merged_comments_testimony %>% filter(page_count == 5) %>%
+  token_comments()
+
+col_descript_tomerge5 <-collocate_comments_fuzzy(toks_nomatch[5], toks_pg5)
+
+merged_descript5<- nomatch %>% filter(Page == 5) %>% transcript_frequency(collocate_object = col_descript_tomerge5)
+
+descript_plot5 <-collocate_plot(merged_descript5,2)
+
+page5_text <- highlighted_text(descript_plot5,merged_descript5)
+
+```
+
+`r page5_text`
+
+### Page 6
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg6 <- merged_comments_testimony %>% filter(page_count == 6) %>%
+  token_comments()
+
+col_descript_tomerge6 <-collocate_comments_fuzzy(toks_nomatch[6], toks_pg6)
+
+merged_descript6<- nomatch %>% filter(Page == 6) %>% transcript_frequency(collocate_object = col_descript_tomerge6)
+
+descript_plot6 <-collocate_plot(merged_descript6,2)
+
+page6_text <- highlighted_text(descript_plot6,merged_descript6)
+
+```
+
+`r page6_text`
+
+### Page 7
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg7 <- merged_comments_testimony %>% filter(page_count == 7) %>%
+  token_comments()
+
+col_descript_tomerge7 <-collocate_comments_fuzzy(toks_nomatch[7], toks_pg7)
+
+merged_descript7<- nomatch %>% filter(Page == 7) %>% transcript_frequency(collocate_object = col_descript_tomerge7)
+
+descript_plot7 <-collocate_plot(merged_descript7,2)
+
+page7_text <- highlighted_text(descript_plot7,merged_descript7)
+
+```
+
+`r page7_text`
+
+### Page 8
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg8 <- merged_comments_testimony %>% filter(page_count == 8) %>%
+  token_comments()
+
+col_descript_tomerge8 <-collocate_comments_fuzzy(toks_nomatch[8], toks_pg8)
+
+merged_descript8<- nomatch %>% filter(Page == 8) %>% transcript_frequency(collocate_object = col_descript_tomerge8)
+
+descript_plot8 <-collocate_plot(merged_descript8,2)
+
+page8_text <- highlighted_text(descript_plot8,merged_descript8)
+
+```
+
+`r page8_text`
+
+### Page 9
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg9 <- merged_comments_testimony %>% filter(page_count == 9) %>%
+  token_comments()
+
+col_descript_tomerge9 <-collocate_comments_fuzzy(toks_nomatch[9], toks_pg9)
+
+merged_descript9<- nomatch %>% filter(Page == 9) %>% transcript_frequency(collocate_object = col_descript_tomerge9)
+
+descript_plot9 <-collocate_plot(merged_descript9,2)
+
+page9_text <- highlighted_text(descript_plot9,merged_descript9)
+
+```
+
+`r page9_text`
+
+::: {.panel-tabset}
+#### Match
+
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10m <- match_comments %>% filter(page_count == 10) %>%
+  token_comments()
+
+col_descript_tomerge10m <-collocate_comments_fuzzy(toks_match[10], toks_pg10m)
+
+merged_descript10m<- match %>% filter(Page == 10) %>% transcript_frequency(collocate_object = col_descript_tomerge10m)
+
+descript_plot10m <-collocate_plot(merged_descript10m,1)
+
+page10m_text <- highlighted_text(descript_plot10m,merged_descript10m)
+
+```
+
+`r page10m_text`
+
+
+##### Page 11
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg11m <- match_comments %>% filter(page_count == 11) %>%
+  token_comments()
+
+col_descript_tomerge11m <-collocate_comments_fuzzy(toks_match[11], toks_pg11m)
+
+merged_descript11m<- match %>% filter(Page == 11) %>% transcript_frequency(collocate_object = col_descript_tomerge11m)
+
+descript_plot11m <-collocate_plot(merged_descript11m,1)
+
+page11m_text <- highlighted_text(descript_plot11m,merged_descript11m)
+
+```
+
+`r page11m_text`
+
+
+##### Page 12
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg12m <- match_comments %>% filter(page_count == 12) %>%
+  token_comments()
+
+col_descript_tomerge12m <-collocate_comments_fuzzy(toks_match[12], toks_pg12m)
+
+merged_descript12m<- match %>% filter(Page == 12) %>% transcript_frequency(collocate_object = col_descript_tomerge12m)
+
+descript_plot12m <-collocate_plot(merged_descript12m,1)
+
+page12m_text <- highlighted_text(descript_plot12m,merged_descript12m)
+
+```
+
+`r page12m_text`
+
+
+##### Page 13
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg13m <- match_comments %>% filter(page_count == 13) %>%
+  token_comments()
+
+col_descript_tomerge13m <-collocate_comments_fuzzy(toks_match[13], toks_pg13m)
+
+merged_descript13m<- match %>% filter(Page == 13) %>% transcript_frequency(collocate_object = col_descript_tomerge13m)
+
+descript_plot13m <-collocate_plot(merged_descript13m,1)
+
+page13m_text <- highlighted_text(descript_plot13m,merged_descript13m)
+
+```
+
+`r page13m_text`
+
+#### NoMatch
+
+##### Page 10
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg10n <- nomatch_comments %>% filter(page_count == 10) %>%
+  token_comments()
+
+col_descript_tomerge10n <-collocate_comments_fuzzy(toks_nomatch[10], toks_pg10n)
+
+merged_descript10n<- nomatch %>% filter(Page == 10) %>% transcript_frequency(collocate_object = col_descript_tomerge10n)
+
+descript_plot10n <-collocate_plot(merged_descript10n,1)
+
+page10n_text <- highlighted_text(descript_plot10n,merged_descript10n)
+
+```
+
+`r page10n_text`
+
+##### Page 11
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg11n <- nomatch_comments %>% filter(page_count == 11) %>%
+  token_comments()
+
+col_descript_tomerge11n <-collocate_comments_fuzzy(toks_nomatch[11], toks_pg11n)
+
+merged_descript11n<- nomatch %>% filter(Page == 11) %>% transcript_frequency(collocate_object = col_descript_tomerge11n)
+
+descript_plot11n <-collocate_plot(merged_descript11n,1)
+
+page11n_text <- highlighted_text(descript_plot11n,merged_descript11n)
+
+```
+
+`r page11n_text`
+
+##### Page 12
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg12n <- nomatch_comments %>% filter(page_count == 12) %>%
+  token_comments()
+
+col_descript_tomerge12n <-collocate_comments_fuzzy(toks_nomatch[12], toks_pg12n)
+
+merged_descript12n<- nomatch %>% filter(Page == 12) %>% transcript_frequency(collocate_object = col_descript_tomerge12n)
+
+descript_plot12n <-collocate_plot(merged_descript12n,1)
+
+page12n_text <- highlighted_text(descript_plot12n,merged_descript12n)
+
+```
+
+`r page12n_text`
+
+##### Page 13
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg13n <- nomatch_comments %>% filter(page_count == 13) %>%
+  token_comments()
+
+col_descript_tomerge13n <-collocate_comments_fuzzy(toks_nomatch[13], toks_pg13n)
+
+merged_descript13n<- nomatch %>% filter(Page == 13) %>% transcript_frequency(collocate_object = col_descript_tomerge13n)
+
+descript_plot13n <-collocate_plot(merged_descript13n,1)
+
+page13n_text <- highlighted_text(descript_plot13n,merged_descript13n)
+
+```
+
+`r page13n_text`
+
+:::
