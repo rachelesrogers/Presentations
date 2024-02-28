@@ -485,3 +485,25 @@ page13n_text <- highlighted_text(descript_plot13n,merged_descript13n)
 `r page13n_text`
 
 :::
+
+<!-- ##### Page 14 -->
+
+```{r}
+#| echo: false
+#| warning: false
+#| eval: false
+
+toks_pg14 <- merged_comments_testimony %>% filter(page_count == 14) %>%
+  token_comments()
+
+col_descript_tomerge14 <-collocate_comments_fuzzy(toks_nomatch[14], toks_pg14)
+
+merged_descript14<- nomatch %>% filter(Page == 14) %>% transcript_frequency(collocate_object = col_descript_tomerge14)
+
+descript_plot14 <-collocate_plot(merged_descript14,2)
+
+page14_text <- highlighted_text(descript_plot14,merged_descript14)
+
+```
+
+<!-- `r page14_text` -->
