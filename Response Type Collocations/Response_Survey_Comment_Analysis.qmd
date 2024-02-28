@@ -86,7 +86,7 @@ nomatch <- nomatch %>% mutate( Page = 1:n())
 
 # hist(merged_comments$page_count)
 
-merged_comments_testimony <- merged_comments %>% filter(page_count < 14)
+merged_comments_testimony <- merged_comments %>% filter(page_count < 15)
 
 toks_nomatch<-nomatch %>% token_transcript()
 toks_match <- match %>% token_transcript()
@@ -486,12 +486,12 @@ page13n_text <- highlighted_text(descript_plot13n,merged_descript13n)
 
 :::
 
-<!-- ##### Page 14 -->
+### Page 14
 
 ```{r}
 #| echo: false
 #| warning: false
-#| eval: false
+#| eval: true
 
 toks_pg14 <- merged_comments_testimony %>% filter(page_count == 14) %>%
   token_comments()
@@ -506,4 +506,4 @@ page14_text <- highlighted_text(descript_plot14,merged_descript14)
 
 ```
 
-<!-- `r page14_text` -->
+`r page14_text`
