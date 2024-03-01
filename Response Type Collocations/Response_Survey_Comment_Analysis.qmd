@@ -24,12 +24,12 @@ source("Response_Survey_Comment_Functions.R")
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-nonempty_reduced_comments <- read_csv("~/PhD Research/UNL_Thesis/data/microstudy_hybrid_notepad.csv")
+nonempty_reduced_comments <- read_csv("~/PhD Research/UNL_Thesis/data/microstudy_hybrid_pageupdate.csv")
 
 # Removing empty notes
 nonempty_reduced_comments <- subset(nonempty_reduced_comments, page_notes != "")
 merged_comments <- nonempty_reduced_comments
-merged_comments$page_count <- merged_comments$page - 3
+merged_comments$page_count <- merged_comments$updated_page - 3
 
 # Filtering by algorithm condition
 match_comments <- merged_comments %>% filter(conclusion == "Match")
