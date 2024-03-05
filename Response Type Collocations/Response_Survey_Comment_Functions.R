@@ -199,6 +199,8 @@ token_transcript <- function(transcript_file){
 
 token_comments <- function(comment_document){
   
+  comment_document$page_notes <- gsub("-", "", comment_document$page_notes)
+  
   comment_df <- data.frame(docid = cbind(seq(1:dim(comment_document)[1])), 
                        text=tolower(comment_document$page_notes)) #lowercasing text
  

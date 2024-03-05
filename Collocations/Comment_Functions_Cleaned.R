@@ -234,6 +234,7 @@ token_comments <- function(comment_document, page_number){
   pg2$page_notes <- gsub("Prosecution:", "", pg2$page_notes)
   pg2$page_notes <- gsub("\"Q:", "", pg2$page_notes)
   ##############################################
+  pg2$page_notes <- gsub("-", "", pg2$page_notes)
   
   # pg2$page_notes <- gsub("---Test-fired bullets admitted into evidence---","",pg2$page_notes)
   
