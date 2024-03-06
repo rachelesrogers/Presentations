@@ -215,6 +215,8 @@ token_transcript <- function(filelocation){
   description_df <- map_df(description_df, ~ gsub("\"Q:", "", .x)) #removing word indicators
   description_df <- map_df(description_df, ~ gsub("rdquo", "", .x))
   description_df <- map_df(description_df, ~ gsub("ldquo", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Exhibit F---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Cross Examination---", "", .x))
   #########################################################
   
   # description_df <- map_df(description_df, ~ gsub("---Test-fired bullets admitted into evidence---", "", .x))
@@ -237,6 +239,8 @@ token_comments <- function(comment_document, page_number){
   pg2$page_notes <- gsub("\"Q:", "", pg2$page_notes)
   pg2$page_notes <- gsub("rdquo", "", pg2$page_notes)
   pg2$page_notes <- gsub("ldquo", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---exhibit f---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---cross examination---", "", pg2$page_notes)
   ##############################################
   pg2$page_notes <- gsub("-", "", pg2$page_notes)
   
@@ -406,6 +410,8 @@ transcript_frequency <- function(filelocation, page_number, collocate_object){
   descript_words_tomerge[descript_words_tomerge$words %in% 
                            c("-"," ","Q:","A:","Court:","Defense:",
                              "Prosecution:","\"Q:", "&ldquo;","&rdquo;"), ]$to_merge<-""
+  descript_words_tomerge[descript_words_tomerge$lines == "Exhibit F---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "\"Cross Examination---",]$to_merge<- ""
   #descript_words_tomerge[descript_words_tomerge$lines=="Test-fired bullets admitted into evidence---", ]$to_merge<-""
   
   descript_words_tomerge_filtered <- descript_words_tomerge # %>% filter(!(words %in% c("-"," ","Q:","A:","Court:","Defense:","Prosecution:","\"Q:")))
@@ -499,8 +505,13 @@ highlighted_text <- function(plot_object, descript){
       page_df$word_assign[i] <- paste("<br/> <div style=\"display: inline-block; padding:0px;
   margin-left:-5px \">",page_df$label[i],"&nbsp;","</div>", sep="")
     } else if (page_df$label[i-1] %in% c("Q:","A:","Court:","Defense:","Prosecution:")){
+      if (is.na(page_df$alpha[i-2])){
+        page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,",page_df$colour[i],",",page_df$colour[i],") \">",page_df$label[i],"&nbsp;","</div>", sep="")
+      }else{
       page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
   margin-left:-5px; background: linear-gradient(to right,",page_df$colour[i-2],",",page_df$colour[i],") \">",page_df$label[i],"&nbsp;","</div>", sep="")
+      }
     }else if (page_df$colour[i] == "grey50"){
       page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
   margin-left:-5px; background: linear-gradient(to right,",prev_colour,",",next_colour,") \">",page_df$label[i],"&nbsp;","</div>", sep="")
