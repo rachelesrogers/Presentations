@@ -1380,6 +1380,8 @@ page15alg_text <- highlighted_text(descript_15_a_plot,merged_descript_15_a)
 #| fig-width: 15
 #| fig-height: 7
 
+# source("Comment_Functions_Cleaned.R")
+
 toks_pg16_ayp <- token_comments(alg_yp_comments, 16)
 
 descript_16_ayp <-collocate_comments_fuzzy(alg_exp_yp, 3, toks_pg16_ayp)
@@ -1387,6 +1389,7 @@ descript_16_ayp <-collocate_comments_fuzzy(alg_exp_yp, 3, toks_pg16_ayp)
 merged_descript_16_ayp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_yp.txt",3, descript_16_ayp)
 
 descript_16_ayp_plot <-collocate_plot(merged_descript_16_ayp, 3)
+
 
 page16alg_yp_text <- highlighted_text(descript_16_ayp_plot,merged_descript_16_ayp)
 
