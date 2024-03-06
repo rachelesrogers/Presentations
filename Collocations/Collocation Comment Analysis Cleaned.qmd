@@ -162,6 +162,10 @@ noalg_ypi <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Sur
 
 noalg_ype <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Scenario_yp_na_e.txt")
 
+alg_exp_np <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_np.txt")
+
+alg_exp_yp <- token_transcript("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_yp.txt")
+
 
 toks_pg4 <- token_comments(merged_comments, 4)
 
@@ -1316,5 +1320,235 @@ page10noalgype_text <- highlighted_text(descript_10_plot_naype,merged_descript_1
 :::
 
 :::
+
+:::
+
+# Algorithm Expert Testimony
+
+## Page 14
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg14_a <- token_comments(alg_comments, 14)
+
+descript_14_a <-collocate_comments_fuzzy(alg_exp_yp, 1, toks_pg14_a)
+
+merged_descript_14_a<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_yp.txt",1, descript_14_a)
+
+descript_14_a_plot <-collocate_plot(merged_descript_14_a, 6)
+
+page14alg_text <- highlighted_text(descript_14_a_plot,merged_descript_14_a)
+
+```
+
+`r page14alg_text`
+
+## Page 15
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg15_a <- token_comments(alg_comments, 15)
+
+descript_15_a <-collocate_comments_fuzzy(alg_exp_yp, 2, toks_pg15_a)
+
+merged_descript_15_a<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_yp.txt",2, descript_15_a)
+
+descript_15_a_plot <-collocate_plot(merged_descript_15_a, 6)
+
+page15alg_text <- highlighted_text(descript_15_a_plot,merged_descript_15_a)
+
+```
+
+`r page15alg_text`
+
+::: {.panel-tabset}
+## Image Testimony
+
+### Page 16
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg16_ayp <- token_comments(alg_yp_comments, 16)
+
+descript_16_ayp <-collocate_comments_fuzzy(alg_exp_yp, 3, toks_pg16_ayp)
+
+merged_descript_16_ayp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_yp.txt",3, descript_16_ayp)
+
+descript_16_ayp_plot <-collocate_plot(merged_descript_16_ayp, 3)
+
+page16alg_yp_text <- highlighted_text(descript_16_ayp_plot,merged_descript_16_ayp)
+
+```
+
+`r page16alg_yp_text`
+
+### Page 17
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg17_ayp <- token_comments(alg_yp_comments, 17)
+
+descript_17_ayp <-collocate_comments_fuzzy(alg_exp_yp, 4, toks_pg17_ayp)
+
+merged_descript_17_ayp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_yp.txt",4, descript_17_ayp)
+
+descript_17_ayp_plot <-collocate_plot(merged_descript_17_ayp, 3)
+
+page17alg_yp_text <- highlighted_text(descript_17_ayp_plot,merged_descript_17_ayp)
+
+```
+
+`r page17alg_yp_text`
+
+### Page 18
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg18_ayp <- token_comments(alg_yp_comments, 18)
+
+descript_18_ayp <-collocate_comments_fuzzy(alg_exp_yp, 5, toks_pg18_ayp)
+
+merged_descript_18_ayp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_yp.txt",5, descript_18_ayp)
+
+descript_18_ayp_plot <-collocate_plot(merged_descript_18_ayp, 3)
+
+page18alg_yp_text <- highlighted_text(descript_18_ayp_plot,merged_descript_18_ayp)
+
+```
+
+`r page18alg_yp_text`
+
+### Page 19
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg19_ayp <- token_comments(alg_yp_comments, 19)
+
+descript_19_ayp <-collocate_comments_fuzzy(alg_exp_yp, 6, toks_pg19_ayp)
+
+merged_descript_19_ayp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_yp.txt",6, descript_19_ayp)
+
+descript_19_ayp_plot <-collocate_plot(merged_descript_19_ayp, 3)
+
+page19alg_yp_text <- highlighted_text(descript_19_ayp_plot,merged_descript_19_ayp)
+
+```
+
+`r page19alg_yp_text`
+
+
+## Non-Image Testimony
+
+### Page 16
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg16_anp <- token_comments(alg_np_comments, 16)
+
+descript_16_anp <-collocate_comments_fuzzy(alg_exp_np, 3, toks_pg16_anp)
+
+merged_descript_16_anp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_np.txt",3, descript_16_anp)
+
+descript_16_anp_plot <-collocate_plot(merged_descript_16_anp, 3)
+
+page16alg_np_text <- highlighted_text(descript_16_anp_plot,merged_descript_16_anp)
+
+```
+
+`r page16alg_np_text`
+
+### Page 17
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg17_anp <- token_comments(alg_np_comments, 17)
+
+descript_17_anp <-collocate_comments_fuzzy(alg_exp_np, 4, toks_pg17_anp)
+
+merged_descript_17_anp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_np.txt",4, descript_17_anp)
+
+descript_17_anp_plot <-collocate_plot(merged_descript_17_anp, 3)
+
+page17alg_np_text <- highlighted_text(descript_17_anp_plot,merged_descript_17_anp)
+
+```
+
+`r page17alg_np_text`
+
+### Page 18
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg18_anp <- token_comments(alg_np_comments, 18)
+
+descript_18_anp <-collocate_comments_fuzzy(alg_exp_np, 5, toks_pg18_anp)
+
+merged_descript_18_anp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_np.txt",5, descript_18_anp)
+
+descript_18_anp_plot <-collocate_plot(merged_descript_18_anp, 3)
+
+page18alg_np_text <- highlighted_text(descript_18_anp_plot,merged_descript_18_anp)
+
+```
+
+`r page18alg_np_text`
+
+### Page 19
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 15
+#| fig-height: 7
+
+toks_pg19_anp <- token_comments(alg_np_comments, 19)
+
+descript_19_anp <-collocate_comments_fuzzy(alg_exp_np, 6, toks_pg19_anp)
+
+merged_descript_19_anp<- transcript_frequency("~/PhD Research/Firearm Demonstrative Evidence/Survey_App/Algorithm_np.txt",6, descript_19_anp)
+
+descript_19_anp_plot <-collocate_plot(merged_descript_19_anp, 3)
+
+page19alg_np_text <- highlighted_text(descript_19_anp_plot,merged_descript_19_anp)
+
+```
+
+`r page19alg_np_text`
 
 :::
