@@ -479,9 +479,11 @@ highlighted_text <- function(plot_object, descript){
   #Get color from ggplot object, and paste css code together to print colors
   for (i in 1:length(page_df$colour)){
     prev_colour <- page_df[page_df$ID == 
-                             max(page_df[page_df$ID < i & page_df$colour != "grey50",]$ID),]$colour
+                             max(page_df[page_df$ID < i & page_df$colour != "grey50" &
+                                           !(page_df$label %in% c("Q:", "A:")),]$ID),]$colour
     next_colour <- page_df[page_df$ID ==
-                             min(page_df[page_df$ID > i & page_df$colour != "grey50",]$ID),]$colour
+                             min(page_df[page_df$ID > i & page_df$colour != "grey50"&
+                                           !(page_df$label %in% c("Q:", "A:")),]$ID),]$colour
 
     page_df$rgb[i] <- paste(as.vector(col2rgb(page_df$colour[i])), collapse = ", ")
     if (page_df$label[i] %in% c("\"Q:", "\"A:")){
@@ -502,15 +504,15 @@ highlighted_text <- function(plot_object, descript){
     }else if (page_df$colour[i] == "grey50"){
       page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
   margin-left:-5px; background: linear-gradient(to right,",prev_colour,",",next_colour,") \">",page_df$label[i],"&nbsp;","</div>", sep="")
-    }else if (page_df$colour[i-1] == "grey50"){
-      page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,",page_df$colour[i],",",page_df$colour[i],") \">",page_df$label[i],"&nbsp;","</div>", sep="")
+  #   }else if (page_df$colour[i-1] == "grey50"){
+  #     page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
+  # margin-left:-5px; background: linear-gradient(to right,",page_df$colour[i],",",page_df$colour[i],") \">",page_df$label[i],"&nbsp;","</div>", sep="")
     }else if (page_df$label[i-1] %in% c("\"Q:", "\"A:")){
       page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
   margin-left:-5px; background: linear-gradient(to right,",page_df$colour[i],",",page_df$colour[i],") \">",page_df$label[i],"&nbsp;","</div>", sep="")
     }else{
       page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,",page_df$colour[i-1],",",page_df$colour[i],") \">",page_df$label[i],"&nbsp;","</div>", sep="")
+  margin-left:-5px; background: linear-gradient(to right,",prev_colour,",",page_df$colour[i],") \">",page_df$label[i],"&nbsp;","</div>", sep="")
     }
     if (page_df$y[i] %in% page_df[str_detect(page_df$label, "---"),]$y){
        page_df$word_assign[i] <-  paste("<div style=\"display: inline-block; padding:0px;
