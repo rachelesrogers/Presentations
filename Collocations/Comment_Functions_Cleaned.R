@@ -525,8 +525,13 @@ highlighted_text <- function(plot_object, descript){
       page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
   margin-left:-5px \">",page_df$label[i],"&nbsp;","</div>", sep="")
     } else if (page_df$label[i] == "The" & page_df$x[i]==1){
+      if (page_df$label[i+1] == "Court:"){
       page_df$word_assign[i] <- paste("<br/> <div style=\"display: inline-block; padding:0px;
   margin-left:-5px \">",page_df$label[i],"&nbsp;","</div>", sep="")
+      }else {
+        page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,",prev_colour,",",page_df$colour[i],") \">",page_df$label[i],"&nbsp;","</div>", sep="")
+      }
     } else if (page_df$label[i-1] %in% c("Q:","A:","Court:","Defense:","Prosecution:")){
       if (is.na(page_df$alpha[i-2])){
         page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
