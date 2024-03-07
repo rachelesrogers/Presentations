@@ -213,9 +213,17 @@ token_transcript <- function(filelocation){
   description_df <- map_df(description_df, ~ gsub("Defense:", "", .x)) #removing word indicators
   description_df <- map_df(description_df, ~ gsub("Prosecution:", "", .x)) #removing word indicators
   description_df <- map_df(description_df, ~ gsub("\"Q:", "", .x)) #removing word indicators
+  description_df <- map_df(description_df, ~ gsub("\"A:", "", .x))
   description_df <- map_df(description_df, ~ gsub("rdquo", "", .x))
   description_df <- map_df(description_df, ~ gsub("ldquo", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Exhibit A---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Exhibit B---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Exhibit C---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Exhibit D---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Exhibit E---", "", .x))
   description_df <- map_df(description_df, ~ gsub("---Exhibit F---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Exhibit G---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Exhibit H---", "", .x))
   description_df <- map_df(description_df, ~ gsub("---Cross Examination---", "", .x))
   #########################################################
   
@@ -237,9 +245,17 @@ token_comments <- function(comment_document, page_number){
   pg2$page_notes <- gsub("Defense:", "", pg2$page_notes)
   pg2$page_notes <- gsub("Prosecution:", "", pg2$page_notes)
   pg2$page_notes <- gsub("\"Q:", "", pg2$page_notes)
+  pg2$page_notes <- gsub("\"A:", "", pg2$page_notes)
   pg2$page_notes <- gsub("rdquo", "", pg2$page_notes)
   pg2$page_notes <- gsub("ldquo", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---exhibit a---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---exhibit b---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---exhibit c---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---exhibit d---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---exhibit e---", "", pg2$page_notes)
   pg2$page_notes <- gsub("---exhibit f---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---exhibit g---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---exhibit h---", "", pg2$page_notes)
   pg2$page_notes <- gsub("---cross examination---", "", pg2$page_notes)
   ##############################################
   pg2$page_notes <- gsub("-", "", pg2$page_notes)
@@ -409,8 +425,15 @@ transcript_frequency <- function(filelocation, page_number, collocate_object){
   
   descript_words_tomerge[descript_words_tomerge$words %in% 
                            c("-"," ","Q:","A:","Court:","Defense:",
-                             "Prosecution:","\"Q:", "&ldquo;","&rdquo;"), ]$to_merge<-""
+                             "Prosecution:","\"Q:", "&ldquo;","&rdquo;","\"A:"), ]$to_merge<-""
+  descript_words_tomerge[descript_words_tomerge$lines == "Exhibit A---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "Exhibit B---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "Exhibit C---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "Exhibit D---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "Exhibit E---",]$to_merge<- ""
   descript_words_tomerge[descript_words_tomerge$lines == "Exhibit F---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "Exhibit G---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "Exhibit H---",]$to_merge<- ""
   descript_words_tomerge[descript_words_tomerge$lines == "\"Cross Examination---",]$to_merge<- ""
   #descript_words_tomerge[descript_words_tomerge$lines=="Test-fired bullets admitted into evidence---", ]$to_merge<-""
   
@@ -501,7 +524,7 @@ highlighted_text <- function(plot_object, descript){
     } else if (page_df$label[i] %in% c("Q:","A:","Court:","Defense:","Prosecution:")){
       page_df$word_assign[i] <- paste("<div style=\"display: inline-block; padding:0px;
   margin-left:-5px \">",page_df$label[i],"&nbsp;","</div>", sep="")
-    } else if (page_df$label[i+1] %in% c("Q:","A:","Court:","Defense:","Prosecution:") & page_df$x[i]==1){
+    } else if (page_df$label[i] == "The" & page_df$x[i]==1){
       page_df$word_assign[i] <- paste("<br/> <div style=\"display: inline-block; padding:0px;
   margin-left:-5px \">",page_df$label[i],"&nbsp;","</div>", sep="")
     } else if (page_df$label[i-1] %in% c("Q:","A:","Court:","Defense:","Prosecution:")){
