@@ -225,6 +225,8 @@ token_transcript <- function(filelocation){
   description_df <- map_df(description_df, ~ gsub("---Exhibit G---", "", .x))
   description_df <- map_df(description_df, ~ gsub("---Exhibit H---", "", .x))
   description_df <- map_df(description_df, ~ gsub("---Cross Examination---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Questions Submitted By the Jury---", "", .x))
+  description_df <- map_df(description_df, ~ gsub("---Test-fired bullets admitted into evidence---", "", .x))
   #########################################################
   
   # description_df <- map_df(description_df, ~ gsub("---Test-fired bullets admitted into evidence---", "", .x))
@@ -248,15 +250,22 @@ token_comments <- function(comment_document, page_number){
   pg2$page_notes <- gsub("\"A:", "", pg2$page_notes)
   pg2$page_notes <- gsub("rdquo", "", pg2$page_notes)
   pg2$page_notes <- gsub("ldquo", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---exhibit a---", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---exhibit b---", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---exhibit c---", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---exhibit d---", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---exhibit e---", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---exhibit f---", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---exhibit g---", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---exhibit h---", "", pg2$page_notes)
-  pg2$page_notes <- gsub("---cross examination---", "", pg2$page_notes)
+  # In the future - find exhibit for any letter and remove captions (between \r's)
+  pg2$page_notes <- gsub("---Exhibit A---\r\n\r\nrifling\r\n\r\n---Exhibit B---\r\n\r\nfired_bullet\r\n\r\n\r\n---Test-fired bullets admitted into evidence---", 
+                         "", pg2$page_notes)  
+  pg2$page_notes <- gsub("---Exhibit A---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit B---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit C---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit D---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit E---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit F---\r\n\r\nshoulder", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit F---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit G---\r\n\r\nsignature\r\n\r\n---Exhibit H---\r\n\r\nsignature", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit G---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Exhibit H---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Questions Submitted By the Jury---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Test-fired bullets admitted into evidence---", "", pg2$page_notes)
+  pg2$page_notes <- gsub("---Cross Examination---", "", pg2$page_notes)
   ##############################################
   pg2$page_notes <- gsub("-", "", pg2$page_notes)
   
@@ -434,6 +443,8 @@ transcript_frequency <- function(filelocation, page_number, collocate_object){
   descript_words_tomerge[descript_words_tomerge$lines == "Exhibit F---",]$to_merge<- ""
   descript_words_tomerge[descript_words_tomerge$lines == "Exhibit G---",]$to_merge<- ""
   descript_words_tomerge[descript_words_tomerge$lines == "Exhibit H---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "Test-fired bullets admitted into evidence---",]$to_merge<- ""
+  descript_words_tomerge[descript_words_tomerge$lines == "Questions Submitted By the Jury---",]$to_merge<- ""
   descript_words_tomerge[descript_words_tomerge$lines == "\"Cross Examination---",]$to_merge<- ""
   #descript_words_tomerge[descript_words_tomerge$lines=="Test-fired bullets admitted into evidence---", ]$to_merge<-""
   
