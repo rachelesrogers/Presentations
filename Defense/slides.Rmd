@@ -680,6 +680,7 @@ guilt_overall <- ggplot(subset(clean_results_merged, chance_of=="guilty"), aes(x
   ylab("Open Response Chance")+
   xlab("Closed Response Chance")+
   scale_x_discrete(labels = wrap_format(10))+
+  theme_bw()+
   ylim(c(0,1))
 
 
@@ -770,6 +771,7 @@ innocent_overall <- ggplot(subset(clean_results_merged, chance_of=="innocent"), 
   xlab("Chance of Guilt")+
   scale_x_discrete(labels = wrap_format(10))+
   scale_color_manual(values = c("#D81B60","#004D40"), name="Opinion", labels=c("Innocent","Guilty"))+
+  theme_bw()+
   ylim(c(0,1))+theme(legend.position = "bottom")
 
 innocent_high <- ggplot(subset(clean_results_merged, chance_of=="innocent" & 
