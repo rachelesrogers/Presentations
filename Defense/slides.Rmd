@@ -1379,6 +1379,86 @@ grid.arrange(credplot, underplot, ncol = 2)
 
 ---
 
+
+class: secondary-blue
+## Individual Comparisons in the Algorithm Condition
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=7}
+
+sci_reorder<- algorithm_results %>% mutate(algsci=fct_relevel(algsci, "Extremely unscientific","Moderately unscientific","Weakly unscientific",
+                                           "Neither scientific nor unscientific", "Weakly scientific", "Moderately scientific",
+                                           "Extremely scientific"))
+
+sci_reorder<- sci_reorder %>% mutate(examsci=fct_relevel(examsci, "Extremely unscientific","Moderately unscientific","Weakly unscientific",
+                                           "Neither scientific nor unscientific", "Weakly scientific", "Moderately scientific",
+                                           "Extremely scientific"))
+
+sci_data2 <- data.frame(
+  conclusion = sci_reorder$conclusion,
+  examiner = sci_reorder$examsci,
+  algorithm = sci_reorder$algsci
+)
+
+sci_tab2 <- table(sci_data2)
+sci_df2 <- as.data.frame(sci_tab2)
+
+sci_df2 <- sci_df2 %>%
+  purrr::map(.f = function(x) rep(x, sci_df2$Freq)) %>%
+  as.data.frame() %>%
+  select(-Freq)
+
+sciplot <- sci_df2 %>%
+  ggplot(aes(vars=vars(c(algorithm, examiner)))) +
+  geom_pcp_box(boxwidth=0.1, fill=NA) +
+  geom_pcp(aes(colour = conclusion), alpha = 0.5, 
+            boxwidth=0.1) +
+  scale_colour_manual(values = c("#FF8E00", "grey20", "#037AC7"), labels = conclusion_labs) +
+  guides(colour=guide_legend(override.aes = list(alpha=1))) +
+  theme_bw() +
+  ggtitle("How scientific do you think the ____\nevidence is, in this case?")
+
+
+
+# algorithm_results<- rbind.fill(algorithm_results, data.frame("examrel"="Extremely unreliable"))
+
+rel_reorder<- algorithm_results %>% mutate(algrel=fct_relevel(algrel, "Extremely unreliable","Moderately unreliable","Weakly unreliable", "Neither reliable nor unreliable", "Weakly reliable", "Moderately reliable",
+                                            "Extremely reliable"))
+
+rel_reorder<- rel_reorder %>% mutate(examrel=fct_relevel(examrel, "Extremely unreliable", "Moderately unreliable","Weakly unreliable","Neither reliable nor unreliable", "Weakly reliable", "Moderately reliable",
+                                            "Extremely reliable"))
+
+rel_data2 <- data.frame(
+  conclusion = rel_reorder$conclusion,
+  examiner = rel_reorder$examrel,
+  algorithm = rel_reorder$algrel
+)
+
+rel_tab2 <- table(rel_data2)
+rel_df2 <- as.data.frame(rel_tab2)
+
+rel_df2 <- rel_df2 %>%
+  purrr::map(.f = function(x) rep(x, rel_df2$Freq)) %>%
+  as.data.frame() %>%
+  select(-Freq)
+
+relplot <- rel_df2 %>%
+  ggplot(aes(vars=vars(c(algorithm, examiner)))) +
+  geom_pcp_box(boxwidth=0.1, fill=NA) +
+  geom_pcp(aes(colour = conclusion), alpha = 0.5, 
+            boxwidth=0.1) +
+  scale_colour_manual(values = c("#FF8E00", "grey20", "#037AC7"), labels = conclusion_labs) +
+  guides(colour=guide_legend(override.aes = list(alpha=1))) +
+  theme_bw() +
+  ggtitle("How scientific do you think the ____\nevidence is, in this case?")
+
+
+grid.arrange(sciplot, relplot, ncol = 2)
+
+
+```
+
+---
+
 class: center, middle, inverse-blue
 
 # Notepad Analysis
