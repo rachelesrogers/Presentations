@@ -1,7 +1,7 @@
 ---
 title: "Measuring Jury Perception of Explainable Machine Learning and Demonstrative Evidence"
 author: "Rachel Rogers"
-date: "April 4, 2024"
+date: "April 12, 2024"
 output:
   xaringan::moon_reader:
     mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
@@ -26,6 +26,7 @@ library(patchwork)
 library(ggmosaic)
 library(tidyverse)
 library(readr)
+library(ggpcp)
 ```
 
 - Initial Study
@@ -907,7 +908,7 @@ ggplot(clean_results_merged)+
   geom_mosaic(aes(x=product(correct_range_word, short_mult),
                   fill=correct_range_word), color="black")+
   theme_bw()+
-  scale_fill_manual(values = c("green", "white"), name="Consistent Range:")+
+  scale_fill_manual(values = c("seagreen1", "white"), name="Consistent Range:")+
   ggtitle("Selecting the Consistent Range vs. Choice to Express Chance")+
   xlab("Multiple Choice Chance of Guilt")+
   facet_grid(.~chance_of, labeller = "label_both", scales = "free_x")+
@@ -1047,7 +1048,7 @@ prob_hist <- ggplot(subset(clean_results_merged, !is.na(visible_probability)), a
                      labels=label_number(drop0trailing=TRUE))+
   xlab("Probability Defendant is Guilty")+
   scale_y_discrete(labels = wrap_format(15))+
-  scale_fill_manual(values = c("green", "grey"), name="Range")+
+  scale_fill_manual(values = c("seagreen1", "grey"), name="Range")+
   theme(legend.position="bottom")
 
 
@@ -1056,7 +1057,7 @@ prob_con <- ggplot(clean_results_merged)+
                   fill=prob_mult_consistency), color="black")+
   theme_bw()+
   xlab("Multiple Choice Chance of Guilt")+
-  scale_fill_manual(values = c("green" ,"white"), name="Consistent Range:")+
+  scale_fill_manual(values = c("seagreen1" ,"white"), name="Consistent Range:")+
   ggtitle("Selecting the Consistent Range vs. \nMultiple Choice Value")+
   theme(axis.text.y = element_blank(), axis.ticks.y=element_blank(),
         axis.title.y = element_blank(),
@@ -1275,6 +1276,106 @@ class: secondary-blue
   - 112/182 (62%) for Match
 
 <img src="images/probbox.jpg" width="90%" />
+
+---
+
+class: secondary-blue
+## Individual Comparisons in the Algorithm Condition
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=7}
+algorithm_results <- merged_results %>% filter(algorithm == "Yes")
+algtestcred_reorder<- algorithm_results %>%
+  mutate(algtestcred=fct_relevel(algtestcred, "Extremely noncredible",
+                                 "Moderately noncredible",
+                                 "Weakly noncredible",
+                                 "Neither credible nor noncredible", 
+                                 "Weakly credible", "Moderately credible",
+                                 "Extremely credible"))
+
+algtestcred_reorder<- algtestcred_reorder %>%
+  mutate(firetestcred=fct_relevel(firetestcred, 
+                                  "Extremely\nnoncredible","Moderately\nnoncredible",
+                                  "Weakly\nnoncredible", 
+                                  "Neither\ncredible\nnor\nnoncredible", 
+                                  "Weakly\ncredible", "Moderately\ncredible",
+                                  "Extremely\ncredible"))
+
+algtestcred_reorder<- algtestcred_reorder %>% mutate(
+  expunder=fct_relevel(expunder,
+    "1 <br/> I understood nothing",
+    "2.0",
+    "3 <br/> I understood about half of the method",
+    "4.0",
+    "5 <br/> I understood everything"
+  )
+)
+
+algtestcred_reorder<- algtestcred_reorder %>% mutate(
+  algunder=fct_relevel(algunder,
+    "1 <br/> I understood nothing",
+    "2.0",
+    "3 <br/> I understood about half of the method",
+    "4.0",
+    "5 <br/> I understood everything"
+  )
+)
+
+
+
+cred_data2 <- data.frame(
+  conclusion = algtestcred_reorder$conclusion,
+  Firearms = algtestcred_reorder$firetestcred,
+  Algorithm = algtestcred_reorder$algtestcred
+)
+
+cred_tab2 <- table(cred_data2)
+cred_df2 <- as.data.frame(cred_tab2)
+
+cred_df2 <- cred_df2 %>%
+  purrr::map(.f = function(x) rep(x, cred_df2$Freq)) %>%
+  as.data.frame() %>%
+  select(-Freq)
+
+credplot <- cred_df2 %>%
+  ggplot(aes(vars=vars(c(Algorithm, Firearms)))) +
+  geom_pcp_box(boxwidth=0.1, fill=NA) +
+  geom_pcp(aes(colour = conclusion), alpha = 0.5, 
+            boxwidth=0.1) +
+  scale_colour_manual(values = c("#FF8E00", "grey20", "#037AC7"), labels = conclusion_labs) +
+  guides(colour=guide_legend(override.aes = list(alpha=1))) +
+  theme_bw() +
+  ggtitle("How credible did you find the\ntestimony of the ___ expert?")
+
+under_data2 <- data.frame(
+  conclusion = algtestcred_reorder$conclusion,
+  algorithm = algtestcred_reorder$algunder,
+  examiner = algtestcred_reorder$expunder
+)
+
+under_tab2 <- table(under_data2)
+under_df2 <- as.data.frame(under_tab2)
+
+under_df2 <- under_df2 %>%
+  purrr::map(.f = function(x) rep(x, under_df2$Freq)) %>%
+  as.data.frame() %>%
+  select(-Freq)
+
+underplot <- under_df2 %>%
+  ggplot(aes(vars=vars(c(algorithm, examiner)))) +
+  geom_pcp_box(boxwidth=0.1, fill=NA) +
+  geom_pcp(aes(colour = conclusion), alpha = 0.5, 
+            boxwidth=0.1) +
+  scale_colour_manual(values = c("#FF8E00", "grey20", "#037AC7"), labels = conclusion_labs) +
+  guides(colour=guide_legend(override.aes = list(alpha=1))) +
+  theme_bw() +
+  
+  ggtitle("Based on this testimony, how would\nyou rate your understanding of the\nmethod described for the ______?")
+
+
+grid.arrange(credplot, underplot, ncol = 2)
+
+
+```
 
 ---
 
