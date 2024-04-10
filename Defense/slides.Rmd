@@ -291,7 +291,7 @@ class: primary-blue
 - Difficult Cases
    - Edit distance larger than the initial cutoff value
    - Note length more than 4 standard deviations above the mean length for that page
-- Based on validation from 35 participants' notes (cleaned by hand)
+- Based on validation from 35 participants' notes (495 non-blank pages, cleaned by hand)
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 validation_table <- read_csv("~/PhD Research/UNL_Thesis/data/validation_summary_table.csv")
@@ -1832,6 +1832,4 @@ class: center, middle, inverse-blue
 class: primary-blue
 ## Study Format
 
-<img src="images/Lawyer.jpg" width="15%" /> `r fa("plus")`
-<img src="images/Forensic Scientist.jpg" width="15%" /> `r fa("equals")`
-<img src="images/Prosecutor.png" width="15%" />
+<img src="images/figuregrid.jpg" width="75%" />
