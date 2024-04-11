@@ -311,9 +311,9 @@ kable(val_table, align=c('l','c','c','c'), caption="Note Cleaning Method Compari
 class: primary-blue
 
 - Highlight testimony based on frequency of occurrence in participants' notes
+  - Frequency of Individual words
   - Collocations of length 5 (quanteda)
      - Willfully: average frequency of 91.2
-  - Frequency of Individual words
   - Divide by number of occurrences in the testimony
 - Weighted Fuzzy Matches
 
@@ -1832,4 +1832,9 @@ class: center, middle, inverse-blue
 class: primary-blue
 ## Study Format
 
-<img src="images/figuregrid.jpg" width="75%" />
+.pull-left[
+<img src="images/figuregrid.jpg" />
+]
+.pull-right[
+<img src="images/figuregrid2.jpg" width="87%"/>
+]
