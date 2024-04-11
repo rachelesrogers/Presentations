@@ -328,6 +328,8 @@ class: primary-blue
 class: primary-blue
 ### Collocation Analysis
 
+Non-Image, Non-Algorithm, Identification
+
 <img src="images/collocationlong.jpg" width="70%" />
 
 ---
