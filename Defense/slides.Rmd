@@ -1838,3 +1838,26 @@ class: primary-blue
 .pull-right[
 <img src="images/figuregrid2.jpg" width="87%"/>
 ]
+
+---
+
+class: primary-blue
+
+## Scale Comparison
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6}
+
+ggplot(microstudy_clean) +
+  geom_histogram(aes(x=betting, fill=convict), 
+                 binwidth=5, color="black",
+           position = position_dodge(preserve = "single")) +
+  ggtitle("Betting vs Conviction Decision") +
+  scale_fill_manual(values = c("grey20", "plum1"), name="Convict?")+
+  ylab("Count")+
+  xlab("Bet Amount ($)")+
+  xlim(c(0,50))+
+  facet_grid(conclusion~., labeller = labeller(conclusion = conclusion_labs))+
+  theme_bw()
+
+
+```
