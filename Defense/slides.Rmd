@@ -1845,6 +1845,11 @@ class: primary-blue
 
 ## Scale Comparison
 
+Conviction Choice
+ - `r round(sum(microstudy_clean[microstudy_clean$conclusion=="Match",]$convict=="Yes")/sum(microstudy_clean$conclusion=="Match")*100, 2)`% in the Identification Condition
+ 
+ - `r round(sum(microstudy_clean[microstudy_clean$conclusion=="NoMatch",]$convict=="Yes")/sum(microstudy_clean$conclusion=="NoMatch")*100, 2)`% in the Elimination Condition
+
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6}
 
 ggplot(microstudy_clean) +
