@@ -52,7 +52,7 @@ class: primary-blue
       - 21% in the inconclusive case, 55% for various match language
   - Overall belief in reliability in fingerprint and bullet matching (Garrett et. al 2020; Garrett and Mitchell 2013)
   
-- Numbers are Hard
+- Participants Struggle with Numerical Values
   - Difficulty in interpreting evidence
       - 60.7% and 42.1% of individuals provided a DNA frequency and probability, respectively, correctly calculated the number of matching individuals in a population (Koehler 2001)
   - Same values in different formats result in different interpretations
