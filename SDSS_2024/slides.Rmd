@@ -1,7 +1,7 @@
 ---
 title: "A Comparison of Response Type Scales in a Mock Trial Scenario"
 author: "Rachel Rogers and Susan Vanderplas"
-date: "2024-05-29"
+date: "2024-06-06"
 output:
   xaringan::moon_reader:
     mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
@@ -27,17 +27,9 @@ library(ggmosaic)
 
 
 class: primary-blue
-## Research Questions
+## Background
 
-- How are potential jurors' perceptions of evidence affected by the use of algorithms and images?
-    
-    - What can we do when Likert response scales suffer from scale compression?
-    
----
-
-class: center, middle, inverse-blue
-
-# How are potential jurors' perceptions of evidence affected by the use of algorithms and images?
+- Initial Study: How are potential jurors' perceptions of evidence affected by the use of algorithms and images?
 
 ---
 
@@ -58,54 +50,6 @@ class: secondary-blue
     - 569 participants from Prolific (using representative sample feature)
     
 - Questions on the reliability/credibility of the evidence or the expert
-
----
-
-class: center, secondary-blue
-## The Demonstrative Evidence
-
-<figure>
-<img src="images/fired_bullet.jpg" width="35%" />
-<figcaption>Gremi-ch, 2009</figcaption>
-</figure>
-
-.pull-left[
-<figure>
-<img src="images/rifling.jpg" width="65%" />
-<figcaption>baku13, 2005</figcaption>
-</figure>
-]
-
-.pull-right[
-<img src="images/microscope.jpg" width="65%" />
-]
-
----
-
-class: secondary-blue
-## The Algorithm
-
-.pull-left[
-- Described in Hare et. al.
-- A 3D scan is taken of each bullet land, a stable cross section is extracted, and shoulders are removed
-- A smoothing function is applied twice in order to extract the signature, which can be compared to land signatures from other bullets
-- Traits (cross correlation, matching extrema, number of nonmatches, etc.) are used in a random forest to produce a match score for lands. Lands are aligned across bullets in order to compute an overall match score for the bullets
-]
-
-.pull-right[
-<figure>
-<img src="images/shoulder.jpg" width="75%" />
-<figcaption><font size="1">  Hare et al.</font></figcaption>
-</figure>
-
-<figure>
-<img src="images/Match_Signatures.jpg" width="75%" />
-<figcaption><font size="1">Hare et al.</font></figcaption>
-</figure>
-
-<img src="images/Test_Fire_F526.jpeg" width="75%" />
-]
-
 
 ---
 
@@ -210,7 +154,7 @@ class: secondary-blue
 ## Moving Forward
 
 - Scale Compression
-  - Ceiling effect: examiners are overall seen as reliable
+  - Ceiling effect: firearms testimony is generally highly regarded
   - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
   - Proposed Solution: Investigate other response methods
 
@@ -231,6 +175,7 @@ class: primary-blue
   - Convict (Yes/No)
   - Probability of guilt (Numeric)
   - What are the chances that defendant committed the crime? (Numeric or multiple choice)
+     - In numeric case, individuals were able to choose between expressing chance in terms of guilt or in terms of innocence
   - How much would you be willing to bet that the defendant committed the crime? (Numeric)
   
 - Inclusion of jury instructions and more cross examination on subjectivity
@@ -266,21 +211,6 @@ class: primary-blue
 
 ---
 
-class: center, middle, inverse-blue
-
-## Microstudy
-
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-
-library(readr)
-survey2 <- read_csv("../JSM_2023/data/cleanish_results.csv")
-
-survey2_clean <- survey2 %>% dplyr::filter(check=="9mm")
-
-```
-
----
-
 class: primary-blue
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -294,22 +224,9 @@ microstudy_clean <- microstudy %>% dplyr::filter(check=="9mm", round(randomnumbe
 - Designed to test response formats for jury perception study
   - Measuring both consistency and interpretability of results
 
-- Inclusion of jury instructions and more cross examination on subjectivity
-
-- Simplified to Identification and Exclusion condition, without algorithm and images
-
 - 298 participants completed the survey and passed the attention check
   - 147 participants with the Identification condition
   - 151 participants with the Elimination condition
-
----
-
-class: primary-blue
-
-### Study Questions
-
-.pull-left[.img[![](images/study_questions1.jpg)]]
-.pull-right[.img[![](images/study_questions2.jpg)]]
 
 ---
 
@@ -636,7 +553,7 @@ guilt_high <- ggplot(subset(clean_results_merged, chance_of=="guilty" &
                                    "About 999 chances in 1,000",
                                    "About 99 chances in 100",
                                    "About 9 chances in 10")), aes(x=chance_subtracted, fill=chances_fixed, y=chances_fixed))+
-  ggtitle("Chances of Innocence") +
+  ggtitle("1 - Chance of Guilt") +
   ylab("Count")+
   xlab("1 - Open Response Chance of Guilt")+
   geom_density_ridges(alpha=0.5)+
@@ -693,7 +610,7 @@ innocent_high <- ggplot(subset(clean_results_merged, chance_of=="innocent" &
        aes(x=chance_subtracted, 
            fill=chances_fixed, y = chances_fixed))+
   geom_density_ridges(alpha=0.5)+
-  ggtitle("Chances of Guilt") +
+  ggtitle("1 - Chance of Innocence") +
   ylab("Count")+
   xlab("1 - Open Response Chance of Innocence")+
   scale_fill_manual(values=c("#D81B60","#1E88E5","#FFC107","#004D40", "#CCA785"))+
