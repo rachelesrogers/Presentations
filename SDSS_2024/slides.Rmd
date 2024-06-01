@@ -25,25 +25,20 @@ library(ggridges)
 library(ggmosaic)
 ```
 
-
-class: primary-blue
-## Background
-
-- Initial Study: How are potential jurors' perceptions of evidence affected by the use of algorithms and images?
-
----
-
 class: secondary-blue
-## The Structure
+## Initial Study Structure
+
+- How are potential jurors' perceptions of evidence affected by the use of algorithms and images?
 
 - Based on Garrett et. al.'s "Mock jurors' evaluation of firearm examiner testimony" (2020)
     - Richard Cole is on trial for attempted robbery of a convenience store
     - Gun found in Cole's car is tested against bullet recovered from crime scene
+
+- Testimony based on court transcripts
     
 - Three Variables: 
     - Demonstrative Evidence 
     - Algorithm 
-        - Algorithm testimony includes both a Firearm Examiner and an Algorithm Expert
     - Conclusion
 
 - Gathering Data
@@ -162,23 +157,25 @@ class: secondary-blue
 
 class: center, middle, inverse-blue
 
-# Microstudy
+# Follow-up Study
 
 ---
 
 class: primary-blue
 ### What can we do when Likert response scales have scale compression?
 
-- Micro-study comparing response formats
-  - Strength of evidence (Likert - 9 point)
-  - Guilt (Yes/No)
-  - Convict (Yes/No)
-  - Probability of guilt (Numeric)
-  - What are the chances that defendant committed the crime? (Numeric or multiple choice)
-     - In numeric case, individuals were able to choose between expressing chance in terms of guilt or in terms of innocence
-  - How much would you be willing to bet that the defendant committed the crime? (Numeric)
+- Study comparing response formats
+  - Repeated Questions
+    - Strength of evidence (Likert - 9 point)
+    - Convict (Yes/No)
+    - Probability of guilt (Hidden or Visible Slider)
+  - New Questions
+    - Guilt (Yes/No)
+    - What are the chances that defendant committed the crime? (Numeric or multiple choice - Thompson & Newman (2015))
+      - In numeric case, individuals were able to choose between expressing chance in terms of guilt or in terms of innocence
+    - How much would you be willing to bet that the defendant committed the crime? (Numeric)
   
-- Inclusion of jury instructions and more cross examination on subjectivity
+- Inclusion of jury instructions (United States Courts for the Ninth Circuit, 2019) and more cross examination on subjectivity
 
 - Simplified to Identification and Elimination condition, without algorithm and images
 
@@ -748,6 +745,19 @@ ggplot(clean_results_merged)+
 
 class: primary-blue
 
+### Does Guilt = 1 - Chance of Innocence?
+
+- Study of Initial Research Question
+
+
+<img src="images/chance_compare.jpeg" width="75%" />
+
+- Preliminary Results: 59.4% of participant values correspond
+
+---
+
+class: primary-blue
+
 ### Scale Comparison - What is "Beyond a Reasonable Doubt"?
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=6}
@@ -983,10 +993,10 @@ class: primary-blue
 class: primary-blue,citation-slide
 ### Citations
 - baku13. (2005, August). L7 105mm tank gun Cut model. Retrieved from https://commons.wikimedia.org/wiki/File:105mm_tank_gun_Rifling.jpg
-- Baldwin, D. P., Bajic, S. J., Morris, M., & Zamzow, D. (2014). A Study of False-Positive and False-Negative Error Rates in Cartridge Case Comparisons: Fort Belvoir, VA: Defense Technical Information Center. Retrieved from http://www.dtic.mil/docs/citations/ADA611807
+<!-- - Baldwin, D. P., Bajic, S. J., Morris, M., & Zamzow, D. (2014). A Study of False-Positive and False-Negative Error Rates in Cartridge Case Comparisons: Fort Belvoir, VA: Defense Technical Information Center. Retrieved from http://www.dtic.mil/docs/citations/ADA611807 -->
 <!-- - Cardwell, B. A., Henkel, L. A., Garry, M., Newman, E. J., & Foster, J. L. (2016). Nonprobative photos rapidly lead people to believe claims about their own (and other people’s) pasts. Memory & Cognition, 44(6), 883–896. http://doi.org/gn65b2 -->
-- Defense Forensic Science Center (DFSC). Information paper: modification of latent print technical reports to include statistical calculations, 2017; https://osf.io/pmkwf/
-- Garrett, Brandon, Gregory Mitchell, and Nicholas Scurich. “Comparing Categorical and Probabilistic Fingerprint Evidence.” Journal of Forensic Sciences 63, no. 6 (November 2018): 1712–17. https://doi.org/10.1111/1556-4029.13797.
+<!-- - Defense Forensic Science Center (DFSC). Information paper: modification of latent print technical reports to include statistical calculations, 2017; https://osf.io/pmkwf/ -->
+<!-- - Garrett, Brandon, Gregory Mitchell, and Nicholas Scurich. “Comparing Categorical and Probabilistic Fingerprint Evidence.” Journal of Forensic Sciences 63, no. 6 (November 2018): 1712–17. https://doi.org/10.1111/1556-4029.13797. -->
 - Garrett, B., & Mitchell, G. and. (2013). How Jurors Evaluate Fingerprint
 Evidence: The Relative Importance of Match Language, Method Information, and Error Acknowledgment: How Jurors Evaluate Fingerprint Evidence. Journal of Empirical Legal Studies, 10(3), 484–511. http://doi.org/10.1111/jels.12017 
 - Garrett, B. L., Scurich, N., & Crozier, W. E. "Mock jurors’ evaluation of firearm examiner testimony." (2020). Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
@@ -995,16 +1005,18 @@ Evidence: The Relative Importance of Match Language, Method Information, and Err
 - Hofmann, H., Vanderplas, S., & Carriquiry, A. (2021). Treatment of Inconclusives in the AFTE Range of Conclusions. Law, Probability & Risk, 19(3-4). http://doi.org/https://doi.org/10.1093/lpr/mgab002
 <!-- - Kellermann, K. (2013). Trial advocacy: Truthiness, falsiness, and nothingness. -->
 <!-- Jury Expert, 25, 38. -->
-- Koehler, J. J. (2001). "When are people persuaded by DNA match statistics?" Law and Human Behavior, 25(5), 493–513. http://doi.org/d82kvn
+<!-- - Koehler, J. J. (2001). "When are people persuaded by DNA match statistics?" Law and Human Behavior, 25(5), 493–513. http://doi.org/d82kvn -->
 <!-- - McCabe, D. P., & Castel, A. D. (2008). Seeing is believing: The effect of -->
 <!-- brain images on judgments of scientific reasoning. Cognition, 107(1), -->
 <!-- 343–352. http://doi.org/10.1016/j.cognition.2007.07.017 -->
-- PCAST. (2016). Forensic Science in Criminal Courts: Ensuring Scientific Validity of Feature Comparison Methods. President’s Council of Advisors on Science and Technology. Retrieved from https://obamawhitehouse.archives.gov/sites/default/files/microsites/ostp/PCAST/pcast_forensic_science_report_final.pdf
+<!-- - PCAST. (2016). Forensic Science in Criminal Courts: Ensuring Scientific Validity of Feature Comparison Methods. President’s Council of Advisors on Science and Technology. Retrieved from https://obamawhitehouse.archives.gov/sites/default/files/microsites/ostp/PCAST/pcast_forensic_science_report_final.pdf -->
 <!-- - Schweitzer, N. J., Saks, M. J., Murphy, E. R., Roskies, A. L., Sinnott- -->
 <!-- Armstrong, W., & Gaudet, L. M. (2011). Neuroimages as evidence in -->
 <!-- a mens rea defense: No impact. Psychology, Public Policy, and Law, -->
 <!-- 17(3), 357–393. http://doi.org/10.1037/a0023581 -->
-- Swofford, H., & Champod, C. (2022). Probabilistic reporting and algorithms in forensic science: Stakeholder perspectives within the American criminal justice system. Forensic Science International: Synergy, 4, 100220. http://doi.org/gphvxj
+<!-- - Swofford, H., & Champod, C. (2022). Probabilistic reporting and algorithms in forensic science: Stakeholder perspectives within the American criminal justice system. Forensic Science International: Synergy, 4, 100220. http://doi.org/gphvxj -->
+- Thompson, W. C., & Newman, E. J. (2015). Lay understanding of forensic statistics: Evaluation of random match probabilities, likelihood ratios, and verbal equivalents. Law and Human Behavior, 39(4), 332–349. http://doi.org/10.1037/lhb0000134
+- United States Courts for the Ninth Circuit. (2019). 3.14 Opinion Evidence, Expert Witness | Model Jury Instructions. Retrieved from https://www.ce9.uscourts.gov/jury-instructions/node/844
 
 
 This work was funded (or partially funded) by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreements 70NANB15H176 and 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
