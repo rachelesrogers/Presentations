@@ -150,8 +150,15 @@ class: secondary-blue
 
 - Issues arise when there is a disconnect between the construct we wish to evaluate and the measurement tool (Groves et. al.)
   - Equivalent to using a 2nd grade math test to assess the math skill of 4th graders
+  
 - Likert Limitations
   - 7-9 categories generally recommended (Finstad, 2010; Joshi, Kale, Chandel, & Pal, 2015; Groves et. al.; Preston & Colman, 2000)
+  
+- Categorical log scale for chance of guilt (Thompson, Kaasa, & Peterson, 2013)
+  - 1 chance in (10/100/1,000) or guilt
+  - Not significantly different from Bayesian estimate for evidence
+- “Based on the available evidence I believe it is ___ times more likely that Mr. Kelly is guilty than not guilty.” (Thompson & Newman, 2015).
+  - Provided lower, less consistent values than the categorical log scale
   
 ---
 
@@ -1017,6 +1024,9 @@ Evidence: The Relative Importance of Match Language, Method Information, and Err
 - Preston, C. C., & Colman, A. M. (2000). Optimal number of response
 categories in rating scales: Reliability, validity, discriminating power, and respondent preferences. Acta Psychologica, 104.
 http://doi.org/10.1016/S0001-6918(99)00050-5
+- Thompson, W. C., Kaasa, S. O., & Peterson, T. (2013). Do Jurors Give
+Appropriate Weight to Forensic Identification Evidence? Journal of
+Empirical Legal Studies, 10(2), 359–397.
 - Thompson, W. C., & Newman, E. J. (2015). Lay understanding of forensic statistics: Evaluation of random match probabilities, likelihood ratios, and verbal equivalents. Law and Human Behavior, 39(4), 332–349. http://doi.org/10.1037/lhb0000134
 - United States Courts for the Ninth Circuit. (2019). 3.14 Opinion Evidence, Expert Witness | Model Jury Instructions. Retrieved from https://www.ce9.uscourts.gov/jury-instructions/node/844
 
