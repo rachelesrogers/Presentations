@@ -548,68 +548,70 @@ guilt_overall <- ggplot(subset(clean_results_merged, chance_of=="guilty"), aes(x
   theme_bw()+
   ylim(c(0,1))
 
+guilt_overall
+
 
 clean_results_merged$chance_wo_0 <- clean_results_merged$num_chance
 
 clean_results_merged <- clean_results_merged %>%
     mutate(chance_wo_0 = ifelse(chance_wo_0 == 0, .Machine$double.eps, chance_wo_0))
-
-guilt_low <- ggplot(subset(clean_results_merged, chance_of=="guilty" & 
-              chances_fixed %in% c("Impossible that he is guilty", 
-                                   "About 1 chance in 10,000", 
-                                   "About 1 chance in 1,000",
-                                   "About 1 chance in 100",
-                                   "About 1 chance in 10")), aes(x=chance_wo_0, fill=chances_fixed, y=chances_fixed))+
-  ggtitle("Chances of Guilt") +
-  ylab("Count")+
-  xlab("Open Response Chance")+
-  geom_density_ridges(alpha=0.5)+
-  scale_fill_manual(values=c("#D81B60","#1E88E5","#FFC107","#004D40", "#CCA785"))+
-  theme_bw()+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none")+
-  scale_x_log10(breaks=c(1/10000, 1/1000, 1/100, 1/10, 0.5),
-                labels=label_number(drop0trailing=TRUE), 
-                 limits = c(.Machine$double.eps, NA))+
-  geom_vline(aes(xintercept=1/10000), color="#1E88E5")+
-  geom_vline(aes(xintercept=1/1000), color="#FFC107")+
-  geom_vline(aes(xintercept=1/100), color="#004D40")+
-  geom_vline(aes(xintercept=.Machine$double.eps), color="#D81B60")+
-  geom_vline(aes(xintercept=1/10), color="#CCA785")+
-  geom_vline(aes(xintercept=0.5), color="black")+
-  scale_y_discrete(labels = wrap_format(15))+
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-
+# 
+# guilt_low <- ggplot(subset(clean_results_merged, chance_of=="guilty" & 
+#               chances_fixed %in% c("Impossible that he is guilty", 
+#                                    "About 1 chance in 10,000", 
+#                                    "About 1 chance in 1,000",
+#                                    "About 1 chance in 100",
+#                                    "About 1 chance in 10")), aes(x=chance_wo_0, fill=chances_fixed, y=chances_fixed))+
+#   ggtitle("Chances of Guilt") +
+#   ylab("Count")+
+#   xlab("Open Response Chance")+
+#   geom_density_ridges(alpha=0.5)+
+#   scale_fill_manual(values=c("#D81B60","#1E88E5","#FFC107","#004D40", "#CCA785"))+
+#   theme_bw()+
+#   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none")+
+#   scale_x_log10(breaks=c(1/10000, 1/1000, 1/100, 1/10, 0.5),
+#                 labels=label_number(drop0trailing=TRUE), 
+#                  limits = c(.Machine$double.eps, NA))+
+#   geom_vline(aes(xintercept=1/10000), color="#1E88E5")+
+#   geom_vline(aes(xintercept=1/1000), color="#FFC107")+
+#   geom_vline(aes(xintercept=1/100), color="#004D40")+
+#   geom_vline(aes(xintercept=.Machine$double.eps), color="#D81B60")+
+#   geom_vline(aes(xintercept=1/10), color="#CCA785")+
+#   geom_vline(aes(xintercept=0.5), color="black")+
+#   scale_y_discrete(labels = wrap_format(15))+
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+# 
 clean_results_merged$chance_subtracted <- 1 - clean_results_merged$num_chance
-
+# 
 clean_results_merged <- clean_results_merged %>%
     mutate(chance_subtracted = ifelse(chance_subtracted == 0, .Machine$double.eps, chance_subtracted))
 
-guilt_high <- ggplot(subset(clean_results_merged, chance_of=="guilty" & 
-              chances_fixed %in% c("Certain to be guilty", 
-                                   "About 9,999 chances in 10,000", 
-                                   "About 999 chances in 1,000",
-                                   "About 99 chances in 100",
-                                   "About 9 chances in 10")), aes(x=chance_subtracted, fill=chances_fixed, y=chances_fixed))+
-  ggtitle("1 - Chance of Guilt") +
-  ylab("Count")+
-  xlab("1 - Open Response Chance of Guilt")+
-  geom_density_ridges(alpha=0.5)+
-  scale_fill_manual(values=c("#CC79A7","#D55E00","#009E73","#F0E442", "#A4A3B3"))+
-  theme_bw()+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none")+
-   scale_x_log10(breaks=c(1/10000, 1/1000, 1/100, 1/10, 0.5),
-                 labels=label_number(drop0trailing=TRUE), 
-                 limits = c(.Machine$double.eps, NA))+
-  geom_vline(aes(xintercept=1/10000), color="#F0E442")+
-  geom_vline(aes(xintercept=1/1000), color="#009E73")+
-  geom_vline(aes(xintercept=1/100), color="#D55E00")+
-  geom_vline(aes(xintercept=.Machine$double.eps), color="#A4A3B3")+
-  geom_vline(aes(xintercept=1/10), color="#CC79A7")+
-  geom_vline(aes(xintercept=0.5), color="black")+
-  scale_y_discrete(labels = wrap_format(15))+
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-
-guilt_overall+(guilt_low/guilt_high)
+# guilt_high <- ggplot(subset(clean_results_merged, chance_of=="guilty" & 
+#               chances_fixed %in% c("Certain to be guilty", 
+#                                    "About 9,999 chances in 10,000", 
+#                                    "About 999 chances in 1,000",
+#                                    "About 99 chances in 100",
+#                                    "About 9 chances in 10")), aes(x=chance_subtracted, fill=chances_fixed, y=chances_fixed))+
+#   ggtitle("1 - Chance of Guilt") +
+#   ylab("Count")+
+#   xlab("1 - Open Response Chance of Guilt")+
+#   geom_density_ridges(alpha=0.5)+
+#   scale_fill_manual(values=c("#CC79A7","#D55E00","#009E73","#F0E442", "#A4A3B3"))+
+#   theme_bw()+
+#   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none")+
+#    scale_x_log10(breaks=c(1/10000, 1/1000, 1/100, 1/10, 0.5),
+#                  labels=label_number(drop0trailing=TRUE), 
+#                  limits = c(.Machine$double.eps, NA))+
+#   geom_vline(aes(xintercept=1/10000), color="#F0E442")+
+#   geom_vline(aes(xintercept=1/1000), color="#009E73")+
+#   geom_vline(aes(xintercept=1/100), color="#D55E00")+
+#   geom_vline(aes(xintercept=.Machine$double.eps), color="#A4A3B3")+
+#   geom_vline(aes(xintercept=1/10), color="#CC79A7")+
+#   geom_vline(aes(xintercept=0.5), color="black")+
+#   scale_y_discrete(labels = wrap_format(15))+
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+# 
+# guilt_overall+(guilt_low/guilt_high)
 
 ```
 
@@ -638,69 +640,72 @@ innocent_overall <- ggplot(subset(clean_results_merged, chance_of=="innocent"), 
   theme_bw()+
   ylim(c(0,1))+theme(legend.position = "bottom")
 
-innocent_high <- ggplot(subset(clean_results_merged, chance_of=="innocent" & 
-              chances_fixed %in% c("Impossible that he is guilty", 
-                                   "About 1 chance in 10,000", 
-                                   "About 1 chance in 1,000",
-                                   "About 1 chance in 100",
-                                   "About 1 chance in 10")),
-       aes(x=chance_subtracted, 
-           fill=chances_fixed, y = chances_fixed))+
-  geom_density_ridges(alpha=0.5)+
-  ggtitle("1 - Chance of Innocence") +
-  ylab("Count")+
-  xlab("1 - Open Response Chance of Innocence")+
-  scale_fill_manual(values=c("#D81B60","#1E88E5","#FFC107","#004D40", "#CCA785"))+
-  theme_bw()+
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none")+
-   scale_x_log10(breaks=c(1/10000, 1/1000, 1/100, 1/10, 0.5),
-                 labels=label_number(drop0trailing=TRUE), 
-                 limits = c(.Machine$double.eps, NA))+
-  geom_vline(aes(xintercept=1/10000), color="#1E88E5")+
-  geom_vline(aes(xintercept=1/1000), color="#FFC107")+
-  geom_vline(aes(xintercept=1/100), color="#004D40")+
-    geom_vline(aes(xintercept=.Machine$double.eps), color="#D81B60")+
-  geom_vline(aes(xintercept=1/10), color="#CCA785")+
-  geom_vline(aes(xintercept=0.5), color="black")+
-  scale_y_discrete(labels = wrap_format(15))+
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+innocent_overall
 
-innocent_low <- ggplot(subset(clean_results_merged, chance_of=="innocent" &
-              chances_fixed %in% c("Certain to be guilty",
-                                   "About 9,999 chances in 10,000",
-                                   "About 999 chances in 1,000",
-                                   "About 99 chances in 100",
-                                   "About 9 chances in 10")), aes(x=chance_wo_0, fill=chances_fixed, y=chances_fixed))+
-   geom_density_ridges(alpha=0.5)+
-  ggtitle("Chances of Innocence") +
-  ylab("Count")+
-  xlab("Open Response Chance of Innocence")+
-  scale_fill_manual(values=c("#CC79A7","#D55E00","#009E73","#F0E442", "#A4A3B3"))+
-  theme_bw()+
-      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none")+
-   scale_x_log10(breaks=c(1/10000, 1/1000, 1/100, 1/10, 0.5),
-                 labels=label_number(drop0trailing=TRUE),
-                 limits = c(.Machine$double.eps, NA))+
-  geom_vline(aes(xintercept=1/10000), color="#F0E442")+
-  geom_vline(aes(xintercept=1/1000), color="#009E73")+
-  geom_vline(aes(xintercept=1/100), color="#D55E00")+
-    geom_vline(aes(xintercept=.Machine$double.eps), color="#A4A3B3")+
-  geom_vline(aes(xintercept=1/10), color="#CC79A7")+
-  # geom_vline(aes(xintercept=0.255), color="black")+
-  # geom_vline(aes(xintercept=0.0055), color="black")+
-  # geom_vline(aes(xintercept=0.00055), color="black")+
-  # geom_vline(aes(xintercept=0.000055), color="black")+
-  geom_vline(aes(xintercept=0.5), color="black")+
-  scale_y_discrete(labels = wrap_format(15))+
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-
-innocent_overall+(innocent_low/innocent_high)
+# innocent_high <- ggplot(subset(clean_results_merged, chance_of=="innocent" & 
+#               chances_fixed %in% c("Impossible that he is guilty", 
+#                                    "About 1 chance in 10,000", 
+#                                    "About 1 chance in 1,000",
+#                                    "About 1 chance in 100",
+#                                    "About 1 chance in 10")),
+#        aes(x=chance_subtracted, 
+#            fill=chances_fixed, y = chances_fixed))+
+#   geom_density_ridges(alpha=0.5)+
+#   ggtitle("1 - Chance of Innocence") +
+#   ylab("Count")+
+#   xlab("1 - Open Response Chance of Innocence")+
+#   scale_fill_manual(values=c("#D81B60","#1E88E5","#FFC107","#004D40", "#CCA785"))+
+#   theme_bw()+
+#     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none")+
+#    scale_x_log10(breaks=c(1/10000, 1/1000, 1/100, 1/10, 0.5),
+#                  labels=label_number(drop0trailing=TRUE), 
+#                  limits = c(.Machine$double.eps, NA))+
+#   geom_vline(aes(xintercept=1/10000), color="#1E88E5")+
+#   geom_vline(aes(xintercept=1/1000), color="#FFC107")+
+#   geom_vline(aes(xintercept=1/100), color="#004D40")+
+#     geom_vline(aes(xintercept=.Machine$double.eps), color="#D81B60")+
+#   geom_vline(aes(xintercept=1/10), color="#CCA785")+
+#   geom_vline(aes(xintercept=0.5), color="black")+
+#   scale_y_discrete(labels = wrap_format(15))+
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+# 
+# innocent_low <- ggplot(subset(clean_results_merged, chance_of=="innocent" &
+#               chances_fixed %in% c("Certain to be guilty",
+#                                    "About 9,999 chances in 10,000",
+#                                    "About 999 chances in 1,000",
+#                                    "About 99 chances in 100",
+#                                    "About 9 chances in 10")), aes(x=chance_wo_0, fill=chances_fixed, y=chances_fixed))+
+#    geom_density_ridges(alpha=0.5)+
+#   ggtitle("Chances of Innocence") +
+#   ylab("Count")+
+#   xlab("Open Response Chance of Innocence")+
+#   scale_fill_manual(values=c("#CC79A7","#D55E00","#009E73","#F0E442", "#A4A3B3"))+
+#   theme_bw()+
+#       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position="none")+
+#    scale_x_log10(breaks=c(1/10000, 1/1000, 1/100, 1/10, 0.5),
+#                  labels=label_number(drop0trailing=TRUE),
+#                  limits = c(.Machine$double.eps, NA))+
+#   geom_vline(aes(xintercept=1/10000), color="#F0E442")+
+#   geom_vline(aes(xintercept=1/1000), color="#009E73")+
+#   geom_vline(aes(xintercept=1/100), color="#D55E00")+
+#     geom_vline(aes(xintercept=.Machine$double.eps), color="#A4A3B3")+
+#   geom_vline(aes(xintercept=1/10), color="#CC79A7")+
+#   # geom_vline(aes(xintercept=0.255), color="black")+
+#   # geom_vline(aes(xintercept=0.0055), color="black")+
+#   # geom_vline(aes(xintercept=0.00055), color="black")+
+#   # geom_vline(aes(xintercept=0.000055), color="black")+
+#   geom_vline(aes(xintercept=0.5), color="black")+
+#   scale_y_discrete(labels = wrap_format(15))+
+#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+# 
+# innocent_overall+(innocent_low/innocent_high)
 
 ```
 
 ---
 
-class: primary-blue, center, middle
+class: primary-blue
+<!-- , center, middle -->
 
 ### Scale Comparison
 
@@ -781,18 +786,9 @@ ggplot(clean_results_merged)+
 
 ```
 
----
+- Chance of Innocence: `r round(correct_summary_df$Count[4]/(correct_summary_df$Count[4]+correct_summary_df$Count[3])*100, 2)`% consistent (`r correct_summary_df$Count[4]` out of `r correct_summary_df$Count[4]+correct_summary_df$Count[3]`)
 
-class: primary-blue
-
-### Does Guilt = 1 - Chance of Innocence?
-
-- Study of Initial Research Question
-
-
-<img src="images/chance_compare.jpeg" width="75%" />
-
-- Preliminary Results: 59.4% of participant values correspond
+- Chance of Guilt: `r round(correct_summary_df$Count[2]/(correct_summary_df$Count[2]+correct_summary_df$Count[1])*100, 2)`% consistent (`r correct_summary_df$Count[2]` out of `r correct_summary_df$Count[2]+correct_summary_df$Count[1]`)
 
 ---
 
@@ -1024,10 +1020,21 @@ class: primary-blue
 
 - Some relationship between betting and multiple choice chance
 
+---
+
+class: primary-blue
+## Future Research
+
 - Follow Up Study
+
    - Multiple choice format
+   
      -   "[blank] out of [blank]"
+     
    - Sliding scales
+
+- Does Chance of Innocence = 1 - Chance of Guilt?
+
 ---
 
 class: primary-blue,citation-slide
@@ -1102,3 +1109,18 @@ class: primary-blue
 - Cognitive neuroscience articles presented with an activated brain image rated higher in scientific reasoning than those with bar charts, a topographical brain graphic, or no graphic (McCabe & Castel)
 
 - Schweitzer et al. found no effect of the inclusion of neuroimages on participant decisions with respect to the defendant's mental state.
+
+---
+
+class: primary-blue
+
+### Does Guilt = 1 - Chance of Innocence?
+
+- Study of Initial Research Question
+
+
+<img src="images/chance_compare.jpeg" width="75%" />
+
+- Preliminary Results: 59.4% of participant values correspond
+
+
