@@ -170,30 +170,30 @@ rel_graph / cred_graph
 
 ---
 
-class: primary-blue
-
-## Response Scale Considerations
-
-- Issues arise when there is a disconnect between the construct we wish to evaluate and the measurement tool (Groves et. al.)
-  - Equivalent to using a 2nd grade math test to assess the math skill of 4th graders
-- Categorical log scale for chance of guilt (Thompson, Kaasa, & Peterson, 2013)
-  - 1 chance in (10/100/1,000) or guilt
-  - Not significantly different from Bayesian estimate for evidence
-- “Based on the available evidence I believe it is ___ times more likely that Mr. Kelly is guilty than not guilty.” (Thompson & Newman, 2015).
-  - Provided lower, less consistent values than the categorical log scale
-  
----
-
 class: secondary-blue
 
 ## Moving Forward
+
+- Issues arise when there is a disconnect between the construct we wish to evaluate and the measurement tool (Groves et. al.)
+  - Equivalent to using a 2nd grade math test to assess the math skill of 4th graders
 
 - Scale Compression
   - Ceiling effect: firearms testimony is generally highly regarded
   - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
   - Proposed Solution: Investigate other response methods
 
+---
 
+class: primary-blue
+
+## Response Scale Considerations
+
+- Categorical log scale for chance of guilt (Thompson, Kaasa, & Peterson, 2013)
+  - 1 chance in (10/100/1,000) of guilt
+  - Not significantly different from Bayesian estimate for evidence
+- “Based on the available evidence I believe it is ___ times more likely that Mr. Kelly is guilty than not guilty.” (Thompson & Newman, 2015).
+  - Provided lower, less consistent values than the categorical log scale
+  
 ---
 
 class: center, middle, inverse-blue
@@ -205,16 +205,15 @@ class: center, middle, inverse-blue
 class: primary-blue
 ### What can we do when Likert response scales have scale compression?
 
-- Study comparing response formats
-  - Repeated Questions
+- Repeated Questions
     - Strength of evidence (Likert - 9 point)
     - Convict (Yes/No)
     - Probability of guilt (Hidden or Visible Slider)
-  - New Questions
-    - Guilt (Yes/No)
+- New Questions
+    - Opinion of guilt (Yes/No)
     - What are the chances that defendant committed the crime? (Numeric or multiple choice - Thompson & Newman (2015))
       - In numeric case, individuals were able to choose between expressing chance in terms of guilt or in terms of innocence
-    - How much would you be willing to bet that the defendant committed the crime? (Numeric)
+    - If provided with $50, how much would you be willing to bet that the defendant committed the crime? (Numeric)
   
 - Inclusion of jury instructions (United States Courts for the Ninth Circuit, 2019) and more cross examination on subjectivity
 
