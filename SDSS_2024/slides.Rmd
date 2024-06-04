@@ -841,11 +841,12 @@ ggplot(microstudy_clean, aes(x=chances_fixed, fill=guilt_opinion))+ #,fill=concl
 ---
 
 
-class: primary-blue, center, middle
+class: primary-blue
+<!-- , center, middle -->
 
 ### Scale Comparison
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=8}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=12, fig.height=7}
 
 clean_results_merged$chances_fixed = factor(
   clean_results_merged$chances_fixed,
@@ -938,6 +939,8 @@ prob_hist+prob_con+
   plot_layout(widths = c(2, 1))
 
 ```
+
+- `r round(sum(clean_results_merged$prob_mult_consistency=="consistent")/length(clean_results_merged$prob_mult_consistency)*100, 2)`% of individuals selected consistent values
 
 ---
 
