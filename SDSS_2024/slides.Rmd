@@ -174,13 +174,14 @@ class: secondary-blue
 
 ## Moving Forward
 
+- Scale Compression
+
 - Issues arise when there is a disconnect between the construct we wish to evaluate and the measurement tool (Groves et. al.)
   - Equivalent to using a 2nd grade math test to assess the math skill of 4th graders
 
-- Scale Compression
-  - Ceiling effect: firearms testimony is generally highly regarded
-  - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
-  - Proposed Solution: Investigate other response methods
+- Ceiling effect: firearms testimony is generally highly regarded
+
+- Proposed Solution: Investigate other response methods
 
 ---
 
@@ -188,11 +189,17 @@ class: primary-blue
 
 ## Response Scale Considerations
 
+- Participants Struggle with Numerical Values
+  - Difficulty in interpreting evidence
+      - 60.7% and 42.1% of individuals provided a DNA frequency and probability, respectively, correctly calculated the number of matching individuals in a population (Koehler 2001)
+  - Same values in different formats result in different interpretations
+      - More likely to believe subject was the source of the DNA when presented with a probability rather than a frequency (Koehler 2001)
+  - Inconsistency in Response Types
+      - Higher values of guilt on categorical chance scale compared to likelihood scale (Thompson and Newman 2015)
+
 - Categorical log scale for chance of guilt (Thompson, Kaasa, & Peterson, 2013)
   - 1 chance in (10/100/1,000) of guilt
   - Not significantly different from Bayesian estimate for evidence
-- “Based on the available evidence I believe it is ___ times more likely that Mr. Kelly is guilty than not guilty.” (Thompson & Newman, 2015).
-  - Provided lower, less consistent values than the categorical log scale
   
 ---
 
@@ -222,29 +229,12 @@ class: primary-blue
 ---
 
 class: primary-blue
-### Testimony Changes
-
-- Development of figures (by Richy Meleus) with text bubbles, and colors indicating which side they are testifying for
-
-.pull-left[
-.pull-left[<img src="images/Judge.jpg" width="75%" />
-<img src="images/Lawyer.jpg" width="75%" />]
-.pull-right[<img src="images/Forensic Scientist.jpg" width="75%" />
-<img src="images/Analyst.jpg" width="75%" />]
-]
-.pull-right[
-.pull-left[<img src="images/Defendant.jpg" width="75%" />
-<img src="images/Hazmat worker.jpg" width="75%" />]
-.pull-right[<img src="images/Inmate.jpg" width="75%" />
-<img src="images/Police Officer.jpg" width="75%" />]
-]
-
----
-
-class: primary-blue
 
 .img[![](images/Study2_Screenshot.jpg)]
-<center><img src="images/Study2_Screenshot2.jpg" width="65%" /></center>
+<center><figure>
+<img src="images/Study2_Screenshot2.jpg" width="65%" />
+  <figcaption>Characters developed by Richy Meleus</figcaption>
+</figure></center>
 
 ---
 
@@ -1017,7 +1007,7 @@ class: primary-blue
 
 - Confusion in numerical chance
 
-- Some Inconsistency between probability and multiple choice chance
+- Some inconsistency between probability and multiple choice chance
 
 - Compression in strength of evidence
 
@@ -1042,7 +1032,7 @@ class: primary-blue
 
 class: primary-blue,citation-slide
 ### Citations
-- baku13. (2005, August). L7 105mm tank gun Cut model. Retrieved from https://commons.wikimedia.org/wiki/File:105mm_tank_gun_Rifling.jpg
+<!-- - baku13. (2005, August). L7 105mm tank gun Cut model. Retrieved from https://commons.wikimedia.org/wiki/File:105mm_tank_gun_Rifling.jpg -->
 - DeCastellarnau, A. (2018). A classification of response scale
 characteristics that affect data quality: A literature review. Quality &
 Quantity, 52(4), 1523–1559. http://doi.org/10.1007/s11135-017-0533-4
@@ -1050,11 +1040,12 @@ Quantity, 52(4), 1523–1559. http://doi.org/10.1007/s11135-017-0533-4
 Evidence: The Relative Importance of Match Language, Method Information, and Error Acknowledgment: How Jurors Evaluate Fingerprint Evidence. Journal of Empirical Legal Studies, 10(3), 484–511. http://doi.org/10.1111/jels.12017 
 - Finstad, K. (2010). Response Interpolation and Scale Sensitivity: Evidence Against 5-Point Scales, 5(3), 8.
 - Garrett, B. L., Scurich, N., & Crozier, W. E. "Mock jurors’ evaluation of firearm examiner testimony." (2020). Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
-- Gremi-ch. (2009). English: A 5.66x45mm (.223 rem.) Boat tailed FMJ spitzer bullet laying on a ruler with a scale in centimeter. Retrieved from https://commons.wikimedia.org/wiki/File:GP90-bullet.JPG?uselang=fr
+<!-- - Gremi-ch. (2009). English: A 5.66x45mm (.223 rem.) Boat tailed FMJ spitzer bullet laying on a ruler with a scale in centimeter. Retrieved from https://commons.wikimedia.org/wiki/File:GP90-bullet.JPG?uselang=fr -->
 - Groves, R. M., Jr, F. J. F., Couper, M. P., Lepkowski, J. M., Singer, E., & Tourangeau, R. (2009). Survey Methodology. John Wiley & Sons.
 - Hare, Eric, et al. “Automatic Matching of Bullet Land Impressions.” The Annals of Applied Statistics, vol. 11, no. 4, Dec. 2017, pp. 2332–56. Project Euclid, https://doi.org/10.1214/17-AOAS1080  
 - Hofmann, H., Vanderplas, S., & Carriquiry, A. (2021). Treatment of Inconclusives in the AFTE Range of Conclusions. Law, Probability & Risk, 19(3-4). http://doi.org/https://doi.org/10.1093/lpr/mgab002
 - Joshi, A., Kale, S., Chandel, S., & Pal, D. (2015). Likert Scale: Explored and Explained. British Journal of Applied Science & Technology, 7(4), 396–403. http://doi.org/10.9734/BJAST/2015/14975
+- Koehler, J. J. (2001). "When are people persuaded by DNA match statistics?" Law and Human Behavior, 25(5), 493–513. http://doi.org/d82kvn
 - Preston, C. C., & Colman, A. M. (2000). Optimal number of response
 categories in rating scales: Reliability, validity, discriminating power, and respondent preferences. Acta Psychologica, 104.
 http://doi.org/10.1016/S0001-6918(99)00050-5
