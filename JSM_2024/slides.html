@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Sequential Notepad Analysis in Transcript Studies</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Rachel Rogers and Susan Vanderplas" />
+    <meta name="date" content="2024-08-04" />
+    <script src="libs/header-attrs-2.26/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.11/grViz.js"></script>
+    <link rel="stylesheet" href="css/csafe.css" type="text/css" />
+    <link rel="stylesheet" href="css/csafe-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="css/this-presentation.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Sequential Notepad Analysis in Transcript Studies
+]
+.author[
+### Rachel Rogers and Susan Vanderplas
+]
+.date[
+### August 4, 2024
+]
+
+---
+
+
+
+
+
+class: primary-blue
+## Transcript Scenario
+
+- Mock Trial Scenario (Garrett et. al.(2020))
+    - Attempted convenience store robbery
+    - Participants read testimony from firearms examiner comparing defendant's gun to bullet recovered from the crime scene
+    
+- Three Variables: 
+    - Demonstrative Evidence 
+    - Algorithm 
+        - Algorithm testimony includes both a firearms examiner and an algorithm developer
+    - Conclusion
+
+- Gathering Data
+    - 569 participants from Prolific (using representative sample feature)
+
+- Participants were Presented with a Trial Transcript based on Court Cases
+
+---
+
+class: primary-blue
+
+.img[![](images/notepad2.jpg)]
+
+- Participants are provided with a digital notepad, and input is saved for each page of testimony
+
+---
+
+class: primary-blue
+### Digital Notepad
+
+- Data cleaning: removing the previous page's notes before analysis
+  
+  .img[![](images/pagecleaning.jpg)]
+
+---
+
+class: center, middle, inverse-blue
+
+# Sequential Note Cleaning
+
+&lt;!-- &lt;img src="images/seqstrclean.png" width="25%" /&gt; --&gt;
+
+&lt;!-- &lt;img src="images/seqstrclean_qr.png" width="20%" /&gt; --&gt;
+
+---
+
+class: primary-blue
+### First n Characters
+
+- Test edit distance on first n characters to previous notes
+   - Edit distance: Number of changes necessary to go from one string to the other string
+
+.img[![](images/pagecleaning.jpg)]
+
+- What if:
+   - Participants delete portions of their previous notes?
+   - Participants add new notes in the middle of/before their old notes?
+   - Participants duplicate their old notes?
+   
+---
+
+class: primary-blue
+### Longest Common Substring (LCS)
+
+PTXQC Package (Bielow et al.)
+
+- Participants delete portions of their previous notes
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | The cat ran | The cat ran | 12
+
+- Participants add new notes in the middle of old notes
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11
+
+- Participants duplicate their old notes
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree | (The cat ran up the tree)(The cat ran up the tree) | 0
+
+---
+
+class: primary-blue
+### Hybrid Method
+
+- LCS Drawbacks
+   - What if testimony itself is repeated?
+   - Time intensive
+- Use the first n character method for easy cases, then clean up difficult cases with LCS (Tested on subset of 35 participants' notes)
+
+&lt;img src="images/cleaningerror.jpg" width="75%" /&gt;
+
+---
+
+class: primary-blue
+### Hybrid Method
+
+- Difficult Cases
+   - Edit distance larger than the initial cutoff value
+   - Note length more than 4 standard deviations above the mean length for that page
+- Based on validation from 35 participants' notes (495 non-blank pages, cleaned by hand)
+
+
+Table: Note Cleaning Method Comparison
+
+|Method                      | Time (Minutes) | Error  |   SD    |
+|:---------------------------|:--------------:|:------:|:-------:|
+|FNC 1 Character             |      7.17      | 498.96 | 2769.83 |
+|FNC 6 Character             |      3.74      | 201.35 | 1890.01 |
+|FNC 16 Character            |      3.43      | 36.91  | 411.25  |
+|LCS 40 Character            |     79.51      |  6.34  |  35.50  |
+|LCS 1/2 Previous Notes      |     71.25      |  7.29  | 104.69  |
+|LCS 1/3 Previous Notes      |     71.33      |  3.06  |  26.77  |
+|LCS 1/4 Previous Notes + 5  |     71.05      |  2.82  |  26.14  |
+|Hybrid (FNC 16 and LCS 1/3) |      4.52      |  2.13  |  24.62  |
+
+---
+
+class: center, middle, inverse-blue
+
+# Highlighting Common Text
+
+&lt;img src="images/highlightr.png" width="25%" /&gt;
+
+&lt;img src="images/highlightr_qr.png" width="20%" /&gt;
+
+---
+
+class: primary-blue
+### How can we tell which portions of the testimony participants focus on?
+
+- Highlight testimony based on frequency of occurrence in participants' notes
+  - Collocations of length 5
+     - Willfully: average frequency of ~30
+  - Divide by number of occurrences in the testimony
+
+
+| Frequency|collocation                             |
+|---------:|:---------------------------------------|
+|        21|has been charged with willfully         |
+|        21|been charged with willfully discharging |
+|        26|charged with willfully discharging a    |
+|        26|with willfully discharging a firearm    |
+|        35|willfully discharging a firearm in      |
+
+
+&lt;img src="images/transcript_example2.jpg" width="70%"/&gt;
+
+---
+
+class: primary-blue
+### Weights
+
+- Fuzzy Matches:
+  - How many times the indirect match occurs
+  - How close the indirect match is to the transcript phrase
+  - Number of closest transcript matches to the indirect match
+    - For example, "Jur" has an edit distance of 2 from both "June" and "July"
+- All Matches:
+  - How many times the collocation occurs in the testimony
+    - ex. "the bullet matching algorithm is"
+  
+.pull-left[.img[![](images/transcript_example2.jpg)]]
+.pull-right[.img[![](images/highlight_example.PNG)]]
+
+---
+
+class: primary-blue
+
+Length 2
+
+&lt;img src="images/collocation_length2.jpg" width="60%"/&gt;
+
+Length 5
+
+&lt;img src="images/highlight_example.PNG" width="60%"/&gt;
+
+Length 8
+
+&lt;img src="images/collocation_length8.jpg" width="60%"/&gt;
+
+---
+
+class: primary-blue
+
+# Other Applications: Wikipedia Edits
+
+
+
+---
+
+class: primary-blue
+### Citations
+
+- Center for Statistics and Applications in Forensic Evidence, Rogers R, VanderPlas S (2024). highlightr: Highlight Conserved Edits Across Versions of a Document. R package version 1.0.0,
+https://doi.org/10.32614/CRAN.package.highlightr
+
+-   Bielow C, Mastrobuoni G, Kempa S (2016). “Proteomics Quality Control: Quality Control Software for MaxQuant Results.” _Journal of Proteome Research_, *15 (3)*, 77-787.
+  doi:10.1021/acs.jproteome.5b00780
+  
+- Garrett, B. L., Scurich, N., &amp; Crozier, W. E. "Mock jurors’ evaluation of firearm examiner testimony." (2020). Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
+
+This work was funded (or partially funded) by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreements 70NANB15H176 and 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
+
+---
+
+class: primary-blue
+### Weights
+
+- Fuzzy Matching
+  - `\(x_i\)` is the frequency for a fuzzy collocation `\(i\)`
+  - `\(d_i\)` is the fuzzy match distance
+  - `\(c_i\)` is the number of closest matches for the fuzzy collocation
+     - ex. "Jur"
+- Non-Fuzzy Matching ( `\(z\)` )
+- What if the testimony contains the same collocation multiple times? ( `\(k\)` )
+  - ex. "the bullet matching algorithm is"
+  
+$$
+(z+\sum_{i=1}^n\frac{x_i}{(d_i+0.25)c_i})\frac{1}{k}
+$$
+
+.pull-left[.img[![](images/transcript_example2.jpg)]]
+.pull-right[.img[![](images/highlight_example.PNG)]]
+
+---
+
+class: primary-blue
+### Longest Common Substring (LCS)
+
+- Search for the longest common substring between the current set of notes and the previous set of notes (PTXQC)
+   - If the string is long enough, remove from current page of notes
+   - Repeat
+
+<div id="htmlwidget-0c4c0dfa5025616db2d1" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0c4c0dfa5025616db2d1">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: primary-blue
+### Collocation Analysis
+
+&lt;img src="images/collocationlong.jpg" width="70%" /&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
