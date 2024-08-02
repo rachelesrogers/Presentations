@@ -226,7 +226,9 @@ Length 8
 
 class: primary-blue
 
-# Other Applications: Edit History
+### Other Applications: Wikipedia Edit History
+
+<img src="images/wikipedia.jpg" width="80%"/>
 
 
 
@@ -242,6 +244,8 @@ https://doi.org/10.32614/CRAN.package.highlightr
   doi:10.1021/acs.jproteome.5b00780
   
 - Garrett, B. L., Scurich, N., & Crozier, W. E. "Mock jurors’ evaluation of firearm examiner testimony." (2020). Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
+
+- “Highlighter.” Wikipedia, 14 Mar. 2024. Wikipedia, https://en.wikipedia.org/w/index.php?title=Highlighter&oldid=1213690238.
 
 This work was funded (or partially funded) by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreements 70NANB15H176 and 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
 
