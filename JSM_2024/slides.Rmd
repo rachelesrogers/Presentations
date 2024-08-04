@@ -38,7 +38,7 @@ class: primary-blue
 - Gathering Data
     - 569 participants from Prolific (using representative sample feature)
 
-- Participants were Presented with a Trial Transcript based on Court Cases
+- Participants were presented with a trial transcript based on court cases
 
 ---
 
