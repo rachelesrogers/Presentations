@@ -112,18 +112,6 @@ The cat ran up the tree | <mark>The cat ran up the tree</mark> The cat ran up th
 class: primary-blue
 ### Hybrid Method
 
-- LCS Drawbacks
-   - What if testimony itself is repeated?
-   - Time intensive
-- Use the first n character method for easy cases, then clean up difficult cases with LCS (Tested on subset of 35 participants' notes)
-
-<img src="images/cleaningerror.jpg" width="75%" />
-
----
-
-class: primary-blue
-### Hybrid Method
-
 - Difficult Cases
    - Edit distance larger than the initial cutoff value
    - Note length more than 4 standard deviations above the mean length for that page
@@ -161,7 +149,6 @@ class: primary-blue
 - Highlight testimony based on frequency of occurrence in participants' notes
   - Collocations of length 5
      - Willfully: average frequency of ~30
-  - Divide by number of occurrences in the testimony
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(highlightr)
@@ -221,6 +208,13 @@ Length 5
 Length 8
 
 <img src="images/collocation_length8.jpg" width="60%"/>
+
+---
+
+class: primary-blue
+### Collocation Analysis
+
+<img src="images/collocationlong.jpg" width="70%" />
 
 ---
 
@@ -301,7 +295,13 @@ grViz("digraph {
 ---
 
 class: primary-blue
-### Collocation Analysis
+### Hybrid Method
 
-<img src="images/collocationlong.jpg" width="70%" />
+- LCS Drawbacks
+   - What if testimony itself is repeated?
+   - Time intensive
+- Use the first n character method for easy cases, then clean up difficult cases with LCS (Tested on subset of 35 participants' notes)
+
+<img src="images/cleaningerror.jpg" width="75%" />
+
 

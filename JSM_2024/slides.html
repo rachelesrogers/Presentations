@@ -125,18 +125,6 @@ The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The c
 class: primary-blue
 ### Hybrid Method
 
-- LCS Drawbacks
-   - What if testimony itself is repeated?
-   - Time intensive
-- Use the first n character method for easy cases, then clean up difficult cases with LCS (Tested on subset of 35 participants' notes)
-
-&lt;img src="images/cleaningerror.jpg" width="75%" /&gt;
-
----
-
-class: primary-blue
-### Hybrid Method
-
 - Difficult Cases
    - Edit distance larger than the initial cutoff value
    - Note length more than 4 standard deviations above the mean length for that page
@@ -174,7 +162,6 @@ class: primary-blue
 - Highlight testimony based on frequency of occurrence in participants' notes
   - Collocations of length 5
      - Willfully: average frequency of ~30
-  - Divide by number of occurrences in the testimony
 
 
 | Frequency|collocation                             |
@@ -220,6 +207,13 @@ Length 5
 Length 8
 
 &lt;img src="images/collocation_length8.jpg" width="60%"/&gt;
+
+---
+
+class: primary-blue
+### Collocation Analysis
+
+&lt;img src="images/collocationlong.jpg" width="70%" /&gt;
 
 ---
 
@@ -278,15 +272,21 @@ class: primary-blue
    - If the string is long enough, remove from current page of notes
    - Repeat
 
-<div id="htmlwidget-567b743b05b57859baab" style="width:800px;height:500px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-567b743b05b57859baab">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fc42a58f154ea0007bc0" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fc42a58f154ea0007bc0">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
 class: primary-blue
-### Collocation Analysis
+### Hybrid Method
 
-&lt;img src="images/collocationlong.jpg" width="70%" /&gt;
+- LCS Drawbacks
+   - What if testimony itself is repeated?
+   - Time intensive
+- Use the first n character method for easy cases, then clean up difficult cases with LCS (Tested on subset of 35 participants' notes)
+
+&lt;img src="images/cleaningerror.jpg" width="75%" /&gt;
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
