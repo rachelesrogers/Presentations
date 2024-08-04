@@ -127,7 +127,7 @@ val_table$Error<- round(val_table$Error, 2)
 val_table$SD<- round(val_table$SD, 2)
 colnames(val_table) <- c("Method", "Time (Minutes)", "Error", "SD")
 
-kable(val_table, align=c('l','c','c','c'), caption="Note Cleaning Method Comparison")
+kable(val_table, align=c('l','c','c','c'))
 
 ```
 
