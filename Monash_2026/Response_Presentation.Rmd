@@ -1,0 +1,86 @@
+---
+title: "Measuring and Eliciting Participant Responses"
+subtitle: "Lessons Learned"
+author: "Rachel Rogers"
+institute: "University of Technology, Sydney"
+date: "1 May, 2026"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# Overview
+
+- Humans are finicky, and do not always respond how we expect or prefer
+- This presents a challenge and an opportunity when analyzing data
+
+--
+
+# Outline
+
+- Failed Likert Scales and Alternative Approaches  
+- Sequential Notepad Analysis  
+- Flowmaps in an Interactive Lineup Scenario  
+- Future Directions
+
+---
+# The Beginning
+
+How do potential jurors react to the use of a bullet matching algorithm alongside an examiner's testimony in a trial scenario?
+
+- 2 x 2 x 3 Factorial Design
+  - Presence/Absence of Images
+  - Presence/Absence of Algorithm
+  - Identification/Inconclusive/Elimination Conclusion 
+  
+<figure>
+<img src="images/study1_screenshot.png" width="100%" />
+</figure>
+
+---
+
+## The Structure
+
+- Based on Garrett et. al.'s "Mock jurors' evaluation of firearm examiner testimony" (2020)
+    - Richard Cole is on trial for attempted robbery of a convenience store
+    - Gun found in Cole's car is tested against bullet recovered from crime scene
+    - Partial Testimony
+
+- Gathering Data
+    - 569 participants from Prolific (using representative sample feature)
+    
+- Questions on the reliability/credibility of the evidence or the expert
+
+---
+
+## The Results
+
+
+<center>
+<!-- <img src="images/reliable.jpg" width="70%" /> -->
+<img src="images/credible.jpg" width="70%" /></center>
+
+---
+
+## Moving Forward
+
+- Scale analysis
+  - Ceiling effect: examiners are overall seen as reliable
+  - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
+  - Proposed Solution: Investigate other response methods
+  
+- Notepad analysis
+
+---
+
+## Scale Analysis
+
+- Follow-up study testing different scale types
+
+---
+
+## Notepad Analysis
