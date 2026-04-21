@@ -7,6 +7,10 @@
     <script src="libs/header-attrs-2.30/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.11/grViz.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -86,22 +90,211 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
 
 ## Moving Forward
 
+- Notepad analysis
+  - Participants had the option to use a digital notepad throughout the study
+  - Results were saved after each page
+
 - Scale analysis
   - Ceiling effect: examiners are overall seen as reliable
   - Individuals may already believe that firearms evidence is reliable (Garrett &amp; Mitchell, 2013)
   - Proposed Solution: Investigate other response methods
   
-- Notepad analysis
+
+---
+
+## Notepad Analysis
+
+
+- Participants are provided with a digital notepad, and input is saved for each page of testimony
+  - Data cleaning: removing the previous page's notes before analysis
+  - Visualization: map frequency of phrases onto original testimony to show which phrases were copied more frequently
+  
+  .img[![](images/pagecleaning.jpg)]
+
+---
+
+### First n Characters
+
+- Test edit distance on first n characters to previous notes
+   - Edit distance: Number of changes necessary to go from one string to the other string
+   - Hat -&gt; Hot requires 1 substitution (edit distance of 1)
+   - Over there -&gt; there requires 5 deletions (edit distance of 5)
+- Set a threshold for the maximum allowable difference between texts
+
+.img[![](images/pagecleaning.jpg)]
+
+- What if:
+   - Participants delete portions of their previous notes?
+   - Participants add new notes in the middle of/before their old notes?
+   - Participants duplicate their old notes?
+   
+---
+
+### Longest Common Substring (LCS)
+
+- Search for the longest common substring between the current set of notes and the previous set of notes
+   - If the string is "long enough", remove from current page of notes
+   - Repeat
+
+<div id="htmlwidget-e818946fdec60a52ad19" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e818946fdec60a52ad19">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### Longest Common Substring (LCS)
+
+What if...
+- Participants delete portions of their previous notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | The cat ran | The cat ran | 12
+
+- Participants add new notes in the middle of old notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11
+
+- Participants duplicate their old notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree | (The cat ran up the tree)(The cat ran up the tree) | 0
+
+---
+
+### Hybrid Note Cleaning
+
+- Easy Cases of Sequential Notes
+   - First N Character Method
+     - Compare the beginning of the current notes with the entirety of the previous notes
+
+.img[![](images/pagecleaning.jpg)]
+
+- Difficult Notes (deletion, insertion, and duplication)
+   - Longest Common Substring 
+
+---
+
+### Hybrid Method
+
+- Difficult Cases
+   - Edit distance larger than the initial cutoff value
+   - Note length more than 4 standard deviations above the mean length for that page
+- Based on validation from 35 participants' notes (cleaned by hand)
+   - 561 pages of notes
+
+.img[![](images/cleaningtable.jpg)]
+
+
+---
+
+### How can we tell which portions of the testimony participants focus on?
+
+- Highlight testimony based on frequency of occurrence in participants' notes
+  - Collocations of length 5
+     - Willfully: average frequency of 91.2
+  - Frequency of Individual words
+  - Divide by number of occurrences in the testimony
+
+  
+.pull-left[.img[![](images/collocationcount.jpg)]]
+.pull-right[.img[![](images/collocationanalysis.jpg)]
+            ![](images/wordanalysis.jpg)]
+
+---
+
+background-image: url("images/logo.png")
+background-size: 100px
+background-position: 90% 8%
+
+## Other Applications: highlightr package
+
+.pull-left[
+- Map collocation frequency in derivative documents to a source document
+
+- Weighted Fuzzy Matches
+  - Weight indirect matches by Jaccard distance to account for typos
+  - Future directions: Account for paraphrased material
+- Format output in .html
+  - Works for .Rmd documents
+  - Can save as separate file]
+  
+.pull-right[
+
+
+
+.img[![](images/wiki.png)]]
+
 
 ---
 
 ## Scale Analysis
 
-- Follow-up study testing different scale types
+- Follow-up study comparing response formats
+  - Strength of evidence (Likert - 9 point)
+  - Guilt (Yes/No)
+  - Convict (Yes/No)
+  - Probability of guilt (Numeric)
+  - What are the chances that defendant committed the crime? (Numeric or multiple choice)
+  - How much would you be willing to bet that the defendant committed the crime? (Numeric)
+  
+- Inclusion of jury instructions and more cross examination on subjectivity
+
+- Simplified to Identification and Elimination condition, without algorithm and images
 
 ---
 
-## Notepad Analysis
+# The End
+
+---
+
+
+<div id="htmlwidget-521bf92416322b72cc89" style="width:800px;height:600px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-521bf92416322b72cc89">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+
+&lt;img src="images/pagecleaning.jpg" width="60%" /&gt;
+
+<div id="htmlwidget-4f72f85525e5fa71634d" style="width:800px;height:450px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4f72f85525e5fa71634d">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+
+Page 1 | Page 2 | LCS | Edit Distance | Result 
+--------|---------|---------|---------
+The cat ran up the tree | The cat ran | The cat ran | 12 |  
+
+<div id="htmlwidget-14fb5ea5fe751fa0f008" style="width:800px;height:545px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-14fb5ea5fe751fa0f008">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+Page 1 | Page 2 | LCS | Edit Distance | Result
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11 | ,chased by a dog,
+
+<div id="htmlwidget-d9a154d88b64113315af" style="width:800px;height:545px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d9a154d88b64113315af">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
+--------|---------|---------|---------
+The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree chased by a dog | (The cat ran up the tree) | 0 | 10 | 5 | chased by a dog
+
+<div id="htmlwidget-441e2815a7eb6b371458" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-441e2815a7eb6b371458">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### Collocation Analysis
+
+&lt;img src="images/collocationlong.jpg" width="70%" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

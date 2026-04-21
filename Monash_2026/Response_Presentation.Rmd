@@ -68,19 +68,423 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
 
 ## Moving Forward
 
+- Notepad analysis
+  - Participants had the option to use a digital notepad throughout the study
+  - Results were saved after each page
+
 - Scale analysis
   - Ceiling effect: examiners are overall seen as reliable
   - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
   - Proposed Solution: Investigate other response methods
   
-- Notepad analysis
+
+---
+
+## Notepad Analysis
+
+
+- Participants are provided with a digital notepad, and input is saved for each page of testimony
+  - Data cleaning: removing the previous page's notes before analysis
+  - Visualization: map frequency of phrases onto original testimony to show which phrases were copied more frequently
+  
+  .img[![](images/pagecleaning.jpg)]
+
+---
+
+### First n Characters
+
+- Test edit distance on first n characters to previous notes
+   - Edit distance: Number of changes necessary to go from one string to the other string
+   - Hat -> Hot requires 1 substitution (edit distance of 1)
+   - Over there -> there requires 5 deletions (edit distance of 5)
+- Set a threshold for the maximum allowable difference between texts
+
+.img[![](images/pagecleaning.jpg)]
+
+- What if:
+   - Participants delete portions of their previous notes?
+   - Participants add new notes in the middle of/before their old notes?
+   - Participants duplicate their old notes?
+   
+---
+
+### Longest Common Substring (LCS)
+
+- Search for the longest common substring between the current set of notes and the previous set of notes
+   - If the string is "long enough", remove from current page of notes
+   - Repeat
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+
+library(DiagrammeR)
+
+grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  rec1 [label = 'Page 1\n the cat enjoys napping in the afternoon']
+  rec2 [label = 'Page 2\nWhen it is quiet, the cat enjoys napping']
+  rec3 [label =  'LCS\n the cat enjoys napping']
+  rec4 [label = 'Page 2 Clean\nWhen it is quiet']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec3
+  rec2 -> rec3
+  rec3 -> rec4
+  }",
+  height = 500, width=800)
+
+```
+
+---
+
+### Longest Common Substring (LCS)
+
+What if...
+- Participants delete portions of their previous notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | The cat ran | The cat ran | 12
+
+- Participants add new notes in the middle of old notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | <mark>The cat ran, chased by a</mark> dog, up the tree | (The cat ran)(up the tree) | 11
+
+- Participants duplicate their old notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | <mark>The cat ran up the tree</mark> The cat ran up the tree | (The cat ran up the tree)(The cat ran up the tree) | 0
+
+---
+
+### Hybrid Note Cleaning
+
+- Easy Cases of Sequential Notes
+   - First N Character Method
+     - Compare the beginning of the current notes with the entirety of the previous notes
+
+.img[![](images/pagecleaning.jpg)]
+
+- Difficult Notes (deletion, insertion, and duplication)
+   - Longest Common Substring 
+
+---
+
+### Hybrid Method
+
+- Difficult Cases
+   - Edit distance larger than the initial cutoff value
+   - Note length more than 4 standard deviations above the mean length for that page
+- Based on validation from 35 participants' notes (cleaned by hand)
+   - 561 pages of notes
+
+.img[![](images/cleaningtable.jpg)]
+
+
+---
+
+### How can we tell which portions of the testimony participants focus on?
+
+- Highlight testimony based on frequency of occurrence in participants' notes
+  - Collocations of length 5
+     - Willfully: average frequency of 91.2
+  - Frequency of Individual words
+  - Divide by number of occurrences in the testimony
+
+  
+.pull-left[.img[![](images/collocationcount.jpg)]]
+.pull-right[.img[![](images/collocationanalysis.jpg)]
+            ![](images/wordanalysis.jpg)]
+
+---
+
+background-image: url("images/logo.png")
+background-size: 100px
+background-position: 90% 8%
+
+## Other Applications: highlightr package
+
+.pull-left[
+- Map collocation frequency in derivative documents to a source document
+
+- Weighted Fuzzy Matches
+  - Weight indirect matches by Jaccard distance to account for typos
+  - Future directions: Account for paraphrased material
+- Format output in .html
+  - Works for .Rmd documents
+  - Can save as separate file]
+  
+.pull-right[
+
+
+
+.img[![](images/wiki.png)]]
+
 
 ---
 
 ## Scale Analysis
 
-- Follow-up study testing different scale types
+- Follow-up study comparing response formats
+  - Strength of evidence (Likert - 9 point)
+  - Guilt (Yes/No)
+  - Convict (Yes/No)
+  - Probability of guilt (Numeric)
+  - What are the chances that defendant committed the crime? (Numeric or multiple choice)
+  - How much would you be willing to bet that the defendant committed the crime? (Numeric)
+  
+- Inclusion of jury instructions and more cross examination on subjectivity
+
+- Simplified to Identification and Elimination condition, without algorithm and images
 
 ---
 
-## Notepad Analysis
+# The End
+
+---
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+#attr(adist("The cat ran up the tree.", "After the dog barked, Th", counts=TRUE,),"trafos")
+grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  rec1 [label = 'Calculate edit distance between first n characters in current notes and previous notes']
+  rec2 [label = 'Edit Distance < 16']
+  rec3 [label =  'Edit Distance > 15']
+  rec4 [label = 'Remove first n characters']
+  rec5 [label = 'Compute Longest Common Substring']
+  rec6 [label = 'LCS > 1/3 Previous Note Length']
+  rec7 [label = 'LCS <= 1/3 Previous Note Length']
+  rec8 [label = 'Remove LCS']
+  rec9 [label = 'End']
+  rec10 [label = 'Calculate clean note length']
+  rec11 [label = 'Clean note length > Mean(clean note length) + 4*SD(clean note length)']
+  rec12 [label = 'Clean note length <= Mean(clean note length) + 4*SD(clean note length)']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 
+  rec1 -> rec3
+  rec2 -> rec4
+  rec3 -> rec5
+  rec5 -> rec6
+  rec5 -> rec7
+  rec6 -> rec8
+  rec8 -> rec5
+  rec4 -> rec10
+  rec10 -> rec11
+  rec10 -> rec12
+  rec11 -> rec5
+  rec12 -> rec9
+  rec7 -> rec9
+  }",
+  height = 600, width=800)
+
+```
+
+
+---
+
+<img src="images/pagecleaning.jpg" width="60%" />
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+#attr(adist("The cat ran up the tree.", "After the dog barked, Th", counts=TRUE,),"trafos")
+grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle, style = filled]    
+  
+  node [ fillcolor= white]
+  rec3 [label =  'Edit Distance > 15']
+  rec5 [label = 'Compute Longest Common Substring']
+  rec6 [label = 'LCS > 1/3 Previous Note Length']
+  rec7 [label = 'LCS <= 1/3 Previous Note Length']
+  rec8 [label = 'Remove LCS']
+  rec11 [label = 'Clean note length > Mean(clean note length) + 4*SD(clean note length)']
+  
+  node [fillcolor = pink]
+  rec1 [label = 'Calculate edit distance between first n characters in current notes and previous notes\n 0']
+  rec2 [label = 'Edit Distance < 16']
+  rec4 [label = 'Remove first n characters']
+  rec10 [label = 'Calculate clean note length']
+  rec12 [label = 'Clean note length <= Mean(clean note length) + 4*SD(clean note length)']
+  rec9 [label = 'End']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 
+  rec1 -> rec3
+  rec2 -> rec4
+  rec3 -> rec5
+  rec5 -> rec6
+  rec5 -> rec7
+  rec6 -> rec8
+  rec8 -> rec5
+  rec4 -> rec10
+  rec10 -> rec11
+  rec10 -> rec12
+  rec11 -> rec5
+  rec12 -> rec9
+  rec7 -> rec9
+  }",
+  height = 450, width=800)
+
+```
+
+
+---
+
+Page 1 | Page 2 | LCS | Edit Distance | Result 
+--------|---------|---------|---------
+The cat ran up the tree | The cat ran | The cat ran | 12 |  
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+#attr(adist("The cat ran up the tree.", "After the dog barked, Th", counts=TRUE,),"trafos")
+grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle, style = filled]    
+  
+  node [ fillcolor= white]        
+  rec2 [label = 'Edit Distance < 6']
+  rec4 [label = 'Remove first n characters']
+  rec10 [label = 'Calculate clean note length']
+  rec11 [label = 'Clean note length > Mean(clean note length) + 4*SD(clean note length)']
+  rec12 [label = 'Clean note length <= Mean(clean note length) + 4*SD(clean note length)']
+  
+  node [ fillcolor= pink]
+  rec1 [label = 'Calculate edit distance between first n characters in current notes and previous notes\n 12']
+  rec3 [label =  'Edit Distance > 5']
+  rec5 [label = 'Compute Longest Common Substring\nThe cat ran']
+  rec6 [label = 'LCS > 1/3 Previous Note Length\n11 > 8']
+  rec8 [label = 'Remove LCS\n']
+  rec7 [label = 'LCS <= 1/3 Previous Note Length\n 0 < 8']
+  rec9 [label = 'End']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 
+  rec1 -> rec3
+  rec2 -> rec4
+  rec3 -> rec5
+  rec5 -> rec6
+  rec5 -> rec7
+  rec6 -> rec8
+  rec8 -> rec5
+  rec4 -> rec10
+  rec10 -> rec11
+  rec10 -> rec12
+  rec11 -> rec5
+  rec12 -> rec9
+  rec7 -> rec9
+  }",
+  height = 545, width=800)
+
+```
+
+---
+
+Page 1 | Page 2 | LCS | Edit Distance | Result
+--------|---------|---------|---------
+The cat ran up the tree | <mark>The cat ran, chased by a</mark> dog, up the tree | (The cat ran)(up the tree) | 11 | ,chased by a dog,
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+#attr(adist("The cat ran up the tree.", "After the dog barked, Th", counts=TRUE,),"trafos")
+grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle, style = filled]    
+  
+  node [ fillcolor= white]        
+  rec2 [label = 'Edit Distance < 6']
+  rec4 [label = 'Remove first n characters']
+  rec10 [label = 'Calculate clean note length']
+  rec11 [label = 'Clean note length > Mean(clean note length) + 4*SD(clean note length)']
+  rec12 [label = 'Clean note length <= Mean(clean note length) + 4*SD(clean note length)']
+  
+  node [ fillcolor= pink]
+  rec1 [label = 'Calculate edit distance between first n characters in current notes and previous notes\n11']
+  rec3 [label =  'Edit Distance > 5']
+  rec5 [label = 'Compute Longest Common Substring\nThe cat ran\nUp the tree\nc']
+  rec6 [label = 'LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8']
+  rec8 [label = 'Remove LCS\nchased by a dog, up the tree\nchased by a dog']
+  rec7 [label = 'LCS <= 1/3 Previous Note Length\n1<8']
+  rec9 [label = 'End\nchased by a dog']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 
+  rec1 -> rec3
+  rec2 -> rec4
+  rec3 -> rec5
+  rec5 -> rec6
+  rec5 -> rec7
+  rec6 -> rec8
+  rec8 -> rec5
+  rec4 -> rec10
+  rec10 -> rec11
+  rec10 -> rec12
+  rec11 -> rec5
+  rec12 -> rec9
+  rec7 -> rec9
+  }",
+  height = 545, width=800)
+
+```
+
+---
+
+Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
+--------|---------|---------|---------
+The cat ran up the tree | <mark>The cat ran up the tree</mark> The cat ran up the tree chased by a dog | (The cat ran up the tree) | 0 | 10 | 5 | chased by a dog
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+#attr(adist("The cat ran up the tree.", "After the dog barked, Th", counts=TRUE,),"trafos")
+grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle, style = filled]    
+  
+  node [ fillcolor= white]    
+  rec3 [label =  'Edit Distance > 5']
+  rec12 [label = 'Clean note length <= Mean(clean note length) + 4*SD(clean note length)']
+  
+  node [ fillcolor= pink]
+  rec1 [label = 'Calculate edit distance between first n characters in current notes and previous notes\n 0']
+  rec2 [label = 'Edit Distance < 6\n 0 < 6']
+  rec4 [label = 'Remove first n characters\n The cat ran up the tree chased by a dog']
+  rec10 [label = 'Calculate clean note length\n39']
+  rec11 [label = 'Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30']
+  rec5 [label = 'Compute Longest Common Substring\nThe cat ran up the tree\nc']
+  rec6 [label = 'LCS > 1/3 Previous Note Length\n 23 > 8']
+  rec8 [label = 'Remove LCS\nchased by a dog']
+  rec7 [label = 'LCS <= 1/3 Previous Note Length\n1 < 8']
+  rec9 [label = 'End\nchased by a dog']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 
+  rec1 -> rec3
+  rec2 -> rec4
+  rec3 -> rec5
+  rec5 -> rec6
+  rec5 -> rec7
+  rec6 -> rec8
+  rec8 -> rec5
+  rec4 -> rec10
+  rec10 -> rec11
+  rec10 -> rec12
+  rec11 -> rec5
+  rec12 -> rec9
+  rec7 -> rec9
+  }",
+  height = 500, width=800)
+
+```
+
+---
+
+### Collocation Analysis
+
+<img src="images/collocationlong.jpg" width="70%" />
