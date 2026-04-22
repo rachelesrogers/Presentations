@@ -1,6 +1,6 @@
 ---
-title: "Measuring and Eliciting Participant Responses"
-subtitle: "Lessons Learned"
+title: "Tools for Testing Transcript Scenarios"
+subtitle: "Text Analysis, Response Calibration, and Study Interface"
 author: "Rachel Rogers"
 institute: "University of Technology, Sydney"
 date: "1 May, 2026"
@@ -24,7 +24,7 @@ output:
 
 - Failed Likert Scales and Alternative Approaches  
 - Sequential Notepad Analysis  
-- Flowmaps in an Interactive Lineup Scenario  
+- Transcript Toolkit  
 - Future Directions
 
 ---
@@ -471,7 +471,7 @@ corrplot(cor_matrix, type="lower", method="color", tl.col = "black", tl.srt = 45
 
 ---
 
-## Consistency
+### Consistency
 
 ```{r}
 #| opinioncomp,
@@ -1142,9 +1142,25 @@ complete_consistency %>% select("Response Type", "Opinion of Guilt", "Categorica
 
 ```
 
+- Letters indicate pairwise non-significance at the Bonferroni-adjusted p-value of 0.002
+- Values modeled using binomial glmm with participant as random effect, question as the predictor, and consistency (yes/no) as a response
+
 ---
 
-# The End
+## Scale Summary
+
+- Scale Compression: Likert and Betting Responses
+- Categorical Chance: Less Compression
+- More Conservative Values Selected on Probability Scale than Categorical Scale
+- Numeric Chance Confusion
+- Differing Interpretation of Partial Testimony
+- Choices not Necessarily Consistent
+
+---
+
+# Acknowledgements
+
+- highlightr and Courtroom Studies Completed with Susan VanderPlas
 
 ---
 
