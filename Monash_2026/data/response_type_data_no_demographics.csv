@@ -1,0 +1,307 @@
+randomnumber,conclusion,convict,guilt_opinion,betting,hidden_probability,chances_fixed,evidence_strength,numeric_chance,check,visible_probability
+67.60170881,NoMatch,No,No,50,0,Impossible that he is guilty,2,"guilty,1,1000000",9mm,5
+43.90928887,NoMatch,No,No,40,2,About 1 chance in 100,1 Not at all strong,"innocent,97,100",9mm,3
+65.73627051,NoMatch,No,No,25,2,About 1 chance in 100,1 Not at all strong,"innocent,97,100",9mm,1
+30.11069472,Match,Yes,Yes,5,93,About 99 chances in 100,8,"guilty,95,100",9mm,95
+77.76769747,Match,No,Yes,30,96,About 99 chances in 100,6,"guilty,95,100",9mm,95
+5.7308733,NoMatch,No,No,25,8,About 1 chance in 10,9 Extremely strong,"innocent,7,10",9mm,23
+26.66409826,Match,Yes,Yes,50,99,About 99 chances in 100,9 Extremely strong,"innocent,1,100",9mm,99
+92.9504419,NoMatch,No,No,50,1,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,10000",9mm,1
+65.6585522,NoMatch,No,No,50,50,About 1 chance in 100,1 Not at all strong,"innocent,9,10",9mm,20
+74.18467344,Match,No,No,25,50,1 chance in 2 (fifty-fifty chance),2,"innocent,2,2",9mm,50
+88.59419227,Match,Yes,Yes,50,94,"About 999 chances in 1,000",9 Extremely strong,"innocent,1,1000",9mm,98
+67.39160176,Match,Yes,Yes,50,98,Certain to be guilty,8,"innocent,1,1000",9mm,98
+76.46556401,NoMatch,No,No,50,37,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,20
+4.811487882,NoMatch,No,No,50,1,"About 1 chance in 10,000",1 Not at all strong,"innocent,9,10",9mm,3
+81.959974,NoMatch,No,No,50,2,Impossible that he is guilty,1 Not at all strong,"innocent,97,100",9mm,3
+17.50278049,Match,Yes,Yes,40,86,About 9 chances in 10,7,"innocent,2,100",9mm,98
+41.18908844,NoMatch,No,No,50,13,About 1 chance in 10,4,"innocent,90,100",9mm,11
+5.123202782,Match,No,No,25,49,1 chance in 2 (fifty-fifty chance),3,"innocent,1,2",9mm,50
+77.39736298,NoMatch,No,No,50,6,About 1 chance in 100,2,"innocent,4,5",9mm,5
+55.35547119,Match,No,No,50,77,1 chance in 2 (fifty-fifty chance),1 Not at all strong,"innocent,1,5",9mm,80
+94.44866532,Match,Yes,Yes,NA,95,NA,7,"guilty,1,1",NA,94
+93.74839561,NoMatch,No,No,25,28,About 1 chance in 10,3,"innocent,20,100",9mm,25
+6.650633272,Match,Yes,Yes,45,99,"About 9,999 chances in 10,000",8,"guilty,9.9,10",9mm,99
+83.39243382,NoMatch,No,No,20,17,About 1 chance in 10,2,"innocent,75,100",9mm,14
+34.62683922,Match,Yes,Yes,48,90,"About 999 chances in 1,000",9 Extremely strong,"guilty,8,10",9mm,87
+72.84010055,Match,No,No,25,50,1 chance in 2 (fifty-fifty chance),2,"innocent,1,2",9mm,50
+15.55971391,Match,Yes,Yes,50,85,"About 9,999 chances in 10,000",8,"guilty,100,100",9mm,80
+43.96503784,NoMatch,No,No,50,2,About 1 chance in 100,1 Not at all strong,"innocent,99,100",9mm,1
+60.64953599,NoMatch,Yes,Yes,10,50,1 chance in 2 (fifty-fifty chance),3,"innocent,9,10",Rifle slug,65
+31.91188436,Match,Yes,Yes,50,100,Certain to be guilty,9 Extremely strong,"guilty,1,1",9mm,100
+66.97861669,NoMatch,No,No,38,7,About 1 chance in 10,3,"guilty,1,10",22mm,10
+81.45814457,NoMatch,No,No,50,2,About 1 chance in 100,1 Not at all strong,"guilty,2.5,100",9mm,2
+10.65934757,NoMatch,No,No,50,11,"About 1 chance in 1,000",2,"innocent,1,1",9mm,3
+15.22672798,NoMatch,No,No,25,50,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,25,50",9mm,50
+60.85193746,Match,No,Yes,25,52,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,50,1000",9mm,50
+18.57321071,NoMatch,No,No,50,6,About 1 chance in 100,1 Not at all strong,"innocent,98,100",9mm,3
+2.529209084,Match,No,Yes,50,80,About 99 chances in 100,4,"guilty,98,100",9mm,93
+92.79556274,Match,No,No,20,50,1 chance in 2 (fifty-fifty chance),3,"guilty,1,2",9mm,50
+4.134157789,Match,Yes,Yes,45,99,"About 9,999 chances in 10,000",9 Extremely strong,"innocent,1,100",9mm,99
+16.37662377,NoMatch,No,No,25,24,About 1 chance in 10,3,"innocent,7,10",9mm,20
+54.72138983,NoMatch,No,No,10,11,About 1 chance in 10,2,"innocent,9,10",9mm,10
+3.107931954,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,100,100",9mm,0
+49.35177821,NoMatch,No,No,50,3,Impossible that he is guilty,1 Not at all strong,"innocent,100,100",9mm,3
+79.8437072,NoMatch,No,No,50,2,About 1 chance in 100,1 Not at all strong,"innocent,97,100",9mm,2
+12.00439574,Match,Yes,Yes,30,47,1 chance in 2 (fifty-fifty chance),4,"guilty,80,100",9mm,50
+20.540013,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,100,100",9mm,0
+64.91859271,Match,Yes,Yes,40,100,About 9 chances in 10,9 Extremely strong,"guilty,950,1000",9mm,95
+30.41616951,NoMatch,No,No,49,3,About 1 chance in 100,1 Not at all strong,"guilty,2,100",9mm,2
+35.55727853,Match,No,No,40,45,About 1 chance in 100,3,"innocent,1,3",9mm,41
+25.80883626,NoMatch,No,No,50,4,About 1 chance in 100,1 Not at all strong,"guilty,2,10",9mm,16
+90.56462811,Match,Yes,Yes,50,99,About 99 chances in 100,9 Extremely strong,"innocent,1,100",9mm,99
+36.2649532,Match,Yes,Yes,50,79,"About 9,999 chances in 10,000",9 Extremely strong,"guilty,90,90",9mm,80
+66.00348987,NoMatch,No,No,50,2,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,100000",9mm,1
+33.65354342,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"guilty,1,100",9mm,20
+39.8814989,Match,No,Yes,30,74,About 9 chances in 10,5 Moderately strong,"innocent,25,100",9mm,75
+16.61373361,Match,Yes,No,15,57,About 1 chance in 10,6,"guilty,1,5",9mm,56
+59.72701842,Match,Yes,Yes,50,100,"About 9,999 chances in 10,000",9 Extremely strong,"innocent,1,10000",9mm,100
+51.60700821,Match,Yes,Yes,35,76,About 99 chances in 100,7,"guilty,7,10",9mm,75
+19.21315179,NoMatch,No,No,45,4,"About 1 chance in 1,000",3,"innocent,1,1000",9mm,4
+20.75374844,Match,No,No,20,23,About 1 chance in 10,3,"innocent,40,100",9mm,30
+58.1878308,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,1,1",9mm,0
+20.55262679,Match,No,No,25,50,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,5,10",9mm,50
+77.02289782,Match,Yes,Yes,25,50,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,50,500",9mm,50
+33.38484736,NoMatch,No,No,50,2,"About 999 chances in 1,000",1 Not at all strong,"innocent,999,1000",9mm,0
+3.021240933,NoMatch,No,No,10,5,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,30",9mm,6
+5.950562446,NoMatch,No,No,50,0,"About 1 chance in 10,000",1 Not at all strong,"innocent,100,100",9mm,1
+61.1895357,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,1,1",9mm,0
+60.03909435,NoMatch,No,No,25,3,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,10000",9mm,5
+69.50627365,NoMatch,No,No,20,19,About 99 chances in 100,6,"innocent,85,100",9mm,36
+14.36938872,NoMatch,No,No,50,3,About 1 chance in 100,1 Not at all strong,"innocent,1,100",9mm,1
+73.05641233,NoMatch,No,No,40,1,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,1
+77.03166141,NoMatch,No,No,50,30,About 1 chance in 100,4,"innocent,1,5",9mm,43
+65.70849468,Match,No,No,15,64,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"guilty,7,10",9mm,65
+36.61495803,Match,Yes,Yes,25,80,About 9 chances in 10,8,"innocent,1,5",9mm,75
+13.79069472,NoMatch,No,NA,NA,NA,NA,NA,NA,NA,NA
+27.04359156,NoMatch,No,No,50,6,About 1 chance in 10,1 Not at all strong,"innocent,9,10",9mm,10
+48.1847442,NoMatch,No,Yes,40,89,Impossible that he is guilty,1 Not at all strong,"innocent,1,10",9mm,91
+61.90950451,NoMatch,No,No,50,0,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,10000",9mm,0
+25.55595911,Match,Yes,Yes,40,86,Certain to be guilty,8,"guilty,1.5,1.7",9mm,91
+68.3033159,NoMatch,No,No,50,1,"About 1 chance in 10,000",1 Not at all strong,"innocent,99.99,100",9mm,1
+87.1830252,NoMatch,No,No,25,20,About 1 chance in 100,1 Not at all strong,"guilty,5,10000",9mm,20
+31.18639302,NoMatch,Yes,Yes,20,57,About 1 chance in 10,5 Moderately strong,"guilty,1,10",9mm,61
+33.71029717,NoMatch,No,No,45,2,About 1 chance in 10,1 Not at all strong,"innocent,8.5,10",9mm,11
+42.79044853,NoMatch,No,No,20,36,1 chance in 2 (fifty-fifty chance),3,"innocent,1,5",9mm,50
+86.30939634,Match,No,No,30,6,About 1 chance in 10,1 Not at all strong,"guilty,1,50",9mm,5
+70.89319476,Match,Yes,Yes,50,82,"About 999 chances in 1,000",8,"guilty,999,1000",9mm,90
+96.69960353,Match,No,Yes,45,87,About 1 chance in 10,5 Moderately strong,"innocent,20,100",9mm,80
+37.50829108,NoMatch,No,No,50,4,About 1 chance in 100,1 Not at all strong,"innocent,100,100",9mm,3
+82.11637426,Match,No,No,50,44,1 chance in 2 (fifty-fifty chance),7,"innocent,1,100",9mm,46
+88.21983915,Match,No,Yes,0,50,1 chance in 2 (fifty-fifty chance),3,"innocent,1,2",9mm,50
+73.3853075,Match,Yes,Yes,30,95,About 9 chances in 10,7,"innocent,9.5,10",9mm,95
+51.53881947,Match,Yes,Yes,50,96,About 99 chances in 100,8,"innocent,2,100",9mm,95
+50.30637681,Match,No,Yes,27,62,"About 1 chance in 1,000",5 Moderately strong,"innocent,27,500",9mm,59
+72.33192315,Match,Yes,Yes,50,98,About 99 chances in 100,9 Extremely strong,"innocent,1,100",9mm,99
+61.33316194,NoMatch,No,No,50,1,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,1000000",9mm,1
+76.66168367,Match,Yes,Yes,30,73,"About 9,999 chances in 10,000",5 Moderately strong,"innocent,1,1000",9mm,71
+21.55314276,Match,No,Yes,25,74,About 99 chances in 100,7,"guilty,99,100",9mm,70
+25.71714858,Match,Yes,Yes,35,86,About 9 chances in 10,5 Moderately strong,"guilty,9,10",9mm,80
+61.42774327,NoMatch,No,No,45,8,"About 1 chance in 10,000",1 Not at all strong,"innocent,85,100",9mm,7
+42.06394465,NoMatch,No,No,50,4,About 1 chance in 100,1 Not at all strong,"guilty,2.5,2.9",9mm,3
+85.77657649,Match,No,Yes,40,90,About 99 chances in 100,3,"innocent,10,100",9mm,91
+19.81836902,Match,No,No,50,19,About 1 chance in 10,3,"guilty,1,5",9mm,20
+1.144868112,NoMatch,No,No,50,8,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,10000",9mm,1
+46.65363319,NoMatch,No,No,50,0,"About 1 chance in 10,000",1 Not at all strong,"guilty,3,100",9mm,0
+43.18892551,NoMatch,No,No,45,11,About 1 chance in 100,1 Not at all strong,"guilty,1,30",9mm,5
+16.78442378,Match,Yes,Yes,25,50,"About 999 chances in 1,000",7,"guilty,5,10",9mm,50
+12.33960777,Match,Yes,Yes,25,91,"About 999 chances in 1,000",7,"guilty,999,1000",9mm,90
+30.95528914,Match,Yes,Yes,50,94,"About 999 chances in 1,000",7,"guilty,100,100",9mm,95
+13.40945398,NoMatch,No,No,40,30,"About 1 chance in 1,000",3,"innocent,82,100",9mm,18
+8.724907017,NoMatch,No,No,40,7,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,10000",9mm,5
+98.70972545,Match,No,No,50,50,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,1,2",9mm,50
+30.66889336,NoMatch,No,No,50,0,1 chance in 2 (fifty-fifty chance),1 Not at all strong,"innocent,99,100",9mm,1
+17.44254935,Match,No,Yes,50,93,Certain to be guilty,7,"innocent,1,100",9mm,90
+26.0776154,Match,Yes,Yes,40,92,About 99 chances in 100,7,"guilty,9,10",9mm,95
+97.35914611,Match,Yes,No,25,79,About 9 chances in 10,5 Moderately strong,"innocent,20,100",9mm,80
+27.14545759,NoMatch,No,No,10,52,1 chance in 2 (fifty-fifty chance),4,"innocent,50,100",9mm,50
+24.4440797,Match,Yes,Yes,25,86,1 chance in 2 (fifty-fifty chance),7,"guilty,1,2",9mm,90
+0.708099455,Match,No,No,50,28,About 1 chance in 10,5 Moderately strong,"innocent,75,100",9mm,25
+26.10987255,Match,No,Yes,25,50,1 chance in 2 (fifty-fifty chance),3,"guilty,1,2",9mm,70
+69.30720229,NoMatch,No,No,50,3,"About 1 chance in 1,000",1 Not at all strong,"innocent,99,100",9mm,1
+2.94059976,Match,No,Yes,50,80,About 9 chances in 10,3,"guilty,85,100",9mm,85
+51.20247193,Match,Yes,Yes,50,99,"About 9,999 chances in 10,000",9 Extremely strong,"guilty,9999,10000",9mm,99
+76.74056764,NoMatch,No,No,50,2,About 1 chance in 10,1 Not at all strong,"innocent,9,10",9mm,4
+2.617249731,Match,Yes,Yes,50,100,"About 999 chances in 1,000",8,"innocent,5,1000",9mm,100
+67.66581726,Match,No,No,50,50,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,50,100",9mm,50
+59.84279965,Match,No,No,50,50,1 chance in 2 (fifty-fifty chance),3,"innocent,1,2",9mm,50
+24.7597622,NoMatch,No,No,25,16,"About 1 chance in 1,000",2,"innocent,5,5",9mm,40
+65.84841039,Match,Yes,Yes,25,75,About 9 chances in 10,8,"innocent,2,100",9mm,85
+42.39984741,NoMatch,No,No,50,2,About 1 chance in 100,1 Not at all strong,"guilty,1,100",9mm,1
+13.16480683,Match,Yes,Yes,40,97,About 99 chances in 100,9 Extremely strong,"guilty,94,100",9mm,94
+68.43886639,Match,Yes,Yes,45,97,About 9 chances in 10,8,"guilty,9,10",9mm,96
+24.00243429,NoMatch,No,No,10,50,About 9 chances in 10,9 Extremely strong,"guilty,90,100",9mm,90
+32.1683245,NoMatch,No,No,25,48,1 chance in 2 (fifty-fifty chance),2,"innocent,4,10",9mm,50
+84.12490436,NoMatch,No,No,40,2,About 1 chance in 100,8,"guilty,1,40",9mm,2
+24.27975559,NoMatch,No,No,45,2,About 1 chance in 100,1 Not at all strong,"innocent,97,100",9mm,3
+99.12854114,NoMatch,No,No,NA,NA,NA,NA,NA,NA,NA
+62.18326481,Match,Yes,Yes,45,50,"About 9,999 chances in 10,000",9 Extremely strong,"innocent,1.5,9.73e+11",9mm,93
+98.75505015,Match,No,No,50,3,"About 1 chance in 1,000",1 Not at all strong,"innocent,90,100",9mm,4
+54.67977098,NoMatch,No,No,50,2,"About 1 chance in 10,000",1 Not at all strong,"innocent,9999,10000",9mm,1
+76.42682896,NoMatch,No,No,40,6,About 1 chance in 100,2,"guilty,3,100",9mm,4
+78.79622658,NoMatch,No,No,50,23,"About 1 chance in 10,000",2,"guilty,1,10000",9mm,10
+85.90300253,Match,Yes,Yes,45,89,About 9 chances in 10,7,"guilty,19,20",9mm,88
+45.03171807,Match,No,Yes,25,84,About 9 chances in 10,6,"guilty,9,10",9mm,76
+9.445977281,Match,No,No,25,50,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,5,10",9mm,50
+76.07745626,NoMatch,No,No,45,19,"About 1 chance in 1,000",1 Not at all strong,"innocent,5,6",9mm,15
+4.084635805,NoMatch,No,No,45,4,"About 1 chance in 10,000",1 Not at all strong,"guilty,5,100",9mm,4
+69.93502267,NoMatch,No,No,50,3,About 1 chance in 100,1 Not at all strong,"guilty,1,100",9mm,2
+7.87775456,NoMatch,No,Yes,45,94,"About 9,999 chances in 10,000",7,"guilty,1,1",9mm,86
+83.41736561,NoMatch,No,No,50,2,"About 1 chance in 10,000",2,"guilty,1,10000",9mm,3
+1.09144568,Match,No,Yes,25,59,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"guilty,60,100",9mm,60
+22.96224025,NoMatch,No,No,30,12,"About 1 chance in 1,000",1 Not at all strong,"innocent,1.8,2",9mm,6
+50.08240989,NoMatch,No,No,50,1,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,1
+19.75916198,NoMatch,No,No,45,25,"About 1 chance in 10,000",2,"guilty,1,1000",9mm,19
+94.62501293,NoMatch,No,No,40,12,About 1 chance in 100,3,"guilty,2,100",9mm,3
+50.61782738,Match,Yes,Yes,50,78,About 9 chances in 10,6,"innocent,1,10",9mm,70
+7.500295155,Match,No,No,25,44,1 chance in 2 (fifty-fifty chance),4,"guilty,4,10",9mm,50
+64.04075401,NoMatch,No,No,15,14,About 1 chance in 10,2,"guilty,1,5",9mm,23
+69.1226844,NoMatch,No,No,40,24,1 chance in 2 (fifty-fifty chance),3,"innocent,60,100",9mm,30
+22.22479326,NoMatch,No,No,40,14,About 1 chance in 100,2,"innocent,4,5",9mm,4
+31.99664475,NoMatch,No,No,50,1,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,1
+2.841122192,Match,Yes,Yes,50,100,Certain to be guilty,9 Extremely strong,"guilty,100,100",9mm,100
+46.38972958,Match,No,Yes,40,81,About 9 chances in 10,2,"innocent,2,10",9mm,80
+82.25527084,Match,Yes,Yes,50,92,"About 9,999 chances in 10,000",8,"innocent,1,100",9mm,96
+9.742475161,Match,No,No,5,91,About 9 chances in 10,5 Moderately strong,"innocent,1,10",9mm,90
+12.59938241,NoMatch,Yes,Yes,45,99,"About 999 chances in 1,000",9 Extremely strong,"guilty,99,100",9mm,99
+23.03429437,NoMatch,No,No,25,50,1 chance in 2 (fifty-fifty chance),1 Not at all strong,"guilty,5,10",9mm,50
+78.42146438,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"guilty,0,100",9mm,0
+66.48134368,NoMatch,No,No,50,3,"About 1 chance in 10,000",1 Not at all strong,"innocent,85,100",9mm,4
+95.09994942,Match,No,Yes,50,78,About 9 chances in 10,4,"innocent,25,100",9mm,79
+93.14557316,NoMatch,No,No,50,17,"About 1 chance in 1,000",2,"guilty,1,1000",9mm,4
+29.68536448,NoMatch,No,No,50,6,About 1 chance in 100,2,"innocent,5,100",9mm,5
+29.57027433,Match,Yes,Yes,50,99,About 99 chances in 100,9 Extremely strong,"innocent,1,100",9mm,99
+13.86445912,NoMatch,No,No,20,76,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,20,60",9mm,80
+64.74505377,NoMatch,No,No,50,2,About 1 chance in 100,1 Not at all strong,"guilty,1,100",9mm,1
+65.45860739,NoMatch,No,No,20,25,About 1 chance in 10,1 Not at all strong,"innocent,1,10",9mm,10
+60.671696,NoMatch,No,No,50,7,"About 1 chance in 10,000",3,"innocent,95,100",9mm,10
+99.19693344,Match,Yes,Yes,45,86,About 9 chances in 10,8,"guilty,90,100",9mm,90
+62.88725152,NoMatch,No,No,50,2,"About 1 chance in 1,000",4,"innocent,98,100",9mm,1
+84.33446763,Match,Yes,Yes,50,89,"About 9,999 chances in 10,000",8,"guilty,99,100",9mm,90
+45.35468444,NoMatch,No,No,40,7,About 1 chance in 100,2,"guilty,5,100",9mm,5
+17.41106436,Match,Yes,Yes,50,100,Certain to be guilty,9 Extremely strong,"guilty,100,100",9mm,100
+33.28316009,NoMatch,No,No,15,41,About 1 chance in 10,5 Moderately strong,"guilty,1,20",9mm,20
+25.46608972,NoMatch,No,No,50,0,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,0
+92.35290901,Match,No,No,30,59,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"guilty,6,10",9mm,55
+5.686420412,NoMatch,No,No,50,36,About 1 chance in 100,1 Not at all strong,"guilty,2,100",9mm,21
+57.48450868,NoMatch,No,No,50,7,"About 1 chance in 10,000",2,"innocent,99,100",9mm,3
+92.8323613,Match,Yes,Yes,50,99,About 99 chances in 100,9 Extremely strong,"guilty,98,100",9mm,98
+43.64859611,Match,No,No,24,60,About 9 chances in 10,7,"innocent,40,100",9mm,60
+70.6540965,NoMatch,No,No,30,41,1 chance in 2 (fifty-fifty chance),1 Not at all strong,"innocent,40,100",9mm,40
+19.21443017,Match,No,Yes,0,80,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,3,10",9mm,70
+26.00599295,NoMatch,No,No,50,10,About 1 chance in 10,1 Not at all strong,"innocent,80,100",9mm,20
+79.22762278,Match,Yes,Yes,50,92,About 9 chances in 10,9 Extremely strong,"guilty,98,100",9mm,98
+7.05825265,NoMatch,No,No,40,50,About 1 chance in 100,4,"guilty,1,1000",9mm,50
+60.74261994,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,100,101",9mm,0
+69.00696643,NoMatch,No,No,50,0,"About 1 chance in 10,000",1 Not at all strong,"innocent,99,100",9mm,0
+85.51822149,Match,Yes,Yes,25,85,About 9 chances in 10,7,"guilty,8,10",9mm,80
+51.55686243,NoMatch,Yes,Yes,50,100,About 1 chance in 100,9 Extremely strong,"innocent,1,100",9mm,100
+21.90963535,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,100,100",9mm,0
+60.49978412,NoMatch,No,No,50,9,"About 1 chance in 1,000",1 Not at all strong,"innocent,90,100",9mm,4
+38.3811431,Match,No,No,50,50,1 chance in 2 (fifty-fifty chance),3,"innocent,30,100",9mm,50
+65.44492228,Match,Yes,Yes,50,99,About 1 chance in 100,9 Extremely strong,"innocent,2,100",9mm,98
+0.337172789,Match,No,No,25,50,1 chance in 2 (fifty-fifty chance),2,"innocent,1,2",9mm,50
+12.97464033,Match,No,Yes,25,83,About 99 chances in 100,8,"guilty,90,100",9mm,90
+6.615243782,NoMatch,No,No,50,1,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,2
+66.03387559,Match,No,Yes,20,75,1 chance in 2 (fifty-fifty chance),4,"guilty,1,3",9mm,50
+92.3158505,Match,No,No,50,54,1 chance in 2 (fifty-fifty chance),3,"innocent,1,2",9mm,60
+36.62961747,Match,No,Yes,36,89,About 9 chances in 10,7,"innocent,1,10",9mm,82
+69.68540137,Match,No,Yes,10,99,1 chance in 2 (fifty-fifty chance),8,"guilty,1,3",9mm,99
+83.85028106,Match,Yes,Yes,50,80,About 9 chances in 10,7,"guilty,8.5,10",9mm,75
+80.88297455,NoMatch,No,No,50,0,"About 1 chance in 10,000",1 Not at all strong,"innocent,99,100",9mm,0
+28.09633224,NoMatch,No,No,50,5,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,4
+59.57870311,Match,Yes,Yes,50,100,Certain to be guilty,9 Extremely strong,"guilty,100,100",9mm,100
+31.56352337,NoMatch,No,No,0,50,1 chance in 2 (fifty-fifty chance),4,"guilty,1,2",9mm,50
+65.32845856,NoMatch,No,No,50,4,"About 1 chance in 10,000",1 Not at all strong,"innocent,97,100",9mm,3
+49.78483487,NoMatch,No,No,50,6,About 1 chance in 100,2,"guilty,3,100",9mm,3
+57.11596196,NoMatch,No,No,50,1,About 1 chance in 100,2,"innocent,97,100",9mm,1
+37.34658076,Match,Yes,Yes,40,98,About 99 chances in 100,8,"guilty,99,100",9mm,98
+68.85420424,NoMatch,No,No,50,1,"About 1 chance in 1,000",1 Not at all strong,"innocent,99,100",9mm,0
+96.09878925,NoMatch,No,No,50,1,"About 1 chance in 10,000",1 Not at all strong,"innocent,1000,1000",22mm,0
+22.45485552,Match,Yes,Yes,10,94,Certain to be guilty,9 Extremely strong,"guilty,100,100",9mm,90
+85.93295186,NoMatch,No,No,50,5,About 1 chance in 10,2,"innocent,90,100",9mm,10
+31.84821673,NoMatch,No,No,50,4,About 1 chance in 100,1 Not at all strong,"innocent,97,100",9mm,5
+35.25775664,Match,Yes,Yes,50,75,About 99 chances in 100,6,"guilty,80,100",9mm,80
+61.7834718,Match,Yes,Yes,45,84,About 9 chances in 10,6,"guilty,9,10",9mm,80
+4.516822333,NoMatch,Yes,Yes,40,98,About 9 chances in 10,8,"guilty,90,90",9mm,90
+31.33371451,Match,Yes,Yes,30,70,About 9 chances in 10,5 Moderately strong,"guilty,70,100",9mm,70
+52.75709974,NoMatch,No,No,10,50,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,1,2",9mm,50
+91.75216241,NoMatch,No,No,35,14,"About 1 chance in 1,000",1 Not at all strong,"guilty,10,100",9mm,8
+79.55707929,Match,No,Yes,25,95,About 9 chances in 10,4,"guilty,9,10",9mm,90
+98.88538255,Match,No,No,40,26,1 chance in 2 (fifty-fifty chance),3,"innocent,3,10",9mm,30
+81.13758611,NoMatch,No,No,50,1,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,3
+18.20822968,NoMatch,No,No,10,5,"About 1 chance in 10,000",1 Not at all strong,"innocent,1,1000",9mm,3
+97.83302995,Match,Yes,Yes,50,97,"About 9,999 chances in 10,000",9 Extremely strong,"innocent,1,1000000",9mm,98
+98.47670256,Match,No,No,50,11,About 1 chance in 10,2,"innocent,1,5",9mm,10
+50.15392739,NoMatch,No,No,10,23,"About 1 chance in 1,000",2,"innocent,1,1000",9mm,20
+75.05914988,NoMatch,No,No,50,10,"About 1 chance in 1,000",2,"innocent,5,100",9mm,10
+30.829626,NoMatch,No,Yes,30,57,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"guilty,30,50",9mm,65
+6.679185363,NoMatch,No,No,40,6,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,2
+10.55250438,Match,No,No,10,54,About 9 chances in 10,4,"guilty,9,10",9mm,56
+66.90075661,NoMatch,No,No,50,0,"About 1 chance in 1,000",1 Not at all strong,"guilty,1,1000",9mm,0
+29.53553437,NoMatch,No,No,50,3,About 1 chance in 10,3,"guilty,1,15",9mm,10
+63.18823269,NoMatch,No,No,50,2,About 1 chance in 100,1 Not at all strong,"guilty,2,100",9mm,2
+52.84192387,Match,No,Yes,50,91,About 99 chances in 100,5 Moderately strong,"innocent,5,100",9mm,97
+64.78159369,Match,No,No,50,15,About 1 chance in 10,3,"innocent,9,10",9mm,10
+49.16822528,NoMatch,No,No,35,21,About 1 chance in 100,3,"innocent,75,100",9mm,25
+73.29178287,NoMatch,No,No,49,1,"About 1 chance in 10,000",1 Not at all strong,"guilty,1,100",9mm,2
+63.57009399,NoMatch,Yes,Yes,25,95,Certain to be guilty,8,"guilty,100,100",9mm,91
+88.6864922,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"guilty,2.9,100",9mm,0
+44.86792732,Match,Yes,Yes,25,80,About 9 chances in 10,5 Moderately strong,"guilty,8,10",9mm,80
+6.461903849,NoMatch,No,No,50,48,About 1 chance in 100,3,"innocent,1,100",9mm,50
+47.92421975,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,100,100",9mm,0
+45.49304631,NoMatch,No,No,40,1,"About 1 chance in 1,000",1 Not at all strong,"innocent,95,100",9mm,1
+57.57044293,NoMatch,No,No,45,11,About 1 chance in 10,1 Not at all strong,"innocent,9,10",9mm,10
+97.87639808,Match,No,Yes,50,99,"About 9,999 chances in 10,000",8,"innocent,2,100",9mm,90
+63.88628045,Match,Yes,Yes,30,90,About 9 chances in 10,4,"innocent,1,100",9mm,83
+83.1958405,Match,Yes,Yes,49,50,About 99 chances in 100,8,"innocent,2,100",9mm,96
+25.01665559,Match,Yes,Yes,50,97,"About 9,999 chances in 10,000",8,"innocent,1,10000",9mm,97
+8.7788139,Match,Yes,Yes,50,99,"About 9,999 chances in 10,000",8,"innocent,1,111111111111",9mm,97
+91.08571678,Match,No,Yes,40,70,1 chance in 2 (fifty-fifty chance),3,"guilty,7,10",9mm,75
+85.59085298,Match,No,Yes,0,50,1 chance in 2 (fifty-fifty chance),4,"innocent,50,50",9mm,18
+5.790993385,Match,No,Yes,40,91,About 9 chances in 10,5 Moderately strong,"innocent,1,10",9mm,90
+42.83434108,NoMatch,No,No,50,1,"About 1 chance in 10,000",1 Not at all strong,"innocent,99,100",9mm,1
+78.34695107,NoMatch,No,No,50,3,"About 1 chance in 1,000",4,"guilty,10,100",9mm,10
+32.51104734,Match,Yes,Yes,50,71,About 99 chances in 100,8,"innocent,1,100",9mm,75
+93.00868232,NoMatch,No,No,50,50,About 1 chance in 100,1 Not at all strong,"innocent,99,100",9mm,50
+48.55653304,Match,Yes,Yes,50,99,"About 9,999 chances in 10,000",9 Extremely strong,"innocent,1,10000",9mm,99
+94.73026299,Match,No,No,50,36,"About 1 chance in 1,000",3,"guilty,1,100000",9mm,20
+34.36320454,Match,No,No,40,50,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"innocent,1,2",9mm,50
+12.58781319,NoMatch,No,No,0,60,About 1 chance in 100,3,"innocent,40,100",9mm,58
+97.34546975,Match,Yes,Yes,40,About 99 chances in 100,About 99 chances in 100,7,"guilty,99,100",9mm,60
+81.30745634,Match,Yes,Yes,50,93,Certain to be guilty,9 Extremely strong,"innocent,2,100",9mm,97
+12.72449682,Match,Yes,Yes,50,94,About 1 chance in 100,8,"innocent,1.5,100",9mm,97
+1.45893509,Match,No,Yes,50,98,"About 9,999 chances in 10,000",5 Moderately strong,"innocent,1,10000",9mm,99
+14.88148628,Match,Yes,Yes,50,96,Certain to be guilty,9 Extremely strong,"innocent,2,100",22mm,100
+26.539866,Match,No,Yes,0,48,1 chance in 2 (fifty-fifty chance),3,"guilty,3,10",9mm,50
+13.45186906,Match,No,Yes,0,68,1 chance in 2 (fifty-fifty chance),5 Moderately strong,"guilty,1,2",9mm,75
+66.99298692,Match,Yes,Yes,50,96,About 99 chances in 100,8,"guilty,99,100",9mm,97
+86.11914238,NoMatch,No,Yes,50,96,"About 1 chance in 1,000",2,"innocent,1,100",9mm,98
+86.02432774,NoMatch,No,No,50,1,"About 1 chance in 10,000",1 Not at all strong,"innocent,99,100",9mm,3
+17.49781645,Match,No,Yes,25,95,1 chance in 2 (fifty-fifty chance),6,"innocent,1,90",9mm,93
+14.50890223,NoMatch,Yes,Yes,50,100,Certain to be guilty,9 Extremely strong,"innocent,1,1",9mm,100
+63.27619795,Match,Yes,Yes,50,94,About 9 chances in 10,8,"innocent,5,100",9mm,96
+76.6998213,Match,No,Yes,50,76,About 9 chances in 10,7,"innocent,1,10",9mm,90
+17.60841184,Match,Yes,Yes,50,99,"About 999 chances in 1,000",8,"guilty,99,100",9mm,97
+95.7099478,NoMatch,No,No,40,9,About 1 chance in 100,3,"guilty,2,10",9mm,12
+21.9604102,NoMatch,No,No,20,0,Impossible that he is guilty,1 Not at all strong,"guilty,1,1000000",9mm,0
+94.51609431,Match,Yes,Yes,35,83,About 99 chances in 100,5 Moderately strong,"guilty,98,100",9mm,50
+72.81996922,Match,No,Yes,0,70,1 chance in 2 (fifty-fifty chance),2,"guilty,70,100",9mm,70
+30.37918061,NoMatch,No,No,40,6,About 1 chance in 100,1 Not at all strong,"innocent,85,100",9mm,15
+90.00741802,Match,Yes,No,30,64,1 chance in 2 (fifty-fifty chance),1 Not at all strong,"innocent,4,10",9mm,70
+36.58896417,NoMatch,Yes,Yes,25,89,About 9 chances in 10,5 Moderately strong,"guilty,1,10",9mm,90
+80.87992899,Match,Yes,No,30,37,"About 9,999 chances in 10,000",5 Moderately strong,"innocent,80,80",9mm,39
+6.124440767,NoMatch,No,No,50,0,About 1 chance in 100,9 Extremely strong,"innocent,1,100",9mm,5
+80.12433895,Match,Yes,Yes,45,95,About 99 chances in 100,8,"innocent,1,1000000",9mm,94
+89.18909687,NoMatch,No,No,50,1,About 1 chance in 100,1 Not at all strong,"guilty,2,100",9mm,2
+15.37129236,Match,Yes,Yes,10,100,Certain to be guilty,9 Extremely strong,"guilty,100,100",9mm,100
+22.94671217,Match,No,No,50,50,1 chance in 2 (fifty-fifty chance),1 Not at all strong,"innocent,50,100",9mm,50
+37.77310106,Match,Yes,Yes,25,94,"About 9,999 chances in 10,000",9 Extremely strong,"guilty,9,10",9mm,96
+96.85106224,Match,No,No,50,0,"About 1 chance in 10,000",1 Not at all strong,"innocent,1,1000",9mm,0
+55.25891175,Match,Yes,No,30,26,About 1 chance in 100,8,"innocent,1,100",9mm,30
+33.43262186,NoMatch,No,No,50,4,About 1 chance in 100,1 Not at all strong,"innocent,5,100",9mm,5
+78.86505213,Match,Yes,Yes,50,99,"About 999 chances in 1,000",9 Extremely strong,"guilty,99,100",9mm,99
+46.07989956,Match,No,Yes,25,50,1 chance in 2 (fifty-fifty chance),2,"innocent,1,2",9mm,50
+74.99508392,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,1,1",9mm,0
+90.33961655,NoMatch,No,No,50,0,Impossible that he is guilty,1 Not at all strong,"innocent,98,100",9mm,0
+77.80555869,Match,Yes,Yes,50,99,About 99 chances in 100,8,"innocent,2,100",9mm,98

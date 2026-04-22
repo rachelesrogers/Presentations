@@ -117,6 +117,19 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
 
 library(DiagrammeR)
+library(ggplot2)
+library(patchwork)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(scales)
+library(corrplot)
+library(kableExtra)
+library(lme4)
+library(car)
+library(emmeans)
+library(rcompanion)
+library(knitr)
 
 grViz("digraph {
   graph [layout = dot, rankdir = TB]
@@ -240,6 +253,894 @@ background-position: 90% 8%
 - Inclusion of jury instructions and more cross examination on subjectivity
 
 - Simplified to Identification and Elimination condition, without algorithm and images
+
+- 300 Participants
+
+---
+
+## Results
+
+```{r}
+#| generalresponse,
+#| fig.width= 8,
+#| fig.height= 6,
+#| fig.align= "center",
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE,
+#| dev = "svg"
+
+microstudy <- read_csv("data/response_type_data_no_demographics.csv")
+
+# removing participants who did not pass the attention check, and one participant with an unusually low completion time.
+microstudy_clean <- microstudy %>% dplyr::filter(check=="9mm", round(randomnumber,5) != 12.59938) 
+
+microstudy_clean$evidence_strength = factor(
+  microstudy_clean$evidence_strength,
+  levels = c(
+    "1 Not at all strong",
+    "2",
+    "3",
+    "4",
+    "5 Moderately strong",
+    "6",
+    "7",
+    "8",
+    "9 Extremely strong"
+  )
+)
+
+microstudy_clean$chances_fixed = factor(
+  microstudy_clean$chances_fixed,
+  levels = c(
+    "Impossible that he is guilty",
+    "About 1 chance in 10,000",
+    "About 1 chance in 1,000",
+    "About 1 chance in 100",
+    "About 1 chance in 10",
+    "1 chance in 2 (fifty-fifty chance)",
+    "About 9 chances in 10",
+    "About 99 chances in 100",
+    "About 999 chances in 1,000",
+    "About 9,999 chances in 10,000",
+    "Certain to be guilty"
+  )
+)
+
+conclusion_labs <- data.frame(conclusion = c("Match", "NoMatch"),
+                                 condition = c("Identification", "Elimination"))
+
+microstudy_clean <- microstudy_clean %>% 
+  separate(numeric_chance, c("chance_of", "numerator", "denominator"), sep=",")
+
+microstudy_clean$num_chance <- as.numeric(microstudy_clean$numerator)/as.numeric(microstudy_clean$denominator)
+
+chance_plot <- ggplot(microstudy_clean) +
+  geom_bar(aes(x=evidence_strength, fill=conclusion), position="dodge") +
+  scale_fill_manual(values = c("grey80","seagreen"), name="Condition",
+                    labels=c("Identification", "Elimination"))+
+  ylab("Count")+
+  xlab("Likert Evidence Strength")+
+  theme_bw()+
+  theme(legend.position="none")+
+  scale_x_discrete(labels = wrap_format(8))
+
+
+hide_probability_plot <- ggplot(microstudy_clean, fill=conclusion) +
+  geom_density(alpha=0.75, aes(x=as.numeric(hidden_probability), fill=conclusion)) +
+  ylab("Density")+
+  xlab("Hidden Probability")+
+  scale_fill_manual(values = c("grey80","seagreen"), name="Condition",
+                    labels=c("Identification", "Elimination"))+
+  theme_bw()
+
+vis_probability_plot <- ggplot(microstudy_clean, fill=conclusion) +
+  geom_density(alpha=0.75, aes(x=as.numeric(hidden_probability), fill=conclusion)) +
+  ylab("Density")+
+  xlab("Visible Probability")+
+  scale_fill_manual(values = c("grey80","seagreen"), name="Condition",
+                    labels=c("Identification", "Elimination"))+
+  theme_bw()
+
+
+log_plot <- ggplot(microstudy_clean) +
+  geom_bar(aes(x=chances_fixed, fill=conclusion),  
+           position = position_dodge(preserve = "single")) +
+  scale_fill_manual(values = c("grey80","seagreen"), name="Condition",
+                    labels = conclusion_labs)+
+  ylab("Count")+
+     xlab("Categorical Chance")+
+  theme_bw()+
+    theme(legend.position="none")+
+    # theme(legend.position="bottom")+
+  scale_x_discrete(labels = c("Impossible", "1 in 10,000", "1 in 1,000",
+                              "1 in 100", "1 in 10", "1 in 2", "9 in 10",
+                              "99 in 100", "999 in 1,000", 
+                              "9,999 in 10,000", "Certain"),
+                   guide=guide_axis(angle=-45))
+
+(chance_plot + hide_probability_plot)/(log_plot+vis_probability_plot)+
+  plot_layout(guides = "collect")
+
+```
+
+---
+
+## Results
+
+```{r}
+#| changingresponse,
+#| fig.width= 8,
+#| fig.height= 6,
+#| fig.align= "center",
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE,
+#| dev = "svg"
+
+
+numeric_plot_guilty <- ggplot(microstudy_clean[microstudy_clean$chance_of=="guilty",]) +
+    geom_density(alpha=0.75, aes(x=num_chance, fill=conclusion))+
+    scale_fill_manual(values = c("grey80","seagreen"), name="Condition",
+                    labels = conclusion_labs$condition)+
+  ylab("Count")+
+  xlab("Numeric Chance (Guilt)")+
+  theme_bw()+
+  xlim(c(0,1))+
+  ylim(c(0,15))
+
+numeric_plot_innocent <- ggplot(microstudy_clean[microstudy_clean$chance_of=="innocent",]) +
+    geom_density(alpha=0.75, aes(x=num_chance, fill=conclusion))+
+    scale_fill_manual(values = c("grey80","seagreen"), name="Condition",
+                    labels = conclusion_labs$condition)+
+  ylab("Count")+
+  xlab("Numeric Chance (Innocence)")+
+  theme_bw()+
+  xlim(c(0,1))+
+  ylim(c(0,15))
+
+
+betting_guilt <- ggplot(microstudy_clean[microstudy_clean$guilt_opinion=="Yes",]) +
+  geom_density(aes(x=betting, fill=conclusion), alpha=0.75) +
+    scale_fill_manual(values = c("grey80","seagreen"), name="Condition",
+                    labels = conclusion_labs$condition)+
+  scale_x_continuous(labels = scales::dollar_format(), breaks=c(0,10,20,30,40,50)) +
+  ylab("Count")+
+  xlab("Bet of Guilty")+
+  ylim(c(0,0.1))+
+  theme_bw()
+
+betting_innocent <- ggplot(microstudy_clean[microstudy_clean$guilt_opinion=="No",]) +
+  geom_density(aes(x=betting, fill=conclusion), alpha=0.75) +
+    scale_fill_manual(values = c("grey80","seagreen"), name="Condition",
+                    labels = conclusion_labs$condition)+
+  scale_x_continuous(labels = scales::dollar_format(), breaks=c(0,10,20,30,40,50)) +
+  ylab("Count")+
+  xlab("Bet of Innocent")+
+  theme_bw()
+
+(numeric_plot_guilty + numeric_plot_innocent)/(betting_guilt + betting_innocent) +
+  plot_layout(guides = "collect")
+
+
+```
+
+---
+
+## Rank correlation
+
+```{r}
+#| corrplot,
+#| fig.width= 8,
+#| fig.height= 8,
+#| fig.align= "center",
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE,
+#| dev = "svg"
+
+
+# hid_vis_pval <- wilcox.test(microstudy_clean[!is.na(microstudy_clean$hidden_probability),]$visible_probability-as.numeric(microstudy_clean[!is.na(microstudy_clean$hidden_probability),]$hidden_probability))
+
+corr_values <- microstudy_clean %>% dplyr::select("convict", "guilt_opinion", "betting", "hidden_probability", "chances_fixed", "evidence_strength", "num_chance", "visible_probability", "chance_of") %>% mutate("num_convict"=as.numeric(as.factor(convict)), "num_guilt_opinion"=as.numeric(as.factor(guilt_opinion)), "cat_chances"=as.numeric(chances_fixed), "num_strength"=as.numeric(evidence_strength), "num_hidden"=as.numeric(hidden_probability))
+
+corr_values$numeric_guilt <- NA
+corr_values[corr_values$chance_of=="guilty",]$numeric_guilt <- corr_values[corr_values$chance_of=="guilty",]$num_chance
+
+corr_values$numeric_innocence <- NA
+corr_values[corr_values$chance_of=="innocent",]$numeric_innocence <- corr_values[corr_values$chance_of=="innocent",]$num_chance
+
+corr_values$bet_guilt <- NA
+corr_values[corr_values$guilt_opinion=="Yes",]$bet_guilt <- corr_values[corr_values$guilt_opinion=="Yes",]$betting
+
+corr_values$bet_innocent <- NA
+corr_values[corr_values$guilt_opinion=="No",]$bet_innocent <- corr_values[corr_values$guilt_opinion=="No",]$betting
+
+cor_matrix <- cor(corr_values[,c("bet_guilt","bet_innocent","num_convict", "num_guilt_opinion", "cat_chances", "num_strength", "num_hidden", "visible_probability", "numeric_guilt", "numeric_innocence")], use="pairwise.complete.obs", method="kendall")
+
+rownames(cor_matrix) <- c("Guilt Bet", "Innocent Bet", "Conviction Decision", "Opinion of Guilt", "Categorical Chances", "Strength", "Hidden Probability", "visible Probability", "Numeric Chance (Guilt)", "Numeric Chance (Innocence)")
+
+colnames(cor_matrix) <- c("Guilt Bet", "Innocent Bet", "Conviction Decision", "Opinion of Guilt", "Categorical Chances", "Strength", "Hidden Probability", "visible Probability", "Numeric Chance (Guilt)", "Numeric Chance (Innocence)")
+
+corrplot(cor_matrix, type="lower", method="color", tl.col = "black", tl.srt = 45, addCoef.col = "grey60", addCoefasPercent = TRUE, number.cex=0.75)
+
+```
+
+---
+
+## Consistency
+
+```{r}
+#| opinioncomp,
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE
+
+
+opinion_comparison <- 
+  data.frame(hidden_probability = rep(NA, dim(microstudy_clean)[1]),
+             chances_fixed = rep(NA, dim(microstudy_clean)[1]),
+             visible_probability = rep(NA, dim(microstudy_clean)[1]),
+             numeric_chance = rep(NA, dim(microstudy_clean)[1]),
+             opinion = rep(NA, dim(microstudy_clean)[1]),
+             chance_of = rep(NA, dim(microstudy_clean)[1]))
+
+opinion_comparison$opinion <- ifelse(microstudy_clean$guilt_opinion == "No", "Innocent", "Guilty")
+
+opinion_comparison$chance_of <- microstudy_clean$chance_of
+
+opinion_comparison[opinion_comparison$opinion == "Innocent",]$hidden_probability <- 
+  ifelse(as.numeric(microstudy_clean[microstudy_clean$guilt_opinion == "No",]$hidden_probability) <= 50, "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Guilty",]$hidden_probability <- 
+  ifelse(as.numeric(microstudy_clean[microstudy_clean$guilt_opinion == "Yes",]$hidden_probability) >= 50, "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Innocent",]$visible_probability <- 
+  ifelse(as.numeric(microstudy_clean[microstudy_clean$guilt_opinion == "No",]$visible_probability) <= 50, "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Guilty",]$visible_probability <- 
+  ifelse(as.numeric(microstudy_clean[microstudy_clean$guilt_opinion == "Yes",]$visible_probability) >= 50, "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Innocent" & 
+                     opinion_comparison$chance_of=="guilty",
+                   ]$numeric_chance <-
+  ifelse(microstudy_clean[(microstudy_clean$guilt_opinion == "No" &
+                             microstudy_clean$chance_of=="guilty"),
+                          ]$num_chance <= 0.50, "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Guilty" & 
+                     opinion_comparison$chance_of=="guilty",
+                   ]$numeric_chance <-
+  ifelse(microstudy_clean[(microstudy_clean$guilt_opinion == "Yes" &
+                             microstudy_clean$chance_of=="guilty"),
+                          ]$num_chance >= 0.50, "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Innocent" & 
+                     opinion_comparison$chance_of=="innocent",
+                   ]$numeric_chance <-
+  ifelse(microstudy_clean[(microstudy_clean$guilt_opinion == "No" &
+                             microstudy_clean$chance_of=="innocent"),
+                          ]$num_chance >= 0.50, "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Guilty" & 
+                     opinion_comparison$chance_of=="innocent",
+                   ]$numeric_chance <-
+  ifelse(microstudy_clean[(microstudy_clean$guilt_opinion == "Yes" &
+                             microstudy_clean$chance_of=="innocent"),
+                          ]$num_chance <= 0.50, "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Innocent",
+                   ]$chances_fixed <-
+  ifelse(microstudy_clean[microstudy_clean$guilt_opinion ==
+                            "No",]$chances_fixed %in% 
+           c("Impossible that he is guilty", "About 1 chance in 10,000",
+             "About 1 chance in 1,000", "About 1 chance in 100",
+             "About 1 chance in 10", "1 chance in 2 (fifty-fifty chance)"),
+         "Consistent","Inconsistent")
+
+opinion_comparison[opinion_comparison$opinion == "Guilty",
+                   ]$chances_fixed <-
+  ifelse(microstudy_clean[microstudy_clean$guilt_opinion ==
+                            "Yes",]$chances_fixed %in% 
+           c("1 chance in 2 (fifty-fifty chance)", "About 9 chances in 10",
+             "About 99 chances in 100", "About 999 chances in 1,000",
+             "About 9,999 chances in 10,000","Certain to be guilty"),
+         "Consistent","Inconsistent")
+
+opinion_comparison <- opinion_comparison %>% mutate(id = as.character(1:n()))
+
+opinion_comparison$numeric_chance_guilt <- NA
+opinion_comparison[opinion_comparison$chance_of=="guilty",]$numeric_chance_guilt <- opinion_comparison[opinion_comparison$chance_of=="guilty",]$numeric_chance
+
+opinion_comparison$numeric_chance_innocence <- NA
+opinion_comparison[opinion_comparison$chance_of=="innocent",]$numeric_chance_innocence <- opinion_comparison[opinion_comparison$chance_of=="innocent",]$numeric_chance
+
+opinion_comparison2 <- opinion_comparison %>% dplyr::select(hidden_probability, chances_fixed, visible_probability, opinion, numeric_chance_guilt, numeric_chance_innocence, id)
+
+long_opinion_comparison <- opinion_comparison2 %>% 
+  pivot_longer(c("hidden_probability", "chances_fixed", "visible_probability", "numeric_chance_guilt", "numeric_chance_innocence"), names_to = "Question", values_to = "Consistent")
+
+long_opinion_comparison$Consistent <- factor(long_opinion_comparison$Consistent, levels = c("Inconsistent", "Consistent"))
+
+opinion_consistency<-long_opinion_comparison %>% group_by(Question) %>% summarize(number_consistent_opinion = sum(Consistent=="Consistent", na.rm=TRUE), number_inconsistent_opinion = sum(Consistent=="Inconsistent", na.rm=TRUE),  opinion=paste0(round(number_consistent_opinion/(number_consistent_opinion+number_inconsistent_opinion)*100, 2), "%")) 
+
+# kable(caption="Percentage of Participants providing values consistent to their opinion of guilt for each response category. \\label{tab:opinioncomp}")
+
+```
+
+```{r}
+#| correctrange,
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE
+
+
+set_values <- 
+  data.frame(chances_fixed=c("Impossible that he is guilty",
+                             "About 1 chance in 10,000",
+                             "About 1 chance in 1,000",
+                             "About 1 chance in 100",
+                             "About 1 chance in 10",
+                             "1 chance in 2 (fifty-fifty chance)",
+                             "About 9 chances in 10",
+                             "About 99 chances in 100",
+                             "About 999 chances in 1,000",
+                             "About 9,999 chances in 10,000",
+                             "Certain to be guilty"),
+             value=c(0,1/10000,1/1000,1/100,1/10,0.5,9/10,
+                     99/100,999/1000,9999/10000,1),
+             lower = c(0, 1/20000, (1/10000+1/1000)/2, (1/1000+1/100)/2,
+                       (1/100+1/10)/2, (1/10+0.5)/2, (0.5+9/10)/2,
+                       (9/10+99/100)/2, (99/100+999/1000)/2,
+                       (999/1000+9999/10000)/2, (9999/10000+1)/2),
+             upper = c(1/20000, (1/10000+1/1000)/2, (1/1000+1/100)/2,
+                       (1/100+1/10)/2, (1/10+0.5)/2, (0.5+9/10)/2,
+                       (9/10+99/100)/2, (99/100+999/1000)/2,
+                       (999/1000+9999/10000)/2, (9999/10000+1)/2, 1))
+clean_results_merged<- dplyr::left_join(microstudy_clean, set_values)
+
+clean_results_merged <- clean_results_merged %>%
+    mutate(adjusted_lower = 
+             ifelse(chance_of == "innocent", 1 - upper, lower))%>%
+    mutate(adjusted_upper = ifelse(chance_of == "innocent", 1 - lower, upper))
+
+
+clean_results_merged$chances_fixed = factor(
+  clean_results_merged$chances_fixed,
+  levels = c(
+    "Impossible that he is guilty",
+    "About 1 chance in 10,000",
+    "About 1 chance in 1,000",
+    "About 1 chance in 100",
+    "About 1 chance in 10",
+    "1 chance in 2 (fifty-fifty chance)",
+    "About 9 chances in 10",
+    "About 99 chances in 100",
+    "About 999 chances in 1,000",
+    "About 9,999 chances in 10,000",
+    "Certain to be guilty"
+  )
+)
+
+mult_labs <- data.frame(short_mult = c(
+    "Impossible",
+    "1/10,000",
+    "1/1,000",
+    "1/100",
+    "1/10",
+    "1/2",
+    "9/10",
+    "99/100",
+    "999/1,000",
+    "9,999/10,000",
+    "Certain"
+  ), chances_fixed = c(
+    "Impossible that he is guilty",
+    "About 1 chance in 10,000",
+    "About 1 chance in 1,000",
+    "About 1 chance in 100",
+    "About 1 chance in 10",
+    "1 chance in 2 (fifty-fifty chance)",
+    "About 9 chances in 10",
+    "About 99 chances in 100",
+    "About 999 chances in 1,000",
+    "About 9,999 chances in 10,000",
+    "Certain to be guilty"
+  ))
+
+clean_results_merged<-left_join(clean_results_merged, mult_labs)
+
+clean_results_merged$short_mult = factor(
+  clean_results_merged$short_mult,
+  levels = c(
+    "Impossible",
+    "1/10,000",
+    "1/1,000",
+    "1/100",
+    "1/10",
+    "1/2",
+    "9/10",
+    "99/100",
+    "999/1,000",
+    "9,999/10,000",
+    "Certain"
+  )
+)
+
+clean_results_merged$correct_range <- 
+  clean_results_merged$num_chance >= clean_results_merged$adjusted_lower &
+  clean_results_merged$num_chance <= clean_results_merged$adjusted_upper
+
+clean_results_merged$correct_range_word <- NA
+clean_results_merged[clean_results_merged$correct_range==TRUE,]$correct_range_word <- "Consistent"
+clean_results_merged[clean_results_merged$correct_range==FALSE,]$correct_range_word <- "Inconsistent"
+
+correct_summary_df <- data.frame(table(clean_results_merged$correct_range, clean_results_merged$chance_of))
+names(correct_summary_df)<- c("Consistent", "chance_of", "Count")
+
+guilt_consist <- correct_summary_df[2,3]/(correct_summary_df[1,3]+correct_summary_df[2,3])
+
+innocent_consist <- correct_summary_df[4,3]/(correct_summary_df[3,3]+correct_summary_df[4,3])
+
+correct_prop_test <-
+  prop.test(x=c(correct_summary_df$Count[2], correct_summary_df$Count[4]),
+              n=c(correct_summary_df$Count[1]+correct_summary_df$Count[2],
+                  correct_summary_df$Count[3]+correct_summary_df$Count[4]))
+
+choice.labs <- c("Guilt\nChance", "Innocence\nChance")
+names(choice.labs) <- c("guilty", "innocent")
+
+# chance_chisq<-chisq.test(clean_results_merged$correct_range_word,clean_results_merged$chance_of)
+# chance_cramer <- cramerV(clean_results_merged$correct_range_word,clean_results_merged$chance_of)
+
+inconsistent_values <- clean_results_merged %>% 
+  filter(correct_range_word=="Inconsistent" & chance_of=="guilty")
+
+inconsistent_values$flipped_value <- inconsistent_values$num_chance
+# inconsistent_values[inconsistent_values$chance_of=="innocent",]$flipped_value <- 
+#   1 - inconsistent_values[inconsistent_values$chance_of=="innocent",]$num_chance
+
+inconsistent_values$multiple_extreme <- NA
+
+inconsistent_values[inconsistent_values$value > 0.5 & 
+                      inconsistent_values$flipped_value > inconsistent_values$value, ]$multiple_extreme<-FALSE
+
+inconsistent_values[inconsistent_values$value > 0.5 & 
+                      inconsistent_values$flipped_value < inconsistent_values$value, ]$multiple_extreme<-TRUE
+
+inconsistent_values[inconsistent_values$value < 0.5 & 
+                      inconsistent_values$flipped_value < inconsistent_values$value, ]$multiple_extreme<-FALSE
+
+inconsistent_values[inconsistent_values$value < 0.5 & 
+                      inconsistent_values$flipped_value > inconsistent_values$value, ]$multiple_extreme<-TRUE
+
+inconsistent_values[inconsistent_values$value == 0.5, ]$multiple_extreme<-FALSE
+
+proportion_test <- prop.test(sum(inconsistent_values$multiple_extreme),length(inconsistent_values$multiple_extreme))
+
+```
+
+```{r}
+#| correctprobmosaic,
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE
+
+clean_results_merged$prob_mult_consistency <- NA
+
+clean_results_merged[clean_results_merged$chances_fixed=="Impossible that he is guilty" & clean_results_merged$visible_probability==0,]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Impossible that he is guilty" & clean_results_merged$visible_probability!=0,]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10,000" & clean_results_merged$visible_probability %in% c(0,1),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10,000" & !(clean_results_merged$visible_probability %in% c(0,1)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 1,000" & clean_results_merged$visible_probability %in% c(0,1),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 1,000" & !(clean_results_merged$visible_probability %in% c(0,1)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 100" & clean_results_merged$visible_probability %in% seq(1,5),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 100" & !(clean_results_merged$visible_probability %in% seq(1,5)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10" & clean_results_merged$visible_probability %in% seq(6,30),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10" & !(clean_results_merged$visible_probability %in% seq(6,30)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="1 chance in 2 (fifty-fifty chance)" & clean_results_merged$visible_probability %in% seq(30,70),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="1 chance in 2 (fifty-fifty chance)" & !(clean_results_merged$visible_probability %in% seq(30,70)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9 chances in 10" & clean_results_merged$visible_probability %in% seq(70,94),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9 chances in 10" & !(clean_results_merged$visible_probability %in% seq(70,94)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 99 chances in 100" & clean_results_merged$visible_probability %in% seq(95,99),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 99 chances in 100" & !(clean_results_merged$visible_probability %in% seq(95,99)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 999 chances in 1,000" & clean_results_merged$visible_probability %in% c(99,100),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 999 chances in 1,000" & !(clean_results_merged$visible_probability %in% c(99,100)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9,999 chances in 10,000" & clean_results_merged$visible_probability %in% c(99,100),]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9,999 chances in 10,000" & !(clean_results_merged$visible_probability %in% c(99,100)),]$prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Certain to be guilty" & clean_results_merged$visible_probability==100,]$prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Certain to be guilty" & clean_results_merged$visible_probability!=100,]$prob_mult_consistency <- "Inconsistent"
+
+
+############ Hidden Probability Calculations ########################
+
+clean_results_merged$hid_prob_mult_consistency <- NA
+
+clean_results_merged[clean_results_merged$chances_fixed=="Impossible that he is guilty" & clean_results_merged$hidden_probability==0,]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Impossible that he is guilty" & clean_results_merged$hidden_probability!=0,]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10,000" & clean_results_merged$hidden_probability %in% c(0,1),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10,000" & !(clean_results_merged$hidden_probability %in% c(0,1)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 1,000" & clean_results_merged$hidden_probability %in% c(0,1),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 1,000" & !(clean_results_merged$hidden_probability %in% c(0,1)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 100" & clean_results_merged$hidden_probability %in% seq(1,5),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 100" & !(clean_results_merged$hidden_probability %in% seq(1,5)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10" & clean_results_merged$hidden_probability %in% seq(6,30),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10" & !(clean_results_merged$hidden_probability %in% seq(6,30)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="1 chance in 2 (fifty-fifty chance)" & clean_results_merged$hidden_probability %in% seq(30,70),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="1 chance in 2 (fifty-fifty chance)" & !(clean_results_merged$hidden_probability %in% seq(30,70)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9 chances in 10" & clean_results_merged$hidden_probability %in% seq(70,94),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9 chances in 10" & !(clean_results_merged$hidden_probability %in% seq(70,94)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 99 chances in 100" & clean_results_merged$hidden_probability %in% seq(95,99),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 99 chances in 100" & !(clean_results_merged$hidden_probability %in% seq(95,99)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+# No observations
+clean_results_merged[clean_results_merged$chances_fixed=="About 999 chances in 1,000" & clean_results_merged$hidden_probability %in% c(99,100),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 999 chances in 1,000" & !(clean_results_merged$hidden_probability %in% c(99,100)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9,999 chances in 10,000" & clean_results_merged$hidden_probability %in% c(99,100),]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9,999 chances in 10,000" & !(clean_results_merged$hidden_probability %in% c(99,100)),]$hid_prob_mult_consistency <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Certain to be guilty" & clean_results_merged$hidden_probability==100,]$hid_prob_mult_consistency <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Certain to be guilty" & clean_results_merged$hidden_probability!=100,]$hid_prob_mult_consistency <- "Inconsistent"
+
+vis <- table(clean_results_merged$prob_mult_consistency)[1]/(table(clean_results_merged$prob_mult_consistency)[1]+table(clean_results_merged$prob_mult_consistency)[2])
+
+hid <- table(clean_results_merged$hid_prob_mult_consistency)[1]/(table(clean_results_merged$hid_prob_mult_consistency)[1]+table(clean_results_merged$hid_prob_mult_consistency)[2])
+
+
+multiple_choice_consistency <- data.frame(Question=c("numeric_chance_guilt", "numeric_chance_innocence", "visible_probability", "hidden_probability", "chances_fixed"), chances_fixed = c(paste0(round(guilt_consist*100,2), "%"), paste0(round(innocent_consist*100,2), "%"), paste0(round(vis*100,2),"%"), paste0(round(hid*100,2),"%"), NA))
+
+consistency <- right_join(opinion_consistency, multiple_choice_consistency)
+
+# chance_prob_chisq<-chisq.test(clean_results_merged$prob_mult_consistency,clean_results_merged$short_mult)
+# 
+# chance_prob_cramer <- cramerV(table(clean_results_merged$prob_mult_consistency,clean_results_merged$short_mult))
+
+```
+
+```{r}
+#| correctwin5,
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE
+
+clean_results_merged$prob_mult_consistency5 <- NA
+
+clean_results_merged[clean_results_merged$chances_fixed=="Impossible that he is guilty" & clean_results_merged$visible_probability<=5,]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Impossible that he is guilty" & clean_results_merged$visible_probability>5,]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10,000" & clean_results_merged$visible_probability %in% seq(0,5),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10,000" & !(clean_results_merged$visible_probability %in% seq(0,5)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 1,000" & clean_results_merged$visible_probability %in% seq(0,5),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 1,000" & !(clean_results_merged$visible_probability %in% c(0,5)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 100" & clean_results_merged$visible_probability %in% seq(1,10),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 100" & !(clean_results_merged$visible_probability %in% seq(1,10)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10" & clean_results_merged$visible_probability %in% seq(1,35),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10" & !(clean_results_merged$visible_probability %in% seq(1,35)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="1 chance in 2 (fifty-fifty chance)" & clean_results_merged$visible_probability %in% seq(25,75),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="1 chance in 2 (fifty-fifty chance)" & !(clean_results_merged$visible_probability %in% seq(25,75)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9 chances in 10" & clean_results_merged$visible_probability %in% seq(65,99),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9 chances in 10" & !(clean_results_merged$visible_probability %in% seq(65,99)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 99 chances in 100" & clean_results_merged$visible_probability %in% seq(90,100),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 99 chances in 100" & !(clean_results_merged$visible_probability %in% seq(90,100)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 999 chances in 1,000" & clean_results_merged$visible_probability %in% seq(95,100),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 999 chances in 1,000" & !(clean_results_merged$visible_probability %in% seq(95,100)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9,999 chances in 10,000" & clean_results_merged$visible_probability %in% seq(95,100),]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9,999 chances in 10,000" & !(clean_results_merged$visible_probability %in% seq(95,100)),]$prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Certain to be guilty" & clean_results_merged$visible_probability>=95,]$prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Certain to be guilty" & clean_results_merged$visible_probability<95,]$prob_mult_consistency5 <- "Inconsistent"
+
+
+############ Hidden Probability Calculations ########################
+
+clean_results_merged$hid_prob_mult_consistency5 <- NA
+
+clean_results_merged[clean_results_merged$chances_fixed=="Impossible that he is guilty" & clean_results_merged$hidden_probability<=5,]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Impossible that he is guilty" & clean_results_merged$hidden_probability>5,]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10,000" & clean_results_merged$hidden_probability %in% seq(0,5),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10,000" & !(clean_results_merged$hidden_probability %in% seq(0,5)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 1,000" & clean_results_merged$hidden_probability %in% seq(0,5),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 1,000" & !(clean_results_merged$hidden_probability %in% seq(0,5)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 100" & clean_results_merged$hidden_probability %in% seq(0,10),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 100" & !(clean_results_merged$hidden_probability %in% seq(0,10)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10" & clean_results_merged$hidden_probability %in% seq(1,35),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 1 chance in 10" & !(clean_results_merged$hidden_probability %in% seq(1,35)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="1 chance in 2 (fifty-fifty chance)" & clean_results_merged$hidden_probability %in% seq(25,75),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="1 chance in 2 (fifty-fifty chance)" & !(clean_results_merged$hidden_probability %in% seq(25,75)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9 chances in 10" & clean_results_merged$hidden_probability %in% seq(65,99),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9 chances in 10" & !(clean_results_merged$hidden_probability %in% seq(65,99)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 99 chances in 100" & clean_results_merged$hidden_probability %in% seq(90,100),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 99 chances in 100" & !(clean_results_merged$hidden_probability %in% seq(90,100)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 999 chances in 1,000" & clean_results_merged$hidden_probability %in% seq(95,100),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 999 chances in 1,000" & !(clean_results_merged$hidden_probability %in% seq(95,100)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9,999 chances in 10,000" & clean_results_merged$hidden_probability %in% seq(95,100),]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="About 9,999 chances in 10,000" & !(clean_results_merged$hidden_probability %in% seq(95,100)),]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Certain to be guilty" & clean_results_merged$hidden_probability>=95,]$hid_prob_mult_consistency5 <- "Consistent"
+
+clean_results_merged[clean_results_merged$chances_fixed=="Certain to be guilty" & clean_results_merged$hidden_probability<95,]$hid_prob_mult_consistency5 <- "Inconsistent"
+
+vis5 <- table(clean_results_merged$prob_mult_consistency5)[1]/(table(clean_results_merged$prob_mult_consistency5)[1]+table(clean_results_merged$prob_mult_consistency5)[2])
+
+hid5 <- table(clean_results_merged$hid_prob_mult_consistency5)[1]/(table(clean_results_merged$hid_prob_mult_consistency5)[1]+table(clean_results_merged$hid_prob_mult_consistency5)[2])
+
+clean_results_merged$correct_range5 <- 
+  clean_results_merged$num_chance >= clean_results_merged$adjusted_lower - 0.05 &
+  clean_results_merged$num_chance <= clean_results_merged$adjusted_upper + 0.05
+
+clean_results_merged$correct_range_word5 <- NA
+clean_results_merged[clean_results_merged$correct_range5==TRUE,]$correct_range_word5 <- "Consistent"
+clean_results_merged[clean_results_merged$correct_range5==FALSE,]$correct_range_word5 <- "Inconsistent"
+
+correct_summary_df5 <- data.frame(table(clean_results_merged$correct_range5, clean_results_merged$chance_of))
+names(correct_summary_df5)<- c("Consistent", "chance_of", "Count")
+
+guilt_consist5 <- correct_summary_df5[2,3]/(correct_summary_df5[1,3]+correct_summary_df5[2,3])
+
+innocent_consist5 <- correct_summary_df5[4,3]/(correct_summary_df5[3,3]+correct_summary_df5[4,3])
+
+
+multiple_choice_consistency5 <- data.frame(Question=c("numeric_chance_guilt", "numeric_chance_innocence", "visible_probability", "hidden_probability", "chances_fixed"), chances_win5 = c(paste0(round(guilt_consist5*100,2), "%"), paste0(round(innocent_consist5*100,2), "%"), paste0(round(vis5*100,2),"%"), paste0(round(hid5*100,2),"%"), NA))
+
+consistency5 <- right_join(consistency, multiple_choice_consistency5)
+
+# chance_prob_chisq<-chisq.test(clean_results_merged$prob_mult_consistency,clean_results_merged$short_mult)
+# 
+# chance_prob_cramer <- cramerV(table(clean_results_merged$prob_mult_consistency,clean_results_merged$short_mult))
+
+```
+
+```{r}
+#| numcompare,
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE
+
+prob_diff <- as.numeric(microstudy_clean$hidden_probability)-microstudy_clean$visible_probability
+
+innocent_prob_diff <- microstudy_clean[microstudy_clean$chance_of=="innocent",]$visible_probability - (100- microstudy_clean[microstudy_clean$chance_of=="innocent",]$num_chance*100)
+
+guilt_prob_diff <- microstudy_clean[microstudy_clean$chance_of=="guilty",]$visible_probability - microstudy_clean[microstudy_clean$chance_of=="guilty",]$num_chance*100
+
+num_consistency <- data.frame(Question=c("numeric_chance_guilt", "numeric_chance_innocence", "visible_probability", "hidden_probability", "chances_fixed"), visible_probability = c(paste0(round(sum(abs(guilt_prob_diff)<=5, na.rm=TRUE)/sum(!is.na(guilt_prob_diff))*100,2), "%"), paste0(round(sum(abs(innocent_prob_diff)<=5, na.rm=TRUE)/sum(!is.na(innocent_prob_diff))*100,2), "%"), NA, paste0(round(sum(abs(prob_diff)<=5, na.rm=TRUE)/sum(!is.na(prob_diff))*100,2),"%"), NA))
+
+complete_consistency <- right_join(consistency5, num_consistency) %>%
+  dplyr::select(Question, opinion, chances_fixed, chances_win5, visible_probability) %>%
+  arrange(match(Question, c('chances_fixed', 'visible_probability', 'hidden_probability', 'numeric_chance_guilt',
+                            'numeric_chance_innocence')))
+
+```
+
+```{r}
+#| testing,
+#| echo= FALSE,
+#| eval= TRUE,
+#| warning= FALSE,
+#| message= FALSE,
+#| out.width="100%"
+
+### Opinion Consistency ###
+
+specific_guilt_consistency <- glmer(Consistent ~ Question + (1|id), data = long_opinion_comparison, family = binomial)
+
+specific_guilt_consist_anova <- Anova(specific_guilt_consistency)
+
+specific_guilt_consist_emmeans <- emmeans(specific_guilt_consistency, specs = ~ Question,type = "response")
+
+specific_guilt_consist_contrast<-contrast(specific_guilt_consist_emmeans, "pairwise", adjust = "none")
+
+### Fixed Chance Consistency ###
+
+chances_df <- clean_results_merged %>% select(randomnumber, chance_of, prob_mult_consistency, hid_prob_mult_consistency, correct_range_word) 
+
+names(chances_df) <- c("randomnumber", "chance_of", "visible_probability", "hidden_probability", "numeric_chance")
+
+chances_df$numeric_chance_guilt <- NA
+chances_df[chances_df$chance_of=="guilty",]$numeric_chance_guilt <- chances_df[chances_df$chance_of=="guilty",]$numeric_chance
+
+chances_df$numeric_chance_innocence <- NA
+chances_df[chances_df$chance_of=="innocent",]$numeric_chance_innocence <- chances_df[chances_df$chance_of=="innocent",]$numeric_chance
+
+chances_df <- chances_df %>% mutate(id = as.character(1:n()))
+
+
+chances_long <- chances_df %>% select(-c(chance_of, numeric_chance, randomnumber)) %>% pivot_longer(cols=1:4, names_to="Question", values_to="Consistent")
+
+chances_long$Consistent <- factor(chances_long$Consistent, levels = c("Inconsistent", "Consistent"))
+
+chances_consistency <- glmer(Consistent ~ Question + (1|id), data = chances_long, family = binomial)
+
+chances_consist_anova <- Anova(chances_consistency)
+
+chances_consist_emmeans <- emmeans(chances_consistency, specs = ~ Question,type = "response")
+
+chances_consist_contrast<-contrast(chances_consist_emmeans, "pairwise", adjust = "none")
+
+### Fixed Chance Within 5 Consistency ###
+
+chances_df5 <- clean_results_merged %>% select(randomnumber, chance_of, prob_mult_consistency5, hid_prob_mult_consistency5, correct_range_word5) 
+
+names(chances_df5) <- c("randomnumber", "chance_of", "visible_probability", "hidden_probability", "numeric_chance")
+
+chances_df5$numeric_chance_guilt <- NA
+chances_df5[chances_df5$chance_of=="guilty",]$numeric_chance_guilt <- chances_df5[chances_df5$chance_of=="guilty",]$numeric_chance
+
+chances_df5$numeric_chance_innocence <- NA
+chances_df5[chances_df5$chance_of=="innocent",]$numeric_chance_innocence <- chances_df5[chances_df5$chance_of=="innocent",]$numeric_chance
+
+chances_df5 <- chances_df5 %>% mutate(id = as.character(1:n()))
+
+
+chances_long5 <- chances_df5 %>% select(-c(chance_of, numeric_chance, randomnumber)) %>% pivot_longer(cols=1:4, names_to="Question", values_to="Consistent")
+
+chances_long5$Consistent <- factor(chances_long5$Consistent, levels = c("Inconsistent", "Consistent"))
+
+chances_consistency5 <- glmer(Consistent ~ Question + (1|id), data = chances_long5, family = binomial)
+
+chances_consist5_anova <- Anova(chances_consistency5)
+
+chances_consist5_emmeans <- emmeans(chances_consistency5, specs = ~ Question,type = "response")
+
+chances_consist5_contrast<-contrast(chances_consist5_emmeans, "pairwise", adjust = "none")
+
+### Visible Probability Consistency ###
+
+microstudy_clean$prob_diff <- as.numeric(microstudy_clean$hidden_probability)-microstudy_clean$visible_probability
+
+microstudy_clean$innocent_prob_diff <- NA
+microstudy_clean[microstudy_clean$chance_of=="innocent",]$innocent_prob_diff <- microstudy_clean[microstudy_clean$chance_of=="innocent",]$visible_probability - (100- microstudy_clean[microstudy_clean$chance_of=="innocent",]$num_chance*100)
+
+microstudy_clean$guilt_prob_diff <- NA
+microstudy_clean[microstudy_clean$chance_of=="guilty",]$guilt_prob_diff <- microstudy_clean[microstudy_clean$chance_of=="guilty",]$visible_probability - microstudy_clean[microstudy_clean$chance_of=="guilty",]$num_chance*100
+
+prob_df <- microstudy_clean %>% select(randomnumber, prob_diff, innocent_prob_diff, guilt_prob_diff)
+
+prob_df$hidden_probability <- NA
+prob_df[!is.na(prob_df$prob_diff) & prob_df$prob_diff <= 5,]$hidden_probability <- "Consistent"
+prob_df[!is.na(prob_df$prob_diff) & prob_df$prob_diff > 5,]$hidden_probability <- "Inconsistent"
+
+prob_df$numeric_chance_innocence <- NA
+prob_df[!is.na(prob_df$innocent_prob_diff) & prob_df$innocent_prob_diff <= 5,]$numeric_chance_innocence <- "Consistent"
+prob_df[!is.na(prob_df$innocent_prob_diff) & prob_df$innocent_prob_diff > 5,]$numeric_chance_innocence <- "Inconsistent"
+
+prob_df$numeric_chance_guilt <- NA
+prob_df[!is.na(prob_df$guilt_prob_diff) & prob_df$guilt_prob_diff <= 5,]$numeric_chance_guilt <- "Consistent"
+prob_df[!is.na(prob_df$guilt_prob_diff) & prob_df$guilt_prob_diff > 5,]$numeric_chance_guilt <- "Inconsistent"
+
+prob_df <- prob_df %>% mutate(id = as.character(1:n()))
+
+
+prob_long <- prob_df %>% select(c(hidden_probability, numeric_chance_innocence, numeric_chance_guilt, id)) %>% pivot_longer(cols=1:3, names_to="Question", values_to="Consistent")
+
+prob_long$Consistent <- factor(prob_long$Consistent, levels = c("Inconsistent", "Consistent"))
+
+prob_consistency <- glmer(Consistent ~ Question + (1|id), data = prob_long, family = binomial)
+
+prob_consist_anova <- Anova(prob_consistency)
+
+prob_consist_emmeans <- emmeans(prob_consistency, specs = ~ Question,type = "response")
+
+prob_consist_contrast<-contrast(prob_consist_emmeans, "pairwise", adjust = "none")
+
+#### Putting together ####
+
+opinion_contrast_df <- as.data.frame(specific_guilt_consist_contrast)
+opinion_contrast_df$model <- "Opinion"
+chances_contrast_df <- as.data.frame(chances_consist_contrast)
+chances_contrast_df$model <- "Exact Chance"
+chances5_contrast_df <- as.data.frame(chances_consist5_contrast)
+chances5_contrast_df$model <- "Within 5 Chance"
+prob_contrast_df <- as.data.frame(prob_consist_contrast)
+prob_contrast_df$model <- "Within 5 Visible Probability"
+
+combined_contrasts <- rbind(opinion_contrast_df, chances_contrast_df, chances5_contrast_df, prob_contrast_df)
+
+combined_contrasts$significant <- combined_contrasts$p.value <= 0.05/nrow(combined_contrasts)
+
+complete_consistency$opinion <- paste0(complete_consistency$opinion, c(rep("<sup>a</sup>",3), "<sup>ab</sup>", "<sup>b</sup>")) 
+
+complete_consistency$chances_fixed <- paste0(complete_consistency$chances_fixed, c("","<sup>ab</sup>", "<sup>ac</sup>", "<sup>b</sup>", "<sup>c</sup>"))
+
+complete_consistency$chances_win5 <- paste0(complete_consistency$chances_win5, c("","<sup>a</sup>", "<sup>a</sup>", "<sup>b</sup>", "<sup>a</sup>"))
+
+complete_consistency$visible_probability <- paste0(complete_consistency$visible_probability, c("","", "<sup>a</sup>", "<sup>a</sup>", "<sup>a</sup>"))
+
+complete_consistency$'Response Type' <- c("Categorical Chances", "Visible Probability", "Hidden Probability",
+                                          "Numeric Chance (Guilt)", "Numeric Chance (Innocence)")
+
+colnames(complete_consistency) <- c("Question", "Opinion of Guilt", "Categorical Chances", "Categorical Chances Within 5",
+                                    "Visible Probability Within 5", "Response Type")
+
+complete_consistency %>% select("Response Type", "Opinion of Guilt", "Categorical Chances", "Categorical Chances Within 5",
+                                    "Visible Probability Within 5") %>% kable()
+
+```
 
 ---
 
