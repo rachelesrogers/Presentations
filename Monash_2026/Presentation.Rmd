@@ -76,7 +76,11 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
   - Ceiling effect: examiners are overall seen as reliable
   - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
   - Proposed Solution: Investigate other response methods
-  
+
+- Transcript Toolkit
+  - Participants found "Q:" "A:" format confusing
+  - Develop Visual Cues (Characters/Speech Bubbles)
+  - Character Validation
 
 ---
 
@@ -215,7 +219,7 @@ The cat ran up the tree | <mark>The cat ran up the tree</mark> The cat ran up th
 
 ---
 
-background-image: url("images/logo.png")
+background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
@@ -1155,6 +1159,23 @@ complete_consistency %>% select("Response Type", "Opinion of Guilt", "Categorica
 - Numeric Chance Confusion
 - Differing Interpretation of Partial Testimony
 - Choices not Necessarily Consistent
+
+---
+
+background-image: url("images/courtr.png")
+background-size: 100px
+background-position: 90% 8%
+
+# Transcript Toolkit: courtr
+
+<br>
+<figure>
+<img src="images/Study1_Screenshot2.jpg" width="100%" />
+</figure>
+
+<figure>
+<img src="images/Study2_Screenshot.jpg" width="100%" />
+</figure>
 
 ---
 
