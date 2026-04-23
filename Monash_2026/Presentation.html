@@ -212,6 +212,7 @@ background-position: 90% 8%
 ## The process
 
 
+
 |words       | word_num|to_merge   | col_1| col_2| col_3|collocation       | Freq|
 |:-----------|--------:|:----------|-----:|-----:|-----:|:-----------------|----:|
 |which       |       66|which      |     2|     2|     2|which impel them  | 2.00|
@@ -228,6 +229,8 @@ background-size: 100px
 background-position: 90% 8%
 
 
+
+
 ## The process
 
 
@@ -240,6 +243,133 @@ page_highlight &lt;- highlighted_text(freq_plot)
 ```
 
 &lt;iframe src="images/sample.html" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+
+---
+
+background-image: url("images/highlightr.png")
+background-size: 100px
+background-position: 90% 8%
+
+
+
+
+## Fuzzy (Indirect) Matches
+
+- A potential typo:
+  - Version 1: NA
+  - Version 2: "the political hands which have connected"
+  - Version 3: "the political bands, which have connected"
+  
+
+``` r
+fuzzy_frequency &lt;- collocation_frequency(simple_notepad_example,
+                                   source_row=3, 
+                                   text_column = "text",
+                                   collocate_length = 3,
+                                   fuzzy=TRUE,
+                                   threshold=0.5)
+```
+
+---
+
+background-image: url("images/highlightr.png")
+background-size: 100px
+background-position: 90% 8%
+
+
+## The process
+
+
+
+|words     | col_1| col_2| col_3|collocation           | Fuzzy Frequency| Direct Frequency|
+|:---------|-----:|-----:|-----:|:---------------------|---------------:|----------------:|
+|the       |  0.60|  1.00|  1.00|the political bands   |            0.87|             0.67|
+|political |  0.64|  0.60|  1.00|political bands which |            0.75|             0.33|
+|bands,    |  0.86|  0.64|  0.60|bands which have      |            0.70|             0.00|
+|which     |  1.00|  0.86|  0.64|which have connected  |            0.83|             0.33|
+|have      |  1.00|  1.00|  0.86|have connected them   |            0.95|             0.67|
+
+---
+
+
+
+
+&lt;div&gt;  0 &lt;div style="
+    height: 20px;
+    width: 200px;
+    display: inline-block;
+    background: linear-gradient(45deg, #F251FC , #F8FF1B );"&gt; &lt;/div&gt; 2  &lt;/div&gt; &lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;When&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;in&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;Course&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;human&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;events,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;it&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;becomes&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFE75C) "&gt;necessary&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE75C,#FFCB87) "&gt;for&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFCB87,#FFC095) "&gt;one&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC095,#FFAAAE) "&gt;people&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFAAAE,#FFAAAE) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFAAAE,#FF96C3) "&gt;dissolve&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF88D0) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF88D0,#FC7CDC) "&gt;political&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FC7CDC,#FB76E0) "&gt;bands,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FB76E0,#FE85D3) "&gt;which&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FE85D3,#FF91C8) "&gt;have&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF91C8,#FF96C3) "&gt;connected&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;them&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;with&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;another,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;and&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FFB5A2) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FFD27D) "&gt;assume&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD27D,#FDEF4E) "&gt;among&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;powers&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#F8FF1D) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1D,#FFE364) "&gt;earth,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE364,#FFC68D) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC68D,#FF96C3) "&gt;separate&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;and&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;equal&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FFB5A2) "&gt;station&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FFE363) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE363,#F8FF1B) "&gt;which&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDEF4E) "&gt;Laws&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFB5A2) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FA73E3) "&gt;Nature&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FA73E3,#F251FC) "&gt;and&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F251FC,#FF9CBD) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF9CBD,#FFD874) "&gt;Nature's&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD874,#FDEF4E) "&gt;God&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;entitle&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;them,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;a&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;decent&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;respect&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;opinions&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;mankind&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;requires&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;that&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;they&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;should&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;declare&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;causes&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;which&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;impel&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;them&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFD27D) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD27D,#FFC490) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC490,#FF96C3) "&gt;separation.&amp;nbsp;&lt;/div&gt;
 
 ---
 
@@ -355,16 +485,16 @@ background-position: 90% 8%
 ---
 
 
-<div id="htmlwidget-16caa004e72152899e8e" style="width:800px;height:600px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-16caa004e72152899e8e">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3e293ed337d887726eef" style="width:800px;height:600px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3e293ed337d887726eef">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
 
 &lt;img src="images/pagecleaning.jpg" width="60%" /&gt;
 
-<div id="htmlwidget-2fe490d6dd9e17d27b40" style="width:800px;height:450px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2fe490d6dd9e17d27b40">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8ae99392181df08f4b9b" style="width:800px;height:450px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8ae99392181df08f4b9b">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -373,8 +503,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
 The cat ran up the tree | The cat ran | The cat ran | 12 |  
 
-<div id="htmlwidget-097f9049287da1079458" style="width:800px;height:545px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-097f9049287da1079458">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-76c4fd1b78d627906e52" style="width:800px;height:545px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-76c4fd1b78d627906e52">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -382,8 +512,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
 The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11 | ,chased by a dog,
 
-<div id="htmlwidget-cba3416d188f8022ac75" style="width:800px;height:545px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cba3416d188f8022ac75">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-37f1b847ec575f17c68b" style="width:800px;height:545px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-37f1b847ec575f17c68b">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -391,8 +521,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
 --------|---------|---------|---------
 The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree chased by a dog | (The cat ran up the tree) | 0 | 10 | 5 | chased by a dog
 
-<div id="htmlwidget-906cb8a890bed3de4330" style="width:800px;height:500px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-906cb8a890bed3de4330">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-600f585daf3bdb5ee068" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-600f585daf3bdb5ee068">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -429,8 +559,8 @@ The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The c
    - If the string is "long enough", remove from current page of notes
    - Repeat
 
-<div id="htmlwidget-4ee0c9a97786b816129b" style="width:800px;height:500px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4ee0c9a97786b816129b">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-118c76f52468ea54a544" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-118c76f52468ea54a544">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
