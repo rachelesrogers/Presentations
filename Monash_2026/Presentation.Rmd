@@ -429,6 +429,10 @@ background-position: 90% 8%
 
 ## Character Validation
 
+<figure>
+<img src="images/validation_characters.jpg" width="100%" />
+</figure>
+
 ---
 
 
