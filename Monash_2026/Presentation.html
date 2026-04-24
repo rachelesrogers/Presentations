@@ -20,7 +20,7 @@ class: center, middle, inverse, title-slide
 # Tools for Testing Transcript Scenarios
 ]
 .subtitle[
-## Text Analysis, Response Calibration, and Study Interface
+## Text Analysis, Study Interface, and Response Calibration
 ]
 .author[
 ### Rachel Rogers
@@ -37,21 +37,15 @@ class: center, middle, inverse, title-slide
 
 
 
-# Overview
-
-- Humans are finicky, and do not always respond how we expect or prefer
-- This presents a challenge and an opportunity when analyzing data
-
---
-
 # Outline
 
-- Failed Likert Scales and Alternative Approaches  
-- Sequential Notepad Analysis  
+- Sequential Notepad Analysis/Mapping Derivative documents to source texts  
 - Transcript Toolkit  
+- Failed Likert Scales and Alternative Approaches  
 - Future Directions
 
 ---
+
 # The Beginning
 
 How do potential jurors react to the use of a bullet matching algorithm alongside an examiner's testimony in a trial scenario?
@@ -96,15 +90,15 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
   - Participants had the option to use a digital notepad throughout the study
   - Results were saved after each page
 
-- Scale analysis
-  - Ceiling effect: examiners are overall seen as reliable
-  - Individuals may already believe that firearms evidence is reliable (Garrett &amp; Mitchell, 2013)
-  - Proposed Solution: Investigate other response methods
-
 - Transcript Toolkit
   - Participants found "Q:" "A:" format confusing
   - Develop Visual Cues (Characters/Speech Bubbles)
   - Character Validation
+  
+- Scale analysis
+  - Ceiling effect: examiners are overall seen as reliable
+  - Individuals may already believe that firearms evidence is reliable (Garrett &amp; Mitchell, 2013)
+  - Proposed Solution: Investigate other response methods
 
 ---
 
@@ -129,8 +123,7 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
 
   
 .pull-left[.img[![](images/collocationcount.jpg)]]
-.pull-right[.img[![](images/collocationanalysis.jpg)]
-            ![](images/wordanalysis.jpg)]
+.pull-right[.img[![](images/collocationanalysis.jpg)]]
 
 ---
 
@@ -208,8 +201,11 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
+&lt;br&gt;
+&lt;br&gt;
 
 ## The process
+
 
 
 
@@ -228,10 +224,13 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-
+&lt;br&gt;
+&lt;br&gt;
 
 
 ## The process
+
+
 
 
 ``` r
@@ -242,7 +241,156 @@ page_highlight &lt;- highlighted_text(freq_plot)
 # xml2::write_html(xml2::read_html(page_highlight), "sample.html")
 ```
 
-&lt;iframe src="images/sample.html" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<div>  0 <div style="
+    height: 20px;
+    width: 200px;
+    display: inline-block;
+    background: linear-gradient(45deg, #F251FC , #F8FF1B );"> </div> 2  </div> <div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">When </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">in </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">Course </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">human </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">events, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDF04B) ">it </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDF04B,#FFE167) ">becomes </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#FFD17E) ">necessary </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFC292) ">for </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFB2A5) ">one </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">people </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFA1B8) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFA1B8,#FF90C9) ">dissolve </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF90C9,#FD7DDA) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FD7DDA,#F869EB) ">political </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F869EB,#F251FC) ">bands, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F251FC,#F869EB) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F869EB,#FD7DDA) ">have </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FD7DDA,#FF90C9) ">connected </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF90C9,#FFA1B8) ">them </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFA1B8,#FFB2A5) ">with </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">another, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFC292) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFD17E) ">assume </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFE167) ">among </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#FDF04B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDF04B,#F8FF1B) ">powers </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDF04B) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDF04B,#FFE167) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#FFD17E) ">earth, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFC292) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFB2A5) ">separate </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">equal </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFC292) ">station </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFD17E) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFE167) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#FFD17E) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFC292) ">Laws </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFA1B8) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFA1B8,#FD7DDA) ">Nature </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FD7DDA,#F251FC) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F251FC,#FD7DDA) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FD7DDA,#FFA1B8) ">Nature's </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFA1B8,#FFC292) ">God </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFE167) ">entitle </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#F8FF1B) ">them, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">a </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">decent </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">respect </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">opinions </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">mankind </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">requires </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">that </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">they </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">should </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">declare </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">causes </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDF04B) ">impel </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDF04B,#FDEC53) ">them </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEC53,#FFE65E) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE65E,#FFD973) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD973,#FFB2A5) ">separation. </div>
+</body></html>
+
 
 ---
 
@@ -250,7 +398,8 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-
+&lt;br&gt;
+&lt;br&gt;
 
 
 ## Fuzzy (Indirect) Matches
@@ -260,6 +409,514 @@ background-position: 90% 8%
   - Version 2: "the political hands which have connected"
   - Version 3: "the political bands, which have connected"
   
+---
+
+background-image: url("images/highlightr.png")
+background-size: 100px
+background-position: 90% 8%
+
+&lt;br&gt;
+&lt;br&gt;
+
+## Fuzzy Matches
+
+- Identify non-matching collocations in derivative documents
+- Use Jaccard similarity to find the source collocation that is the closest to the non-matching derivative collocation (`zoomerjoin` (Green, 2025))
+  - Intersection of the sets divided by the union (Wu et al., 2022)
+  - Values range from 0 to 1
+  
+- Example of Jaccard similarity: "hands" and "bands" with n-gram width of 3
+
+--
+ - `\(\frac{2}{4}=0.5\)`
+
+<div id="wlynpykyhc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wlynpykyhc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wlynpykyhc thead, #wlynpykyhc tbody, #wlynpykyhc tfoot, #wlynpykyhc tr, #wlynpykyhc td, #wlynpykyhc th {
+  border-style: none;
+}
+
+#wlynpykyhc p {
+  margin: 0;
+  padding: 0;
+}
+
+#wlynpykyhc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wlynpykyhc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wlynpykyhc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wlynpykyhc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wlynpykyhc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wlynpykyhc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#wlynpykyhc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wlynpykyhc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wlynpykyhc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wlynpykyhc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wlynpykyhc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wlynpykyhc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wlynpykyhc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wlynpykyhc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wlynpykyhc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: middle;
+}
+
+#wlynpykyhc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wlynpykyhc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wlynpykyhc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D5D5D5;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D5D5D5;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wlynpykyhc .gt_stub {
+  color: #FFFFFF;
+  background-color: #5F5F5F;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #5F5F5F;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlynpykyhc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wlynpykyhc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wlynpykyhc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wlynpykyhc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlynpykyhc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #5F5F5F;
+}
+
+#wlynpykyhc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wlynpykyhc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#wlynpykyhc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #D5D5D5;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlynpykyhc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #5F5F5F;
+}
+
+#wlynpykyhc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #5F5F5F;
+}
+
+#wlynpykyhc .gt_striped {
+  background-color: #F4F4F4;
+}
+
+#wlynpykyhc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#wlynpykyhc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wlynpykyhc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlynpykyhc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wlynpykyhc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wlynpykyhc .gt_left {
+  text-align: left;
+}
+
+#wlynpykyhc .gt_center {
+  text-align: center;
+}
+
+#wlynpykyhc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wlynpykyhc .gt_font_normal {
+  font-weight: normal;
+}
+
+#wlynpykyhc .gt_font_bold {
+  font-weight: bold;
+}
+
+#wlynpykyhc .gt_font_italic {
+  font-style: italic;
+}
+
+#wlynpykyhc .gt_super {
+  font-size: 65%;
+}
+
+#wlynpykyhc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wlynpykyhc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wlynpykyhc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wlynpykyhc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wlynpykyhc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wlynpykyhc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wlynpykyhc .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#wlynpykyhc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wlynpykyhc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Relationship">Relationship</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="han">han</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="and">and</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="nds">nds</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="ban">ban</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Relationship" class="gt_row gt_left">Intersection</td>
+<td headers="han" class="gt_row gt_right">0</td>
+<td headers="and" class="gt_row gt_right">1</td>
+<td headers="nds" class="gt_row gt_right">1</td>
+<td headers="ban" class="gt_row gt_right">0</td></tr>
+    <tr><td headers="Relationship" class="gt_row gt_left gt_striped">Union</td>
+<td headers="han" class="gt_row gt_right gt_striped">1</td>
+<td headers="and" class="gt_row gt_right gt_striped">1</td>
+<td headers="nds" class="gt_row gt_right gt_striped">1</td>
+<td headers="ban" class="gt_row gt_right gt_striped">1</td></tr>
+  </tbody>
+  
+</table>
+</div>
+
+
+---
+
+## Fuzzy Matches
+
+- Weight fuzzily matched frequency based on similarity score:
+
+$$
+\frac{n*d}{m}
+$$
+  - where `\(n\)` is the frequency of the fuzzy collocation, `\(d\)` is the Jaccard similarity score, and `\(m\)` is the number of closest matches in the source document
+  
 
 ``` r
 fuzzy_frequency &lt;- collocation_frequency(simple_notepad_example,
@@ -267,7 +924,8 @@ fuzzy_frequency &lt;- collocation_frequency(simple_notepad_example,
                                    text_column = "text",
                                    collocate_length = 3,
                                    fuzzy=TRUE,
-                                   threshold=0.5)
+                                   threshold=0.5,
+                                   n_gram_width = 4)
 ```
 
 ---
@@ -277,7 +935,10 @@ background-size: 100px
 background-position: 90% 8%
 
 
-## The process
+&lt;br&gt;
+&lt;br&gt;
+
+## Fuzzy Matches
 
 
 
@@ -294,82 +955,309 @@ background-position: 90% 8%
 
 
 
-&lt;div&gt;  0 &lt;div style="
+Direct Matches:
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<div>  0 <div style="
     height: 20px;
     width: 200px;
     display: inline-block;
-    background: linear-gradient(45deg, #F251FC , #F8FF1B );"&gt; &lt;/div&gt; 2  &lt;/div&gt; &lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;When&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;in&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;Course&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;human&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;events,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;it&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;becomes&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFE75C) "&gt;necessary&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFE75C,#FFCB87) "&gt;for&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFCB87,#FFC095) "&gt;one&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFC095,#FFAAAE) "&gt;people&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFAAAE,#FFAAAE) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFAAAE,#FF96C3) "&gt;dissolve&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF88D0) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF88D0,#FC7CDC) "&gt;political&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FC7CDC,#FB76E0) "&gt;bands,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FB76E0,#FE85D3) "&gt;which&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FE85D3,#FF91C8) "&gt;have&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF91C8,#FF96C3) "&gt;connected&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;them&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;with&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;another,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;and&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FFB5A2) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FFD27D) "&gt;assume&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFD27D,#FDEF4E) "&gt;among&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;powers&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#F8FF1D) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#F8FF1D,#FFE364) "&gt;earth,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFE364,#FFC68D) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFC68D,#FF96C3) "&gt;separate&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;and&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) "&gt;equal&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FFB5A2) "&gt;station&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FFE363) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFE363,#F8FF1B) "&gt;which&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDEF4E) "&gt;Laws&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFB5A2) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FA73E3) "&gt;Nature&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FA73E3,#F251FC) "&gt;and&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#F251FC,#FF9CBD) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FF9CBD,#FFD874) "&gt;Nature's&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFD874,#FDEF4E) "&gt;God&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;entitle&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;them,&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;a&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;decent&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;respect&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;opinions&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;of&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;mankind&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;requires&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;that&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;they&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;should&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;declare&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;causes&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;which&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;impel&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) "&gt;them&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFD27D) "&gt;to&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFD27D,#FFC490) "&gt;the&amp;nbsp;&lt;/div&gt;&lt;div style="display: inline-block; padding:0px;
-  margin-left:-5px; background: linear-gradient(to right,#FFC490,#FF96C3) "&gt;separation.&amp;nbsp;&lt;/div&gt;
+    background: linear-gradient(45deg, #F251FC , #F8FF1B );"> </div> 2  </div> <div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">When </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">in </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">Course </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">human </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">events, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDF04B) ">it </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDF04B,#FFE167) ">becomes </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#FFD17E) ">necessary </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFC292) ">for </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFB2A5) ">one </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">people </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFA1B8) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFA1B8,#FF90C9) ">dissolve </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF90C9,#FD7DDA) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FD7DDA,#F869EB) ">political </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F869EB,#F251FC) ">bands, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F251FC,#F869EB) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F869EB,#FD7DDA) ">have </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FD7DDA,#FF90C9) ">connected </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF90C9,#FFA1B8) ">them </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFA1B8,#FFB2A5) ">with </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">another, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFC292) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFD17E) ">assume </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFE167) ">among </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#FDF04B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDF04B,#F8FF1B) ">powers </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDF04B) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDF04B,#FFE167) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#FFD17E) ">earth, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFC292) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFB2A5) ">separate </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFB2A5) ">equal </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB2A5,#FFC292) ">station </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFD17E) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFE167) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#FFD17E) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD17E,#FFC292) ">Laws </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFA1B8) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFA1B8,#FD7DDA) ">Nature </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FD7DDA,#F251FC) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F251FC,#FD7DDA) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FD7DDA,#FFA1B8) ">Nature's </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFA1B8,#FFC292) ">God </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC292,#FFE167) ">entitle </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE167,#F8FF1B) ">them, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">a </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">decent </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">respect </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">opinions </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">mankind </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">requires </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">that </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">they </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">should </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">declare </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">causes </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDF04B) ">impel </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDF04B,#FDEC53) ">them </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEC53,#FFE65E) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE65E,#FFD973) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD973,#FFB2A5) ">separation. </div>
+</body></html>
+
+
+Fuzzy Matches:
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<div>  0 <div style="
+    height: 20px;
+    width: 200px;
+    display: inline-block;
+    background: linear-gradient(45deg, #F251FC , #F8FF1B );"> </div> 2  </div> <div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">When </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">in </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">Course </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">human </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">events, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">it </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">becomes </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFE75C) ">necessary </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE75C,#FFCB87) ">for </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFCB87,#FFC095) ">one </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC095,#FFAAAE) ">people </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFAAAE,#FFAAAE) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFAAAE,#FF96C3) ">dissolve </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF88D0) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF88D0,#FC7CDC) ">political </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FC7CDC,#FB76E0) ">bands, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FB76E0,#FE85D3) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FE85D3,#FF91C8) ">have </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF91C8,#FF96C3) ">connected </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) ">them </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) ">with </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) ">another, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FFB5A2) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FFD27D) ">assume </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD27D,#FDEF4E) ">among </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">powers </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#F8FF1D) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1D,#FFE364) ">earth, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE364,#FFC68D) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC68D,#FF96C3) ">separate </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FF96C3) ">equal </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF96C3,#FFB5A2) ">station </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FFE363) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFE363,#F8FF1B) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#F8FF1B) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F8FF1B,#FDEF4E) ">Laws </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFB5A2) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFB5A2,#FA73E3) ">Nature </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FA73E3,#F251FC) ">and </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#F251FC,#FF9CBD) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FF9CBD,#FFD874) ">Nature's </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD874,#FDEF4E) ">God </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">entitle </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">them, </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">a </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">decent </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">respect </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">opinions </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">of </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">mankind </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">requires </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">that </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">they </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">should </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">declare </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">causes </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">which </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">impel </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FDEF4E) ">them </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FDEF4E,#FFD27D) ">to </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFD27D,#FFC490) ">the </div>
+<div style="display: inline-block; padding:0px;
+  margin-left:-5px; background: linear-gradient(to right,#FFC490,#FF96C3) ">separation. </div>
+</body></html>
+
 
 ---
 
@@ -482,19 +1370,27 @@ background-position: 90% 8%
 
 - highlightr and Courtroom Studies Completed with Susan VanderPlas
 
+# Works Cited
+
+- B. Green. zoomerjoin: Superlatively Fast Fuzzy Joins, 2025. URL https://CRAN.R-project.org/package=zoomerjoin. R package version 0.2.1. [p2, 3, 4]
+- W. Wu, B. Li, L. Chen, J. Gao, and C. Zhang. A Review for Weighted MinHash Algorithms. IEEE
+Transactions on Knowledge and Data Engineering, 34(6):2553–2573, June 2022. ISSN 1558-2191. doi:
+10.1109/TKDE.2020.3021067. URL https://ieeexplore.ieee.org/abstract/document/9184977.
+[p4]
+
 ---
 
 
-<div id="htmlwidget-3e293ed337d887726eef" style="width:800px;height:600px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3e293ed337d887726eef">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3de0ee7256e1c666cf80" style="width:800px;height:600px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3de0ee7256e1c666cf80">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
 
 &lt;img src="images/pagecleaning.jpg" width="60%" /&gt;
 
-<div id="htmlwidget-8ae99392181df08f4b9b" style="width:800px;height:450px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8ae99392181df08f4b9b">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-362e5976e7ed5b99a0e1" style="width:800px;height:450px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-362e5976e7ed5b99a0e1">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -503,8 +1399,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
 The cat ran up the tree | The cat ran | The cat ran | 12 |  
 
-<div id="htmlwidget-76c4fd1b78d627906e52" style="width:800px;height:545px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-76c4fd1b78d627906e52">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-33e07f750b6a34fd4891" style="width:800px;height:545px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33e07f750b6a34fd4891">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -512,8 +1408,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
 The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11 | ,chased by a dog,
 
-<div id="htmlwidget-37f1b847ec575f17c68b" style="width:800px;height:545px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-37f1b847ec575f17c68b">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-552ff07e41f10a951987" style="width:800px;height:545px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-552ff07e41f10a951987">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -521,8 +1417,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
 --------|---------|---------|---------
 The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree chased by a dog | (The cat ran up the tree) | 0 | 10 | 5 | chased by a dog
 
-<div id="htmlwidget-600f585daf3bdb5ee068" style="width:800px;height:500px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-600f585daf3bdb5ee068">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ae4a1c7aec415967d79a" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ae4a1c7aec415967d79a">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -559,8 +1455,8 @@ The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The c
    - If the string is "long enough", remove from current page of notes
    - Repeat
 
-<div id="htmlwidget-118c76f52468ea54a544" style="width:800px;height:500px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-118c76f52468ea54a544">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e2905f3a4c514b9a2b52" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e2905f3a4c514b9a2b52">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 

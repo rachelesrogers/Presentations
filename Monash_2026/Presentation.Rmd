@@ -1,6 +1,6 @@
 ---
 title: "Tools for Testing Transcript Scenarios"
-subtitle: "Text Analysis, Response Calibration, and Study Interface"
+subtitle: "Text Analysis, Study Interface, and Response Calibration"
 author: "Rachel Rogers"
 institute: "University of Technology, Sydney"
 date: "1 May, 2026"
@@ -29,23 +29,19 @@ library(car)
 library(emmeans)
 library(rcompanion)
 library(knitr)
+library(htmltools)
+library(gt)
 ```
-
-# Overview
-
-- Humans are finicky, and do not always respond how we expect or prefer
-- This presents a challenge and an opportunity when analyzing data
-
---
 
 # Outline
 
-- Failed Likert Scales and Alternative Approaches  
-- Sequential Notepad Analysis  
+- Sequential Notepad Analysis/Mapping Derivative documents to source texts  
 - Transcript Toolkit  
+- Failed Likert Scales and Alternative Approaches  
 - Future Directions
 
 ---
+
 # The Beginning
 
 How do potential jurors react to the use of a bullet matching algorithm alongside an examiner's testimony in a trial scenario?
@@ -90,15 +86,15 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
   - Participants had the option to use a digital notepad throughout the study
   - Results were saved after each page
 
-- Scale analysis
-  - Ceiling effect: examiners are overall seen as reliable
-  - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
-  - Proposed Solution: Investigate other response methods
-
 - Transcript Toolkit
   - Participants found "Q:" "A:" format confusing
   - Develop Visual Cues (Characters/Speech Bubbles)
   - Character Validation
+  
+- Scale analysis
+  - Ceiling effect: examiners are overall seen as reliable
+  - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
+  - Proposed Solution: Investigate other response methods
 
 ---
 
@@ -123,8 +119,7 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
 
   
 .pull-left[.img[![](images/collocationcount.jpg)]]
-.pull-right[.img[![](images/collocationanalysis.jpg)]
-            ![](images/wordanalysis.jpg)]
+.pull-right[.img[![](images/collocationanalysis.jpg)]]
 
 ---
 
@@ -205,8 +200,11 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
+<br>
+<br>
 
 ## The process
+
 
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
@@ -221,10 +219,13 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-
+<br>
+<br>
 
 
 ## The process
+
+
 
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
 
@@ -236,7 +237,9 @@ page_highlight <- highlighted_text(freq_plot)
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
-knitr::include_url("images/sample.html")
+
+htmltools::includeMarkdown("images/sample.html")
+# knitr::include_url("images/sample.html")
 
 ```
 
@@ -246,7 +249,8 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-
+<br>
+<br>
 
 
 ## Fuzzy (Indirect) Matches
@@ -256,6 +260,54 @@ background-position: 90% 8%
   - Version 2: "the political hands which have connected"
   - Version 3: "the political bands, which have connected"
   
+---
+
+background-image: url("images/highlightr.png")
+background-size: 100px
+background-position: 90% 8%
+
+<br>
+<br>
+
+## Fuzzy Matches
+
+- Identify non-matching collocations in derivative documents
+- Use Jaccard similarity to find the source collocation that is the closest to the non-matching derivative collocation (`zoomerjoin` (Green, 2025))
+  - Intersection of the sets divided by the union (Wu et al., 2022)
+  - Values range from 0 to 1
+  
+- Example of Jaccard similarity: "hands" and "bands" with n-gram width of 3
+
+--
+ - $\frac{2}{4}=0.5$
+
+```{r echo=FALSE, warning=FALSE,message=FALSE}
+
+jaccard.df <- 
+  data.frame(Relationship=c("Intersection", "Union"),
+             han=c(0,1), and=c(1,1), nds=c(1,1), 
+             ban=c(0,1))
+
+jaccard.df %>% 
+    gt() %>%
+  # opt_table_font(size="12px") %>%
+  opt_stylize(style = 1, color="gray")
+
+
+```
+
+
+---
+
+## Fuzzy Matches
+
+- Weight fuzzily matched frequency based on similarity score:
+
+$$
+\frac{n*d}{m}
+$$
+  - where $n$ is the frequency of the fuzzy collocation, $d$ is the Jaccard similarity score, and $m$ is the number of closest matches in the source document
+  
 ```{r, warning=FALSE, message=FALSE}
 
 fuzzy_frequency <- collocation_frequency(simple_notepad_example,
@@ -263,7 +315,8 @@ fuzzy_frequency <- collocation_frequency(simple_notepad_example,
                                    text_column = "text",
                                    collocate_length = 3,
                                    fuzzy=TRUE,
-                                   threshold=0.5)
+                                   threshold=0.5,
+                                   n_gram_width = 4)
 
 ```
 
@@ -274,7 +327,10 @@ background-size: 100px
 background-position: 90% 8%
 
 
-## The process
+<br>
+<br>
+
+## Fuzzy Matches
 
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
@@ -295,11 +351,25 @@ fuzzy_frequency2[16:20,] %>% select(!c(word_num, to_merge)) %>% kable(digits=2)
 freq_plot2 <- collocation_plot(fuzzy_frequency)
 page_highlight2 <- highlighted_text(freq_plot2)
 
-# library(xml2)
-# xml2::write_html(xml2::read_html(page_highlight), "sample.html")
+library(xml2)
+xml2::write_html(xml2::read_html(page_highlight2), "images/sample2.html")
 ```
 
-`r page_highlight2`
+Direct Matches:
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+htmltools::includeMarkdown("images/sample.html")
+# knitr::include_url("images/sample.html")
+
+```
+
+Fuzzy Matches:
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+htmltools::includeMarkdown("images/sample2.html")
+# knitr::include_url("images/sample.html")
+
+```
 
 ---
 
@@ -1256,6 +1326,14 @@ complete_consistency %>% select("Response Type", "Opinion of Guilt", "Categorica
 # Acknowledgements
 
 - highlightr and Courtroom Studies Completed with Susan VanderPlas
+
+# Works Cited
+
+- B. Green. zoomerjoin: Superlatively Fast Fuzzy Joins, 2025. URL https://CRAN.R-project.org/package=zoomerjoin. R package version 0.2.1. [p2, 3, 4]
+- W. Wu, B. Li, L. Chen, J. Gao, and C. Zhang. A Review for Weighted MinHash Algorithms. IEEE
+Transactions on Knowledge and Data Engineering, 34(6):2553–2573, June 2022. ISSN 1558-2191. doi:
+10.1109/TKDE.2020.3021067. URL https://ieeexplore.ieee.org/abstract/document/9184977.
+[p4]
 
 ---
 
