@@ -129,7 +129,6 @@ background-position: 90% 8%
 
 ## Other Applications: highlightr package
 
-.pull-left[
 - Map collocation frequency in derivative documents to a source document
 
 - Weighted Fuzzy Matches
@@ -137,13 +136,8 @@ background-position: 90% 8%
   - Future directions: Account for paraphrased material
 - Format output in .html
   - Works for .Rmd documents
-  - Can save as separate file]
+  - Can save as separate file
   
-.pull-right[
-
-.img[![](images/wiki.png)]]
-
-
 ---
 
 background-image: url("images/highlightr.png")
@@ -151,6 +145,9 @@ background-size: 100px
 background-position: 90% 8%
 
 ## The process
+
+<br>
+<br>
 
 3 drafts of the first sentence in the US Declaration of Independence
 
@@ -177,6 +174,9 @@ background-position: 90% 8%
 
 ## The process
 
+<br>
+<br>
+
 - Last 6 words across documents:
   - Version 1: "which impel them to the change."
   - Version 2: "which impel them to the separation."
@@ -200,12 +200,11 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-<br>
-<br>
 
 ## The process
 
-
+<br>
+<br>
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 
@@ -219,13 +218,10 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-<br>
-<br>
-
-
 ## The process
 
-
+<br>
+<br>
 
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
 
@@ -249,11 +245,10 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-<br>
-<br>
-
-
 ## Fuzzy (Indirect) Matches
+
+<br>
+<br>
 
 - A potential typo:
   - Version 1: NA
@@ -266,10 +261,10 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-<br>
-<br>
-
 ## Fuzzy Matches
+
+<br>
+<br>
 
 - Identify non-matching collocations in derivative documents
 - Use Jaccard similarity to find the source collocation that is the closest to the non-matching derivative collocation (`zoomerjoin` (Green, 2025))
@@ -299,7 +294,14 @@ jaccard.df %>%
 
 ---
 
+background-image: url("images/highlightr.png")
+background-size: 100px
+background-position: 90% 8%
+
 ## Fuzzy Matches
+
+<br>
+<br>
 
 - Weight fuzzily matched frequency based on similarity score:
 
@@ -326,12 +328,10 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
-
-<br>
-<br>
-
 ## Fuzzy Matches
 
+<br>
+<br>
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 
@@ -351,8 +351,8 @@ fuzzy_frequency2[16:20,] %>% select(!c(word_num, to_merge)) %>% kable(digits=2)
 freq_plot2 <- collocation_plot(fuzzy_frequency)
 page_highlight2 <- highlighted_text(freq_plot2)
 
-library(xml2)
-xml2::write_html(xml2::read_html(page_highlight2), "images/sample2.html")
+# library(xml2)
+# xml2::write_html(xml2::read_html(page_highlight2), "images/sample2.html")
 ```
 
 Direct Matches:
@@ -368,6 +368,31 @@ Fuzzy Matches:
 
 htmltools::includeMarkdown("images/sample2.html")
 # knitr::include_url("images/sample.html")
+
+```
+
+---
+
+## Wikipedia Edits: Josie Baff
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+wiki_pages <- read.csv("data/wiki_pages.csv")
+
+wiki_example <- collocation_frequency(wiki_pages,
+                                   source_row=1, 
+                                   text_column = "page_notes")
+
+wiki_plot <- collocation_plot(wiki_example)
+wiki_highlight <- highlighted_text(wiki_plot)
+
+# xml2::write_html(xml2::read_html(wiki_highlight), "images/wiki.html")
+
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+htmltools::includeMarkdown("images/wiki.html")
 
 ```
 
@@ -392,6 +417,7 @@ background-position: 90% 8%
 
 ## Study Template
 
+.pull-left[.img[![](images/figure_edits.png)]]
 .pull-right[
 - Download template using `Save_Template()`
 
@@ -399,11 +425,27 @@ background-position: 90% 8%
 
 - Design and save characters using `Edit_Figures()`]
 
-.pull-left[
+---
 
-]
+## Character Validation
 
 ---
+
+
+# Acknowledgements
+
+- highlightr and Courtroom Studies Completed with Susan VanderPlas
+
+# Works Cited
+
+- B. Green. zoomerjoin: Superlatively Fast Fuzzy Joins, 2025. URL https://CRAN.R-project.org/package=zoomerjoin. R package version 0.2.1. [p2, 3, 4]
+- W. Wu, B. Li, L. Chen, J. Gao, and C. Zhang. A Review for Weighted MinHash Algorithms. IEEE
+Transactions on Knowledge and Data Engineering, 34(6):2553–2573, June 2022. ISSN 1558-2191. doi:
+10.1109/TKDE.2020.3021067. URL https://ieeexplore.ieee.org/abstract/document/9184977.
+[p4]
+
+---
+
 
 ## Scale Analysis
 
@@ -1320,20 +1362,6 @@ complete_consistency %>% select("Response Type", "Opinion of Guilt", "Categorica
 - Numeric Chance Confusion
 - Differing Interpretation of Partial Testimony
 - Choices not Necessarily Consistent
-
----
-
-# Acknowledgements
-
-- highlightr and Courtroom Studies Completed with Susan VanderPlas
-
-# Works Cited
-
-- B. Green. zoomerjoin: Superlatively Fast Fuzzy Joins, 2025. URL https://CRAN.R-project.org/package=zoomerjoin. R package version 0.2.1. [p2, 3, 4]
-- W. Wu, B. Li, L. Chen, J. Gao, and C. Zhang. A Review for Weighted MinHash Algorithms. IEEE
-Transactions on Knowledge and Data Engineering, 34(6):2553–2573, June 2022. ISSN 1558-2191. doi:
-10.1109/TKDE.2020.3021067. URL https://ieeexplore.ieee.org/abstract/document/9184977.
-[p4]
 
 ---
 
