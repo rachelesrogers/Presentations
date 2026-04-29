@@ -531,7 +531,7 @@ knitr::include_url("images/scale_plotly.html")
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=10}
 
 # htmltools::includeMarkdown("images/fit_plotly.html")
-knitr::include_url("images/fit_plotly.html")
+knitr::include_url("images/fit_plotly.html", height="400px")
 
 ```
 
