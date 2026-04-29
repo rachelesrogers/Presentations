@@ -31,6 +31,7 @@ library(rcompanion)
 library(knitr)
 library(htmltools)
 library(gt)
+library(shiny)
 ```
 
 # Outline
@@ -425,6 +426,14 @@ background-position: 90% 8%
 - Input information into a .csv file, output a .csv file formatted with appropriate .html tags to be read in an RShiny app using `Format_Testimony()`
 
 - Design and save characters using `Edit_Figures()`]
+
+---
+
+```{r, echo = FALSE, message=FALSE}
+
+knitr::include_app("https://rachelesrogers.shinyapps.io/edit_figures/", height="600px")
+
+```
 
 ---
 
