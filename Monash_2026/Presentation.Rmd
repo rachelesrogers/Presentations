@@ -234,8 +234,8 @@ page_highlight <- highlighted_text(freq_plot)
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-htmltools::includeMarkdown("images/sample.html")
-# knitr::include_url("images/sample.html")
+# htmltools::includeMarkdown("images/sample.html")
+knitr::include_url("images/sample.html")
 
 ```
 
@@ -358,16 +358,16 @@ page_highlight2 <- highlighted_text(freq_plot2)
 Direct Matches:
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-htmltools::includeMarkdown("images/sample.html")
-# knitr::include_url("images/sample.html")
+# htmltools::includeMarkdown("images/sample.html")
+knitr::include_url("images/sample.html")
 
 ```
 
 Fuzzy Matches:
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-htmltools::includeMarkdown("images/sample2.html")
-# knitr::include_url("images/sample.html")
+# htmltools::includeMarkdown("images/sample2.html")
+knitr::include_url("images/sample.html")
 
 ```
 
@@ -392,7 +392,8 @@ wiki_highlight <- highlighted_text(wiki_plot)
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-htmltools::includeMarkdown("images/wiki.html")
+# htmltools::includeMarkdown("images/wiki.html")
+knitr::include_url("images/wiki.html")
 
 ```
 
@@ -430,8 +431,10 @@ background-position: 90% 8%
 ## Character Validation
 
 <figure>
-<img src="images/validation_characters.jpg" width="70%" />
+<img src="images/validation_characters.jpg" width="60%" />
 </figure>
+
+- Characters Created by Richy Meleus
 
 ---
 
@@ -448,14 +451,18 @@ background-position: 90% 8%
    - Likability (unlikable - likeable)
    - Income (low income - high income)
    - Typicality (unusual - not unusual at all)
+   
 - Gender Perception
+
 - Race Perception
+
 - Common Interests/Personality Perception:
-  -live next door
+  - live next door
   - shop at the same grocery store
   - enjoy the same hobbies 
   - volunteer their time for charity
   - offer someone help if someone needed it
+  
 - 520 participants evaluating 11 figures each
 
 ---
@@ -463,11 +470,12 @@ background-position: 90% 8%
 ## Gender
 
 <figure>
-<img src="images/gender_decision_tree.png" width="100%" />
+<img src="images/genderplotpdf2.png" width="100%" />
 </figure>
 
-- 70% training, 30% testing
-- 72.92% accuracy for the test data
+- Decision tree: divided on clothing and heads (72.92% accuracy)
+  - 70% training, 30% testing
+
 
 ---
 
@@ -476,6 +484,18 @@ background-position: 90% 8%
 <figure>
 <img src="images/ethnicitymosaic.png" width="100%" />
 </figure>
+
+---
+
+## Scales
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+# htmltools::includeMarkdown("images/fit_plotly.html")
+knitr::include_url("images/scale_plotly.html")
+
+```
 
 ---
 
@@ -488,6 +508,39 @@ background-position: 90% 8%
 
 ---
 
+## Grouping Variables
+
+- Participants thought a person was more likely to live next door if their race/ethnicity matched
+  - Non-significant effect on other grouping variables
+- Participants thought that a person was more likely to share the same hobbies if their gender matched
+  - Non-significant effect on other grouping variables
+  
+- Those perceived as women were seen as more likely to help and volunteer
+
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=10}
+
+# htmltools::includeMarkdown("images/fit_plotly.html")
+knitr::include_url("images/fit_plotly.html")
+
+```
+
+---
+
+
+.pull-left[<img src="images/char1.png" width="50%" />
+<img src="images/char1_group.png" width="100%" />]
+
+.pull-right[<img src="images/char2.png" width="50%" />
+<img src="images/char2_group.png" width="100%" />]
+
+
+---
+
+# Conclusion
+
+---
 
 # Acknowledgements
 
