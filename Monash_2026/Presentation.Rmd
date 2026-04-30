@@ -45,7 +45,7 @@ library(shiny)
 
 # The Beginning
 
-How do potential jurors react to the use of a bullet matching algorithm alongside an examiner's testimony in a trial scenario?
+How do potential jurors react to the use of a bullet matching algorithm (Hare et al. 2017) alongside an examiner's testimony in a trial scenario?
 
 - 2 x 2 x 3 Factorial Design
   - Presence/Absence of Images
@@ -105,7 +105,7 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
 .img[![](images/pagecleaning.jpg)]
 
 - Difficult Notes (deletion, insertion, and duplication)
-   - Longest Common Substring 
+   - Longest Common Substring (Crochemore et al. 2017)
 
 ---
 
@@ -151,9 +151,8 @@ background-position: 90% 8%
 
 ## The process
 
-<br>
 
-3 drafts of the first sentence in the US Declaration of Independence
+3 drafts of the US Declaration of Independence first sentence
 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -611,13 +610,20 @@ knitr::include_url("images/fit_plotly.html", height="400px")
 
 - highlightr and Courtroom Studies Completed with Susan VanderPlas
 
-# Works Cited
+This work was funded (or partially funded) by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreements 70NANB15H176 and 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
+
+---
+
+# References
 
 <small>
 - 1776: Declaration of Independence (various drafts) | Online Library of Liberty. (n.d.). Retrieved April 23, 2026, from https://oll.libertyfund.org/pages/1776-declaration-of-independence-various-drafts
 - “Highlighter.” Wikipedia, 14 Mar. 2024. Wikipedia, https://en.wikipedia.org/w/index.php?title=Highlighter&oldid=1213690238.
+- M. Crochemore, C. S. Iliopoulos, A. Langiu, & F. Mignosi (2017). The longest common substring problem. Mathematical Structures in Computer Science, 27(2), 277–295. https://doi.org/10.1017/S0960129515000110
 -  B. L. Garrett, N. Scurich, & W. E. Crozier (2020). Mock jurors’ evaluation of firearm examiner testimony. Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
 - B. Green. zoomerjoin: Superlatively Fast Fuzzy Joins, 2025. URL https://CRAN.R-project.org/package=zoomerjoin. R package version 0.2.1. [p2, 3, 4]
+- E. Hare, et al. “Automatic Matching of Bullet Land Impressions.” The Annals of Applied Statistics, vol. 11, no. 4, Dec. 2017, pp. 2332–56. Project Euclid, https://doi.org/10.1214/17-AOAS1080  
+- K. Kellermann. (2013). Trial advocacy: Truthiness, falsiness, and nothingness.
 - W. Wu, B. Li, L. Chen, J. Gao, and C. Zhang. A Review for Weighted MinHash Algorithms. IEEE
 Transactions on Knowledge and Data Engineering, 34(6):2553–2573, June 2022. ISSN 1558-2191. doi:
 10.1109/TKDE.2020.3021067. URL https://ieeexplore.ieee.org/abstract/document/9184977.
