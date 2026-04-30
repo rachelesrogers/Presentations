@@ -114,7 +114,6 @@ How do potential jurors react to the use of a bullet matching algorithm (Hare et
 - Highlight testimony based on frequency of occurrence in participants' notes
   - Collocations of length 5
      - Willfully: average frequency of 91.2
-  - Frequency of Individual words
   - Divide by number of occurrences in the testimony
 
   
@@ -137,7 +136,7 @@ background-position: 90% 8%
   - Transcript Analysis
 
 - Weighted Fuzzy Matches
-  - Weight indirect matches by Jaccard distance to account for typos
+  - Weight indirect matches by Jaccard similarity to account for typos
 
 - Format output in .html
   - Works for .Rmd documents
@@ -157,8 +156,8 @@ background-position: 90% 8%
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
-simple_notepad_example <- data.frame(version = c("v1","v2","final"), text = c("When in the course of human events it becomes necessary for a people to advance from that subordination in which they have hitherto remained, & to assume among the powers of the earth the equal & independent station to which the laws of nature & of nature’s god entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the change.", 
-                                                                              "When in the course of human events it becomes necessary for one people to dissolve the political hands which have connected them with another, and to assume among the powers of the earth the separate and equal station to which the laws of nature & of nature’s god entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.", 
+simple_notepad_example <- data.frame(version = c("v1","v2","final"), text = c("When in the course of human events it becomes necessary for a people to advance from that subordination in which they have hitherto remained, and to assume among the powers of the earth the equal and independent station to which the laws of nature and of nature’s god entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the change.", 
+                                                                              "When in the course of human events it becomes necessary for one people to dissolve the political hands which have connected them with another, and to assume among the powers of the earth the separate and equal station to which the laws of nature and of nature’s god entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.", 
                                                                               "When in the Course of human events, it becomes necessary for one people to dissolve the political bands, which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature’s God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation. ") )
 
 simple_notepad_example %>% filter(version != "v2") %>% kable()
@@ -232,7 +231,7 @@ freq_plot <- collocation_plot(frequency)
 page_highlight <- highlighted_text(freq_plot)
 
 # library(xml2)
-# xml2::write_html(xml2::read_html(page_highlight), "sample.html")
+ # xml2::write_html(xml2::read_html(page_highlight), "sample.html")
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -276,9 +275,6 @@ background-position: 90% 8%
   
 - Example of Jaccard similarity: "hands" and "bands" with n-gram width of 3
 
---
- - $\frac{2}{4}=0.5$
-
 ```{r echo=FALSE, warning=FALSE,message=FALSE}
 
 jaccard.df <- 
@@ -293,6 +289,10 @@ jaccard.df %>%
 
 
 ```
+
+--
+
+ - $\frac{2}{4}=0.5$
 
 
 ---
@@ -374,16 +374,16 @@ knitr::include_url("images/sample2.html", height="200px")
 
 ```
 
-<div style="display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid rgba(0, 0, 0, .2);
-  background-color: #F45AF5"></div>
-<div style="display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid rgba(0, 0, 0, .2);
-  background-color: #FB77DF"></div>
+<!-- <div style="display: inline-block; -->
+<!--   width: 20px; -->
+<!--   height: 20px; -->
+<!--   border: 1px solid rgba(0, 0, 0, .2); -->
+<!--   background-color: #F45AF5"></div> -->
+<!-- <div style="display: inline-block; -->
+<!--   width: 20px; -->
+<!--   height: 20px; -->
+<!--   border: 1px solid rgba(0, 0, 0, .2); -->
+<!--   background-color: #FB77DF"></div> -->
 
 ---
 
@@ -1565,6 +1565,108 @@ complete_consistency %>% select("Response Type", "Opinion of Guilt", "Categorica
 
 ---
 
+### Collocation Analysis
+
+<img src="images/collocationlong.jpg" width="70%" />
+
+---
+
+## Sequential Note Cleaning
+
+---
+
+### First n Characters
+
+- Test edit distance on first n characters to previous notes
+   - Edit distance: Number of changes necessary to go from one string to the other string
+   - Hat -> Hot requires 1 substitution (edit distance of 1)
+   - Over there -> there requires 5 deletions (edit distance of 5)
+- Set a threshold for the maximum allowable difference between texts
+
+.img[![](images/pagecleaning.jpg)]
+
+- What if:
+   - Participants delete portions of their previous notes?
+   - Participants add new notes in the middle of/before their old notes?
+   - Participants duplicate their old notes?
+   
+---
+
+### Longest Common Substring (LCS)
+
+- Search for the longest common substring between the current set of notes and the previous set of notes
+   - If the string is "long enough", remove from current page of notes
+   - Repeat
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
+
+grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  rec1 [label = 'Page 1\n the cat enjoys napping in the afternoon']
+  rec2 [label = 'Page 2\nWhen it is quiet, the cat enjoys napping']
+  rec3 [label =  'LCS\n the cat enjoys napping']
+  rec4 [label = 'Page 2 Clean\nWhen it is quiet']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec3
+  rec2 -> rec3
+  rec3 -> rec4
+  }",
+  height = 500, width=800)
+
+```
+
+---
+
+### Longest Common Substring (LCS)
+
+What if...
+- Participants delete portions of their previous notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | The cat ran | The cat ran | 12
+
+- Participants add new notes in the middle of old notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | <mark>The cat ran, chased by a</mark> dog, up the tree | (The cat ran)(up the tree) | 11
+
+- Participants duplicate their old notes?
+   
+Page 1 | Page 2 | LCS | Edit Distance
+--------|---------|---------|---------
+The cat ran up the tree | <mark>The cat ran up the tree</mark> The cat ran up the tree | (The cat ran up the tree)(The cat ran up the tree) | 0
+
+---
+
+### Hybrid Note Cleaning
+
+- Easy Cases of Sequential Notes
+   - First N Character Method
+     - Compare the beginning of the current notes with the entirety of the previous notes
+
+.img[![](images/pagecleaning.jpg)]
+
+- Difficult Notes (deletion, insertion, and duplication)
+   - Longest Common Substring 
+
+---
+
+### Hybrid Method
+
+- Difficult Cases
+   - Edit distance larger than the initial cutoff value
+   - Note length more than 4 standard deviations above the mean length for that page
+- Based on validation from 35 participants' notes (cleaned by hand)
+   - 561 pages of notes
+
+.img[![](images/cleaningtable.jpg)]
+
+---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
 #attr(adist("The cat ran up the tree.", "After the dog barked, Th", counts=TRUE,),"trafos")
@@ -1800,108 +1902,4 @@ grViz("digraph {
   height = 500, width=800)
 
 ```
-
----
-
-### Collocation Analysis
-
-<img src="images/collocationlong.jpg" width="70%" />
-
----
-
-## Sequential Note Cleaning
-
----
-
-### First n Characters
-
-- Test edit distance on first n characters to previous notes
-   - Edit distance: Number of changes necessary to go from one string to the other string
-   - Hat -> Hot requires 1 substitution (edit distance of 1)
-   - Over there -> there requires 5 deletions (edit distance of 5)
-- Set a threshold for the maximum allowable difference between texts
-
-.img[![](images/pagecleaning.jpg)]
-
-- What if:
-   - Participants delete portions of their previous notes?
-   - Participants add new notes in the middle of/before their old notes?
-   - Participants duplicate their old notes?
-   
----
-
-### Longest Common Substring (LCS)
-
-- Search for the longest common substring between the current set of notes and the previous set of notes
-   - If the string is "long enough", remove from current page of notes
-   - Repeat
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center"}
-
-grViz("digraph {
-  graph [layout = dot, rankdir = TB]
-  
-  node [shape = rectangle]        
-  rec1 [label = 'Page 1\n the cat enjoys napping in the afternoon']
-  rec2 [label = 'Page 2\nWhen it is quiet, the cat enjoys napping']
-  rec3 [label =  'LCS\n the cat enjoys napping']
-  rec4 [label = 'Page 2 Clean\nWhen it is quiet']
-  
-  # edge definitions with the node IDs
-  rec1 -> rec3
-  rec2 -> rec3
-  rec3 -> rec4
-  }",
-  height = 500, width=800)
-
-```
-
----
-
-### Longest Common Substring (LCS)
-
-What if...
-- Participants delete portions of their previous notes?
-   
-Page 1 | Page 2 | LCS | Edit Distance
---------|---------|---------|---------
-The cat ran up the tree | The cat ran | The cat ran | 12
-
-- Participants add new notes in the middle of old notes?
-   
-Page 1 | Page 2 | LCS | Edit Distance
---------|---------|---------|---------
-The cat ran up the tree | <mark>The cat ran, chased by a</mark> dog, up the tree | (The cat ran)(up the tree) | 11
-
-- Participants duplicate their old notes?
-   
-Page 1 | Page 2 | LCS | Edit Distance
---------|---------|---------|---------
-The cat ran up the tree | <mark>The cat ran up the tree</mark> The cat ran up the tree | (The cat ran up the tree)(The cat ran up the tree) | 0
-
----
-
-### Hybrid Note Cleaning
-
-- Easy Cases of Sequential Notes
-   - First N Character Method
-     - Compare the beginning of the current notes with the entirety of the previous notes
-
-.img[![](images/pagecleaning.jpg)]
-
-- Difficult Notes (deletion, insertion, and duplication)
-   - Longest Common Substring 
-
----
-
-### Hybrid Method
-
-- Difficult Cases
-   - Edit distance larger than the initial cutoff value
-   - Note length more than 4 standard deviations above the mean length for that page
-- Based on validation from 35 participants' notes (cleaned by hand)
-   - 561 pages of notes
-
-.img[![](images/cleaningtable.jpg)]
-
 
