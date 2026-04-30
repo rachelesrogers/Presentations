@@ -1,6 +1,6 @@
 ---
-title: "Tools for Testing Transcript Scenarios"
-subtitle: "Text Analysis, Study Interface, and Response Calibration"
+title: "Transcript Research Tools"
+subtitle: " Visualizing Frequency in Derivative Documents and Creating Studies using RShiny"
 author: "Rachel Rogers"
 institute: "University of Technology, Sydney"
 date: "1 May, 2026"
@@ -36,9 +36,9 @@ library(shiny)
 
 # Outline
 
+- Background
 - Sequential Notepad Analysis/Mapping Derivative documents to source texts  
 - Transcript Toolkit  
-- Failed Likert Scales and Alternative Approaches  
 - Future Directions
 
 ---
@@ -72,15 +72,6 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
 
 ---
 
-## The Results
-
-
-<center>
-<!-- <img src="images/reliable.jpg" width="70%" /> -->
-<img src="images/credible.jpg" width="70%" /></center>
-
----
-
 ## Moving Forward
 
 - Notepad analysis
@@ -92,11 +83,6 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
   - Develop Visual Cues (Characters/Speech Bubbles)
   - Character Validation
   
-- Scale analysis
-  - Ceiling effect: examiners are overall seen as reliable
-  - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
-  - Proposed Solution: Investigate other response methods
-
 ---
 
 ## Notepad Analysis
@@ -107,6 +93,19 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
   - Visualization: map frequency of phrases onto original testimony to show which phrases were copied more frequently
   
   .img[![](images/pagecleaning.jpg)]
+
+---
+
+### Hybrid Note Cleaning
+
+- Easy Cases of Sequential Notes
+   - First N Character Method
+     - Compare the beginning of the current notes with the entirety of the previous notes
+
+.img[![](images/pagecleaning.jpg)]
+
+- Difficult Notes (deletion, insertion, and duplication)
+   - Longest Common Substring 
 
 ---
 
@@ -128,13 +127,18 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
+<br>
+<br>
 ## Other Applications: highlightr package
 
 - Map collocation frequency in derivative documents to a source document
+  - Comparing Drafts
+  - Wikipedia Edits
+  - Transcript Analysis
 
 - Weighted Fuzzy Matches
   - Weight indirect matches by Jaccard distance to account for typos
-  - Future directions: Account for paraphrased material
+
 - Format output in .html
   - Works for .Rmd documents
   - Can save as separate file
@@ -147,7 +151,6 @@ background-position: 90% 8%
 
 ## The process
 
-<br>
 <br>
 
 3 drafts of the first sentence in the US Declaration of Independence
@@ -236,7 +239,7 @@ page_highlight <- highlighted_text(freq_plot)
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 # htmltools::includeMarkdown("images/sample.html")
-knitr::include_url("images/sample.html")
+knitr::include_url("images/sample.html", height="200px")
 
 ```
 
@@ -336,9 +339,9 @@ background-position: 90% 8%
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 
-fuzzy_frequency$'Direct Frequency' <- frequency$Freq
-
 fuzzy_frequency2<- rename(fuzzy_frequency, 'Fuzzy Frequency' = Freq)
+
+fuzzy_frequency2$'Direct Frequency' <- frequency$Freq
 
 fuzzy_frequency2[16:20,] %>% select(!c(word_num, to_merge)) %>% kable(digits=2)
 
@@ -360,7 +363,7 @@ Direct Matches:
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 # htmltools::includeMarkdown("images/sample.html")
-knitr::include_url("images/sample.html")
+knitr::include_url("images/sample.html", height="200px")
 
 ```
 
@@ -368,33 +371,56 @@ Fuzzy Matches:
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 # htmltools::includeMarkdown("images/sample2.html")
-knitr::include_url("images/sample.html")
+knitr::include_url("images/sample2.html", height="200px")
 
 ```
 
+<div style="display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  background-color: #F45AF5"></div>
+<div style="display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  background-color: #FB77DF"></div>
+
 ---
 
-## Wikipedia Edits: Josie Baff
+## Wikipedia Edits: Highlighter Article
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 
 wiki_pages <- read.csv("data/wiki_pages.csv")
 
 wiki_example <- collocation_frequency(wiki_pages,
-                                   source_row=1, 
+                                   source_row=nrow(wiki_pages), 
                                    text_column = "page_notes")
 
 wiki_plot <- collocation_plot(wiki_example)
 wiki_highlight <- highlighted_text(wiki_plot)
 
-# xml2::write_html(xml2::read_html(wiki_highlight), "images/wiki.html")
+# xml2::write_html(xml2::read_html(wiki_highlight), "images/wiki2.html")
+
+library(highlightr)
+# calculate frequencies with reference to source document (first row)
+merged_frequency <- collocation_frequency(highlightr::wiki_pages, text_column = "page_notes",
+                                    source_row = 1, fuzzy=TRUE)
+
+freq_plot <- collocation_plot(merged_frequency)
+
+# add html tags to source document
+page_highlight <- highlighted_text(freq_plot, labels=c("(fewest articles)", "(most articles)"))
+
+# xml2::write_html(xml2::read_html(page_highlight), "images/wiki3.html")
 
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 # htmltools::includeMarkdown("images/wiki.html")
-knitr::include_url("images/wiki.html")
+knitr::include_url("images/wiki3.html")
 
 ```
 
@@ -427,15 +453,24 @@ background-position: 90% 8%
 
 - Design and save characters using `Edit_Figures()`]
 
+- https://rachelesrogers.shinyapps.io/edit_figures/
+
 ---
 
 ```{r, echo = FALSE, message=FALSE}
 
-knitr::include_app("https://rachelesrogers.shinyapps.io/edit_figures/", height="600px")
+# knitr::include_app("https://rachelesrogers.shinyapps.io/edit_figures/", height="600px")
+
+# shinyAppDir(
+#   "./edit_figures",
+#   options = list(width = "100%", height = 700)
+# )
 
 ```
 
----
+<!-- https://rachelesrogers.shinyapps.io/edit_figures/ -->
+
+<!-- --- -->
 
 ## Character Validation
 
@@ -449,9 +484,10 @@ knitr::include_app("https://rachelesrogers.shinyapps.io/edit_figures/", height="
 
 ## Study Design
 
+<small>
+
  - 3 skin tones x 10 outfits x 10 heads + hazmat + alien
- 
- Questions:
+
  - Sliding Scale: 
    - Age (young - old)
    - Reliability (unreliable - reliable)
@@ -473,6 +509,8 @@ knitr::include_app("https://rachelesrogers.shinyapps.io/edit_figures/", height="
   - offer someone help if someone needed it
   
 - 520 participants evaluating 11 figures each
+
+</small>
 
 ---
 
@@ -508,11 +546,17 @@ knitr::include_url("images/scale_plotly.html")
 
 ---
 
-.pull-left[<img src="images/char1.png" width="50%" />
-<img src="images/char1_radar.png" width="100%" />]
+.pull-left[
+<div style="text-align: center;">
+<img src="images/char1.png" width="50%" />
+<img src="images/char1_radar.png" width="100%" />
+</div>]
 
-.pull-right[<img src="images/char2.png" width="50%" />
-<img src="images/char2_radar.png" width="100%" />]
+.pull-right[
+<div style="text-align: center;">
+<img src="images/char2.png" width="50%" />
+<img src="images/char2_radar.png" width="100%" />
+</div>]
 
 
 ---
@@ -538,16 +582,28 @@ knitr::include_url("images/fit_plotly.html", height="400px")
 ---
 
 
-.pull-left[<img src="images/char1.png" width="50%" />
-<img src="images/char1_group.png" width="100%" />]
+.pull-left[
+<div style="text-align: center;">
+<img src="images/char1.png" width="50%" />
+<img src="images/char1_group.png" width="100%" />
+</div>]
 
-.pull-right[<img src="images/char2.png" width="50%" />
-<img src="images/char2_group.png" width="100%" />]
+.pull-right[
+<div style="text-align: center;">
+<img src="images/char2.png" width="50%" />
+<img src="images/char2_group.png" width="100%" />
+</div>]
 
 
 ---
 
 # Conclusion
+
+- highlightr: compares source and derivative documents
+  - Future directions: Account for paraphrased material
+  
+- courtr: produces study template
+  - Future directions: expand material in template, add character charts
 
 ---
 
@@ -557,11 +613,30 @@ knitr::include_url("images/fit_plotly.html", height="400px")
 
 # Works Cited
 
+<small>
+- 1776: Declaration of Independence (various drafts) | Online Library of Liberty. (n.d.). Retrieved April 23, 2026, from https://oll.libertyfund.org/pages/1776-declaration-of-independence-various-drafts
+- “Highlighter.” Wikipedia, 14 Mar. 2024. Wikipedia, https://en.wikipedia.org/w/index.php?title=Highlighter&oldid=1213690238.
+-  B. L. Garrett, N. Scurich, & W. E. Crozier (2020). Mock jurors’ evaluation of firearm examiner testimony. Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
 - B. Green. zoomerjoin: Superlatively Fast Fuzzy Joins, 2025. URL https://CRAN.R-project.org/package=zoomerjoin. R package version 0.2.1. [p2, 3, 4]
 - W. Wu, B. Li, L. Chen, J. Gao, and C. Zhang. A Review for Weighted MinHash Algorithms. IEEE
 Transactions on Knowledge and Data Engineering, 34(6):2553–2573, June 2022. ISSN 1558-2191. doi:
 10.1109/TKDE.2020.3021067. URL https://ieeexplore.ieee.org/abstract/document/9184977.
 [p4]
+</small>
+
+---
+
+## The Results
+
+
+<center>
+<!-- <img src="images/reliable.jpg" width="70%" /> -->
+<img src="images/credible.jpg" width="70%" /></center>
+
+- Scale analysis
+  - Ceiling effect: examiners are overall seen as reliable
+  - Individuals may already believe that firearms evidence is reliable (Garrett & Mitchell, 2013)
+  - Proposed Solution: Investigate other response methods
 
 ---
 
@@ -1728,7 +1803,7 @@ grViz("digraph {
 
 ---
 
-## Sequentail Note Cleaning
+## Sequential Note Cleaning
 
 ---
 

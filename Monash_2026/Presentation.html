@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Tools for Testing Transcript Scenarios</title>
+    <title>Transcript Research Tools</title>
     <meta charset="utf-8" />
     <meta name="author" content="Rachel Rogers" />
     <script src="libs/header-attrs-2.30/header-attrs.js"></script>
@@ -17,10 +17,10 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Tools for Testing Transcript Scenarios
+# Transcript Research Tools
 ]
 .subtitle[
-## Text Analysis, Study Interface, and Response Calibration
+## Visualizing Frequency in Derivative Documents and Creating Studies using RShiny
 ]
 .author[
 ### Rachel Rogers
@@ -39,9 +39,9 @@ class: center, middle, inverse, title-slide
 
 # Outline
 
+- Background
 - Sequential Notepad Analysis/Mapping Derivative documents to source texts  
 - Transcript Toolkit  
-- Failed Likert Scales and Alternative Approaches  
 - Future Directions
 
 ---
@@ -75,15 +75,6 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
 
 ---
 
-## The Results
-
-
-&lt;center&gt;
-&lt;!-- &lt;img src="images/reliable.jpg" width="70%" /&gt; --&gt;
-&lt;img src="images/credible.jpg" width="70%" /&gt;&lt;/center&gt;
-
----
-
 ## Moving Forward
 
 - Notepad analysis
@@ -95,11 +86,6 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
   - Develop Visual Cues (Characters/Speech Bubbles)
   - Character Validation
   
-- Scale analysis
-  - Ceiling effect: examiners are overall seen as reliable
-  - Individuals may already believe that firearms evidence is reliable (Garrett &amp; Mitchell, 2013)
-  - Proposed Solution: Investigate other response methods
-
 ---
 
 ## Notepad Analysis
@@ -110,6 +96,19 @@ How do potential jurors react to the use of a bullet matching algorithm alongsid
   - Visualization: map frequency of phrases onto original testimony to show which phrases were copied more frequently
   
   .img[![](images/pagecleaning.jpg)]
+
+---
+
+### Hybrid Note Cleaning
+
+- Easy Cases of Sequential Notes
+   - First N Character Method
+     - Compare the beginning of the current notes with the entirety of the previous notes
+
+.img[![](images/pagecleaning.jpg)]
+
+- Difficult Notes (deletion, insertion, and duplication)
+   - Longest Common Substring 
 
 ---
 
@@ -131,13 +130,18 @@ background-image: url("images/highlightr.png")
 background-size: 100px
 background-position: 90% 8%
 
+&lt;br&gt;
+&lt;br&gt;
 ## Other Applications: highlightr package
 
 - Map collocation frequency in derivative documents to a source document
+  - Comparing Drafts
+  - Wikipedia Edits
+  - Transcript Analysis
 
 - Weighted Fuzzy Matches
   - Weight indirect matches by Jaccard distance to account for typos
-  - Future directions: Account for paraphrased material
+
 - Format output in .html
   - Works for .Rmd documents
   - Can save as separate file
@@ -150,7 +154,6 @@ background-position: 90% 8%
 
 ## The process
 
-&lt;br&gt;
 &lt;br&gt;
 
 3 drafts of the first sentence in the US Declaration of Independence
@@ -237,7 +240,7 @@ page_highlight &lt;- highlighted_text(freq_plot)
 # xml2::write_html(xml2::read_html(page_highlight), "sample.html")
 ```
 
-&lt;iframe src="images/sample.html" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="images/sample.html" width="100%" height="200px" data-external="1"&gt;&lt;/iframe&gt;
 
 ---
 
@@ -276,23 +279,23 @@ background-position: 90% 8%
 --
  - `\(\frac{2}{4}=0.5\)`
 
-<div id="tbffftnemk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tbffftnemk table {
+<div id="cazshhmpqg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cazshhmpqg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tbffftnemk thead, #tbffftnemk tbody, #tbffftnemk tfoot, #tbffftnemk tr, #tbffftnemk td, #tbffftnemk th {
+#cazshhmpqg thead, #cazshhmpqg tbody, #cazshhmpqg tfoot, #cazshhmpqg tr, #cazshhmpqg td, #cazshhmpqg th {
   border-style: none;
 }
 
-#tbffftnemk p {
+#cazshhmpqg p {
   margin: 0;
   padding: 0;
 }
 
-#tbffftnemk .gt_table {
+#cazshhmpqg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -318,12 +321,12 @@ background-position: 90% 8%
   border-left-color: #D3D3D3;
 }
 
-#tbffftnemk .gt_caption {
+#cazshhmpqg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tbffftnemk .gt_title {
+#cazshhmpqg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -335,7 +338,7 @@ background-position: 90% 8%
   border-bottom-width: 0;
 }
 
-#tbffftnemk .gt_subtitle {
+#cazshhmpqg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -347,7 +350,7 @@ background-position: 90% 8%
   border-top-width: 0;
 }
 
-#tbffftnemk .gt_heading {
+#cazshhmpqg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -359,13 +362,13 @@ background-position: 90% 8%
   border-right-color: #D3D3D3;
 }
 
-#tbffftnemk .gt_bottom_border {
+#cazshhmpqg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
 }
 
-#tbffftnemk .gt_col_headings {
+#cazshhmpqg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -380,7 +383,7 @@ background-position: 90% 8%
   border-right-color: #D3D3D3;
 }
 
-#tbffftnemk .gt_col_heading {
+#cazshhmpqg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -400,7 +403,7 @@ background-position: 90% 8%
   overflow-x: hidden;
 }
 
-#tbffftnemk .gt_column_spanner_outer {
+#cazshhmpqg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -412,15 +415,15 @@ background-position: 90% 8%
   padding-right: 4px;
 }
 
-#tbffftnemk .gt_column_spanner_outer:first-child {
+#cazshhmpqg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tbffftnemk .gt_column_spanner_outer:last-child {
+#cazshhmpqg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tbffftnemk .gt_column_spanner {
+#cazshhmpqg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
@@ -432,11 +435,11 @@ background-position: 90% 8%
   width: 100%;
 }
 
-#tbffftnemk .gt_spanner_row {
+#cazshhmpqg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tbffftnemk .gt_group_heading {
+#cazshhmpqg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -462,7 +465,7 @@ background-position: 90% 8%
   text-align: left;
 }
 
-#tbffftnemk .gt_empty_group_heading {
+#cazshhmpqg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -477,15 +480,15 @@ background-position: 90% 8%
   vertical-align: middle;
 }
 
-#tbffftnemk .gt_from_md > :first-child {
+#cazshhmpqg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tbffftnemk .gt_from_md > :last-child {
+#cazshhmpqg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tbffftnemk .gt_row {
+#cazshhmpqg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -504,7 +507,7 @@ background-position: 90% 8%
   overflow-x: hidden;
 }
 
-#tbffftnemk .gt_stub {
+#cazshhmpqg .gt_stub {
   color: #FFFFFF;
   background-color: #5F5F5F;
   font-size: 100%;
@@ -517,7 +520,7 @@ background-position: 90% 8%
   padding-right: 5px;
 }
 
-#tbffftnemk .gt_stub_row_group {
+#cazshhmpqg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -531,15 +534,15 @@ background-position: 90% 8%
   vertical-align: top;
 }
 
-#tbffftnemk .gt_row_group_first td {
+#cazshhmpqg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tbffftnemk .gt_row_group_first th {
+#cazshhmpqg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tbffftnemk .gt_summary_row {
+#cazshhmpqg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -549,16 +552,16 @@ background-position: 90% 8%
   padding-right: 5px;
 }
 
-#tbffftnemk .gt_first_summary_row {
+#cazshhmpqg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #5F5F5F;
 }
 
-#tbffftnemk .gt_first_summary_row.thick {
+#cazshhmpqg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tbffftnemk .gt_last_summary_row {
+#cazshhmpqg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -568,7 +571,7 @@ background-position: 90% 8%
   border-bottom-color: #5F5F5F;
 }
 
-#tbffftnemk .gt_grand_summary_row {
+#cazshhmpqg .gt_grand_summary_row {
   color: #333333;
   background-color: #D5D5D5;
   text-transform: inherit;
@@ -578,7 +581,7 @@ background-position: 90% 8%
   padding-right: 5px;
 }
 
-#tbffftnemk .gt_first_grand_summary_row {
+#cazshhmpqg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -588,7 +591,7 @@ background-position: 90% 8%
   border-top-color: #5F5F5F;
 }
 
-#tbffftnemk .gt_last_grand_summary_row_top {
+#cazshhmpqg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -598,11 +601,11 @@ background-position: 90% 8%
   border-bottom-color: #5F5F5F;
 }
 
-#tbffftnemk .gt_striped {
+#cazshhmpqg .gt_striped {
   background-color: #F4F4F4;
 }
 
-#tbffftnemk .gt_table_body {
+#cazshhmpqg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -611,7 +614,7 @@ background-position: 90% 8%
   border-bottom-color: #5F5F5F;
 }
 
-#tbffftnemk .gt_footnotes {
+#cazshhmpqg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -625,7 +628,7 @@ background-position: 90% 8%
   border-right-color: #D3D3D3;
 }
 
-#tbffftnemk .gt_footnote {
+#cazshhmpqg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -634,7 +637,7 @@ background-position: 90% 8%
   padding-right: 5px;
 }
 
-#tbffftnemk .gt_sourcenotes {
+#cazshhmpqg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -648,7 +651,7 @@ background-position: 90% 8%
   border-right-color: #D3D3D3;
 }
 
-#tbffftnemk .gt_sourcenote {
+#cazshhmpqg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -656,72 +659,72 @@ background-position: 90% 8%
   padding-right: 5px;
 }
 
-#tbffftnemk .gt_left {
+#cazshhmpqg .gt_left {
   text-align: left;
 }
 
-#tbffftnemk .gt_center {
+#cazshhmpqg .gt_center {
   text-align: center;
 }
 
-#tbffftnemk .gt_right {
+#cazshhmpqg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tbffftnemk .gt_font_normal {
+#cazshhmpqg .gt_font_normal {
   font-weight: normal;
 }
 
-#tbffftnemk .gt_font_bold {
+#cazshhmpqg .gt_font_bold {
   font-weight: bold;
 }
 
-#tbffftnemk .gt_font_italic {
+#cazshhmpqg .gt_font_italic {
   font-style: italic;
 }
 
-#tbffftnemk .gt_super {
+#cazshhmpqg .gt_super {
   font-size: 65%;
 }
 
-#tbffftnemk .gt_footnote_marks {
+#cazshhmpqg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tbffftnemk .gt_asterisk {
+#cazshhmpqg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tbffftnemk .gt_indent_1 {
+#cazshhmpqg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tbffftnemk .gt_indent_2 {
+#cazshhmpqg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tbffftnemk .gt_indent_3 {
+#cazshhmpqg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tbffftnemk .gt_indent_4 {
+#cazshhmpqg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tbffftnemk .gt_indent_5 {
+#cazshhmpqg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tbffftnemk .katex-display {
+#cazshhmpqg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tbffftnemk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cazshhmpqg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -807,18 +810,29 @@ background-position: 90% 8%
 
 
 Direct Matches:
-&lt;iframe src="images/sample.html" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="images/sample.html" width="100%" height="200px" data-external="1"&gt;&lt;/iframe&gt;
 
 Fuzzy Matches:
-&lt;iframe src="images/sample.html" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="images/sample2.html" width="100%" height="200px" data-external="1"&gt;&lt;/iframe&gt;
+
+&lt;div style="display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  background-color: #F45AF5"&gt;&lt;/div&gt;
+&lt;div style="display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  background-color: #FB77DF"&gt;&lt;/div&gt;
 
 ---
 
-## Wikipedia Edits: Josie Baff
+## Wikipedia Edits: Highlighter Article
 
 
 
-&lt;iframe src="images/wiki.html" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="images/wiki3.html" width="100%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
 
 ---
 
@@ -849,11 +863,15 @@ background-position: 90% 8%
 
 - Design and save characters using `Edit_Figures()`]
 
----
-
-&lt;iframe src="https://rachelesrogers.shinyapps.io/edit_figures/?showcase=0" width="100%" height="600px" data-external="1"&gt;&lt;/iframe&gt;
+- https://rachelesrogers.shinyapps.io/edit_figures/
 
 ---
+
+
+
+&lt;!-- https://rachelesrogers.shinyapps.io/edit_figures/ --&gt;
+
+&lt;!-- --- --&gt;
 
 ## Character Validation
 
@@ -867,9 +885,10 @@ background-position: 90% 8%
 
 ## Study Design
 
+&lt;small&gt;
+
  - 3 skin tones x 10 outfits x 10 heads + hazmat + alien
- 
- Questions:
+
  - Sliding Scale: 
    - Age (young - old)
    - Reliability (unreliable - reliable)
@@ -891,6 +910,8 @@ background-position: 90% 8%
   - offer someone help if someone needed it
   
 - 520 participants evaluating 11 figures each
+
+&lt;/small&gt;
 
 ---
 
@@ -921,11 +942,17 @@ background-position: 90% 8%
 
 ---
 
-.pull-left[&lt;img src="images/char1.png" width="50%" /&gt;
-&lt;img src="images/char1_radar.png" width="100%" /&gt;]
+.pull-left[
+&lt;div style="text-align: center;"&gt;
+&lt;img src="images/char1.png" width="50%" /&gt;
+&lt;img src="images/char1_radar.png" width="100%" /&gt;
+&lt;/div&gt;]
 
-.pull-right[&lt;img src="images/char2.png" width="50%" /&gt;
-&lt;img src="images/char2_radar.png" width="100%" /&gt;]
+.pull-right[
+&lt;div style="text-align: center;"&gt;
+&lt;img src="images/char2.png" width="50%" /&gt;
+&lt;img src="images/char2_radar.png" width="100%" /&gt;
+&lt;/div&gt;]
 
 
 ---
@@ -946,16 +973,28 @@ background-position: 90% 8%
 ---
 
 
-.pull-left[&lt;img src="images/char1.png" width="50%" /&gt;
-&lt;img src="images/char1_group.png" width="100%" /&gt;]
+.pull-left[
+&lt;div style="text-align: center;"&gt;
+&lt;img src="images/char1.png" width="50%" /&gt;
+&lt;img src="images/char1_group.png" width="100%" /&gt;
+&lt;/div&gt;]
 
-.pull-right[&lt;img src="images/char2.png" width="50%" /&gt;
-&lt;img src="images/char2_group.png" width="100%" /&gt;]
+.pull-right[
+&lt;div style="text-align: center;"&gt;
+&lt;img src="images/char2.png" width="50%" /&gt;
+&lt;img src="images/char2_group.png" width="100%" /&gt;
+&lt;/div&gt;]
 
 
 ---
 
 # Conclusion
+
+- highlightr: compares source and derivative documents
+  - Future directions: Account for paraphrased material
+  
+- courtr: produces study template
+  - Future directions: expand material in template, add character charts
 
 ---
 
@@ -965,11 +1004,30 @@ background-position: 90% 8%
 
 # Works Cited
 
+&lt;small&gt;
+- 1776: Declaration of Independence (various drafts) | Online Library of Liberty. (n.d.). Retrieved April 23, 2026, from https://oll.libertyfund.org/pages/1776-declaration-of-independence-various-drafts
+- “Highlighter.” Wikipedia, 14 Mar. 2024. Wikipedia, https://en.wikipedia.org/w/index.php?title=Highlighter&amp;oldid=1213690238.
+-  B. L. Garrett, N. Scurich, &amp; W. E. Crozier (2020). Mock jurors’ evaluation of firearm examiner testimony. Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
 - B. Green. zoomerjoin: Superlatively Fast Fuzzy Joins, 2025. URL https://CRAN.R-project.org/package=zoomerjoin. R package version 0.2.1. [p2, 3, 4]
 - W. Wu, B. Li, L. Chen, J. Gao, and C. Zhang. A Review for Weighted MinHash Algorithms. IEEE
 Transactions on Knowledge and Data Engineering, 34(6):2553–2573, June 2022. ISSN 1558-2191. doi:
 10.1109/TKDE.2020.3021067. URL https://ieeexplore.ieee.org/abstract/document/9184977.
 [p4]
+&lt;/small&gt;
+
+---
+
+## The Results
+
+
+&lt;center&gt;
+&lt;!-- &lt;img src="images/reliable.jpg" width="70%" /&gt; --&gt;
+&lt;img src="images/credible.jpg" width="70%" /&gt;&lt;/center&gt;
+
+- Scale analysis
+  - Ceiling effect: examiners are overall seen as reliable
+  - Individuals may already believe that firearms evidence is reliable (Garrett &amp; Mitchell, 2013)
+  - Proposed Solution: Investigate other response methods
 
 ---
 
@@ -1048,16 +1106,16 @@ Transactions on Knowledge and Data Engineering, 34(6):2553–2573, June 2022. IS
 ---
 
 
-<div id="htmlwidget-cd2b24f72181816e8021" style="width:800px;height:600px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cd2b24f72181816e8021">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4b50629f05331c586b9d" style="width:800px;height:600px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4b50629f05331c586b9d">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec9 [label = \"End\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
 
 &lt;img src="images/pagecleaning.jpg" width="60%" /&gt;
 
-<div id="htmlwidget-0a27e5f9617ab81e4e44" style="width:800px;height:450px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0a27e5f9617ab81e4e44">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fe053ba12690313418b1" style="width:800px;height:450px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fe053ba12690313418b1">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]\n  rec3 [label =  \"Edit Distance > 15\"]\n  rec5 [label = \"Compute Longest Common Substring\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\"]\n  rec8 [label = \"Remove LCS\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [fillcolor = pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 16\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -1066,8 +1124,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
 The cat ran up the tree | The cat ran | The cat ran | 12 |  
 
-<div id="htmlwidget-ac59f5bb0efcfe69e904" style="width:800px;height:545px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac59f5bb0efcfe69e904">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4ee82ff669f034fbc65c" style="width:800px;height:545px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4ee82ff669f034fbc65c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 12\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\"]\n  rec8 [label = \"Remove LCS\n\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n 0 < 8\"]\n  rec9 [label = \"End\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1075,8 +1133,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Result
 --------|---------|---------|---------
 The cat ran up the tree | &lt;mark&gt;The cat ran, chased by a&lt;/mark&gt; dog, up the tree | (The cat ran)(up the tree) | 11 | ,chased by a dog,
 
-<div id="htmlwidget-38ed821f0e5277cf94ed" style="width:800px;height:545px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-38ed821f0e5277cf94ed">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-57c72adc5e6d8343b335" style="width:800px;height:545px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-57c72adc5e6d8343b335">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]        \n  rec2 [label = \"Edit Distance < 6\"]\n  rec4 [label = \"Remove first n characters\"]\n  rec10 [label = \"Calculate clean note length\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n11\"]\n  rec3 [label =  \"Edit Distance > 5\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran\nUp the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n11 > 8\n11 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog, up the tree\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1<8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1084,8 +1142,8 @@ Page 1 | Page 2 | LCS | Edit Distance | Mean | SD | Result
 --------|---------|---------|---------
 The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The cat ran up the tree chased by a dog | (The cat ran up the tree) | 0 | 10 | 5 | chased by a dog
 
-<div id="htmlwidget-8fe9ab6618132856238c" style="width:800px;height:500px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8fe9ab6618132856238c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7a6dcfed7f0aa39930bc" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7a6dcfed7f0aa39930bc">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, style = filled]    \n  \n  node [ fillcolor= white]    \n  rec3 [label =  \"Edit Distance > 5\"]\n  rec12 [label = \"Clean note length <= Mean(clean note length) + 4*SD(clean note length)\"]\n  \n  node [ fillcolor= pink]\n  rec1 [label = \"Calculate edit distance between first n characters in current notes and previous notes\n 0\"]\n  rec2 [label = \"Edit Distance < 6\n 0 < 6\"]\n  rec4 [label = \"Remove first n characters\n The cat ran up the tree chased by a dog\"]\n  rec10 [label = \"Calculate clean note length\n39\"]\n  rec11 [label = \"Clean note length > Mean(clean note length) + 4*SD(clean note length)\n39>30\"]\n  rec5 [label = \"Compute Longest Common Substring\nThe cat ran up the tree\nc\"]\n  rec6 [label = \"LCS > 1/3 Previous Note Length\n 23 > 8\"]\n  rec8 [label = \"Remove LCS\nchased by a dog\"]\n  rec7 [label = \"LCS <= 1/3 Previous Note Length\n1 < 8\"]\n  rec9 [label = \"End\nchased by a dog\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  rec1 -> rec3\n  rec2 -> rec4\n  rec3 -> rec5\n  rec5 -> rec6\n  rec5 -> rec7\n  rec6 -> rec8\n  rec8 -> rec5\n  rec4 -> rec10\n  rec10 -> rec11\n  rec10 -> rec12\n  rec11 -> rec5\n  rec12 -> rec9\n  rec7 -> rec9\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1095,7 +1153,7 @@ The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The c
 
 ---
 
-## Sequentail Note Cleaning
+## Sequential Note Cleaning
 
 ---
 
@@ -1122,8 +1180,8 @@ The cat ran up the tree | &lt;mark&gt;The cat ran up the tree&lt;/mark&gt; The c
    - If the string is "long enough", remove from current page of notes
    - Repeat
 
-<div id="htmlwidget-61c24fe72422cfb859e6" style="width:800px;height:500px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-61c24fe72422cfb859e6">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3bdec5dbe37883f226a0" style="width:800px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3bdec5dbe37883f226a0">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Page 1\n the cat enjoys napping in the afternoon\"]\n  rec2 [label = \"Page 2\nWhen it is quiet, the cat enjoys napping\"]\n  rec3 [label =  \"LCS\n the cat enjoys napping\"]\n  rec4 [label = \"Page 2 Clean\nWhen it is quiet\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
