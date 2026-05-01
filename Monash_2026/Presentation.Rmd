@@ -563,9 +563,9 @@ knitr::include_url("images/scale_plotly.html")
 ## Grouping Variables
 
 - Participants thought a person was more likely to live next door if their race/ethnicity matched
-  - Non-significant effect on other grouping variables
+  <!-- - Non-significant effect on other grouping variables -->
 - Participants thought that a person was more likely to share the same hobbies if their gender matched
-  - Non-significant effect on other grouping variables
+  <!-- - Non-significant effect on other grouping variables -->
   
 - Those perceived as women were seen as more likely to help and volunteer
 
@@ -619,6 +619,8 @@ This work was funded (or partially funded) by the Center for Statistics and Appl
 <small>
 - 1776: Declaration of Independence (various drafts) | Online Library of Liberty. (n.d.). Retrieved April 23, 2026, from https://oll.libertyfund.org/pages/1776-declaration-of-independence-various-drafts
 - “Highlighter.” Wikipedia, 14 Mar. 2024. Wikipedia, https://en.wikipedia.org/w/index.php?title=Highlighter&oldid=1213690238.
+- Center for Statistics and Applications in Forensic Evidence, Rogers R, VanderPlas S (2024). highlightr: Highlight Conserved Edits Across Versions of a Document. R package version 1.0.0,
+https://doi.org/10.32614/CRAN.package.highlightr
 - M. Crochemore, C. S. Iliopoulos, A. Langiu, & F. Mignosi (2017). The longest common substring problem. Mathematical Structures in Computer Science, 27(2), 277–295. https://doi.org/10.1017/S0960129515000110
 -  B. L. Garrett, N. Scurich, & W. E. Crozier (2020). Mock jurors’ evaluation of firearm examiner testimony. Law and Human Behavior, 44(5), 412–423. https://doi.org/10.1037/lhb0000423
 - B. Green. zoomerjoin: Superlatively Fast Fuzzy Joins, 2025. URL https://CRAN.R-project.org/package=zoomerjoin. R package version 0.2.1. [p2, 3, 4]
